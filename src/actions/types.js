@@ -1,1 +1,2 @@
-//File to put the const of actions
+//Authentication
+export const USER_LOGIN_SUCCESS = 'user_login_success';
