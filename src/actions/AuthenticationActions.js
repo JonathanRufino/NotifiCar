@@ -29,7 +29,7 @@ export const checkUserLogged = () => dispatch => {
 const userIsLogged = (dispatch) => {
     dispatch({ type: USER_IS_LOGGED });
 
-    Actions.principal();
+    Actions.main();
 };
 
 const userIsNotLogged = (dispatch) => {

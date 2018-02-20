@@ -8,9 +8,12 @@ import { userLoginSuccess, checkUserLogged } from '../actions/AuthenticationActi
 const backgroundImage = require('../imgs/login_background.png');
 
 class Login extends Component {
-    renderIsUserLogged() {
-        this.props.checkUserLogged();
 
+    componentWillMount() {
+        this.props.checkUserLogged();
+    }
+    
+    render() {
         return (
             <ImageBackground style={styles.backgroundImage} source={backgroundImage}>
                 <View style={styles.container}>
@@ -34,7 +37,7 @@ class Login extends Component {
                                                     data.accessToken.toString());
                                                 }
                                             ).then(
-                                                Actions.principal()
+                                                Actions.main()
                                             );
                                         }
                                     }
@@ -43,14 +46,6 @@ class Login extends Component {
                     </View> 
                 </View>
              </ImageBackground>
-        );
-    }
-    render() {
-        return (
-            
-             <View style={{ flex: 1}}>
-                {this.renderIsUserLogged()}
-            </View>
         );
     }
 }
