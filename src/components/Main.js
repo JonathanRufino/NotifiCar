@@ -4,7 +4,7 @@ import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
 import TabBarMenu from './TabBarMenu';
 import Feed from './Feed';
 import Ranking from './Ranking';
-import Account from './Account';
+import Account from './account';
 
 const initialLayout = {
   height: 0,
