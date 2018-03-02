@@ -31,12 +31,12 @@ class Login extends Component {
                                             alert('Login is cancelled');
                                         } else {
                                             AccessToken.getCurrentAccessToken()
-                                            .then(
-                                                (data) => {
+                                            .then((data) => {
                                                 this.props.userLoginSuccess(
-                                                    data.accessToken.toString());
-                                                }
-                                            ).then(
+                                                    data.accessToken.toString(),
+                                                    data.userID);
+                                            })
+                                            .then(
                                                 Actions.main()
                                             );
                                         }

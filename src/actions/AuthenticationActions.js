@@ -1,15 +1,18 @@
+import { AccessToken } from 'react-native-fbsdk';
+import { Actions } from 'react-native-router-flux';
 import { 
     USER_LOGIN_SUCCESS, 
     CHECKING_USER_IS_LOGGED,
     USER_IS_LOGGED, 
     USER_IS_NOT_LOGGED
 } from './types';
-import { AccessToken } from 'react-native-fbsdk';
-import { Actions } from 'react-native-router-flux';
 
-export const userLoginSuccess = (text) => ({
+export const userLoginSuccess = (accessToken, userID) => ({
     type: USER_LOGIN_SUCCESS,
-    payload: text
+    payload: {
+        accessToken,
+        userID,
+    }
 });
 
 export const checkUserLogged = () => dispatch => {
