@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, ImageBackground } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
-import { userLoginSuccess, checkUserLogged } from '../actions/AuthenticationActions';
+
+import {
+    userLoginSuccess,
+    checkUserLogged
+} from '../actions/AuthenticationActions';
 
 const backgroundImage = require('../imgs/login_background.png');
 
 class Login extends Component {
-
     componentWillMount() {
         this.props.checkUserLogged();
     }
@@ -22,26 +25,24 @@ class Login extends Component {
                     </View>
                     <View style={styles.viewButton}>
                         <LoginButton
-                                publishPermissions={['publish_actions']}
-                                onLoginFinished={
-                                    (error, result) => {
-                                        if (error) {
-                                            alert(`Login has error: ${result.error}`);
-                                        } else if (result.isCancelled) {
-                                            alert('Login is cancelled');
-                                        } else {
-                                            AccessToken.getCurrentAccessToken()
-                                            .then(
-                                                (data) => {
-                                                this.props.userLoginSuccess(
-                                                    data.accessToken.toString());
-                                                }
-                                            ).then(
-                                                Actions.main()
-                                            );
-                                        }
+                            publishPermissions={['publish_actions']}
+                            onLoginFinished={
+                                (error, result) => {
+                                    if (error) {
+                                        Alert.alert(`Login has error: ${result.error}`);
+                                    } else if (result.isCancelled) {
+                                        Alert.alert('Login is cancelled');
+                                    } else {
+                                        AccessToken.getCurrentAccessToken()
+                                        .then((data) => {
+                                            this.props.userLoginSuccess(
+                                                data.accessToken.toString(),
+                                                data.userID);
+                                        })
+                                        .then(() => Actions.main());
                                     }
                                 }
+                            }
                         />
                     </View> 
                 </View>
@@ -74,10 +75,10 @@ const styles = StyleSheet.create({
     }
 });
 
-const mapStateToProps = state => (
-    {
-        accessToken: state.AuthenticationReducer.accessToken
-    }
-);
+const mapStateToProps = state => ({
+    accessToken: state.AuthenticationReducer.accessToken
+});
 
-export default connect(mapStateToProps, { userLoginSuccess, checkUserLogged })(Login);
+export default connect(mapStateToProps, {
+    userLoginSuccess, checkUserLogged
+})(Login);
