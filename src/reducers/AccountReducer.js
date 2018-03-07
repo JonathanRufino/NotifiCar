@@ -3,17 +3,16 @@ import {
     ADD_VEHICLE_SUCCESS,
     ADD_VEHICLE_ERROR,
     HANDLE_MODAL,
-    GET_USER_DATA,
     UPDATE_VEHICLE_ERROR,
     SHOW_DIALOG,
+    FETCH_USER_VEHICLES,
 } from '../actions/types';
 
 const INITIAL_STATE = {
     vehicle: '',
-    vehicles: [],
+    vehicles: {},
     error: '',
     dialogIsVisible: false,
-    userData: {},
     vehicleError: '',
 };
 
@@ -29,6 +28,7 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 dialogIsVisible: false,
+                vehicle: '',
             };
         case ADD_VEHICLE_ERROR:
             return {
@@ -40,11 +40,6 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 dialogIsVisible: action.payload
             };
-        case GET_USER_DATA:
-            return {
-                ...state,
-                userData: action.payload
-            };
         case UPDATE_VEHICLE_ERROR:
             return {
                 ...state,
@@ -54,6 +49,11 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 dialogIsVisible: action.payload
+            };
+        case FETCH_USER_VEHICLES:
+            return {
+                ...state,
+                vehicles: action.payload,
             };
         default:
             return state;

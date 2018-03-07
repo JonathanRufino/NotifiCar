@@ -1,4 +1,7 @@
-import { USER_LOGIN_SUCCESS } from '../actions/types';
+import {
+    USER_LOGIN_SUCCESS,
+    USER_IS_LOGGED,
+} from '../actions/types';
 
 const INITIAL_STATE = {
     accessToken: '',
@@ -11,7 +14,13 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 accessToken: action.payload.accessToken,
-                userId: action.payload.userID
+                userID: action.payload.userID
+            };
+        case USER_IS_LOGGED:
+            return {
+                ...state,
+                accessToken: action.payload.accessToken,
+                userID: action.payload.userID
             };
         default:
             return state;

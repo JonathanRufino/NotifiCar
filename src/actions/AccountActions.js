@@ -1,13 +1,12 @@
 import firebase from 'firebase';
-import { AccessToken } from 'react-native-fbsdk';
 
 import {
     WRITE_VEHICLE,
     ADD_VEHICLE_SUCCESS,
     ADD_VEHICLE_ERROR,
     SHOW_DIALOG,
-    GET_USER_DATA,
     UPDATE_VEHICLE_ERROR,
+    FETCH_USER_VEHICLES,
 } from './types';
 
 export const writeVehicle = (vehicle) => ({
@@ -15,22 +14,16 @@ export const writeVehicle = (vehicle) => ({
     payload: vehicle
 });
 
-export const addVehicle = (userID, vehicle) => {
-    const vehiclesRef = firebase.database().ref('vehicles');
-
-    return (dispatch) => {
-        vehiclesRef.child(userID.toString())
-            .child('license_plate')
-            .child(vehicle.toString())
-            .set(true)
-            .then(() => dispatch({
-                type: ADD_VEHICLE_SUCCESS,
-            }))
-            .catch((error) => dispatch({
-                type: ADD_VEHICLE_ERROR,
-                payload: error
-            }));
-    };
+export const addVehicle = (userID, vehicle) => (dispatch) => {
+    firebase.database().ref(`/vehicles/${userID}`)
+        .push({ vehicle })
+        .then(() => dispatch({
+            type: ADD_VEHICLE_SUCCESS,
+        }))
+        .catch((error) => dispatch({
+            type: ADD_VEHICLE_ERROR,
+            payload: error
+        }));
 };
 
 export const showDialog = (dialogIsVisible) => ({
@@ -38,17 +31,17 @@ export const showDialog = (dialogIsVisible) => ({
     payload: dialogIsVisible
 });
 
-export const getUserData = () => {
-    return (dispatch) => {
-        AccessToken.getCurrentAccessToken()
-            .then(user => dispatch({
-                type: GET_USER_DATA,
-                payload: user
-            }));
-    };
-};
-
 export const updateVehicleError = (error) => ({
     type: UPDATE_VEHICLE_ERROR,
     payload: error
 });
+
+export const fetchUserVehicles = userID => dispatch => {
+    firebase.database().ref(`/vehicles/${userID}`)
+        .on('value', snapshot => {
+            dispatch({
+                type: FETCH_USER_VEHICLES,
+                payload: snapshot.val()
+            });
+        });
+};

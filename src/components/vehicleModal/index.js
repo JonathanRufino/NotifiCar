@@ -14,14 +14,14 @@ import { LICENSE_PLATE_REGEX } from '../../commom/regex';
 
 class VehicleModal extends Component {
     _validateVehicle() {
-        const { vehicle, userData } = this.props;
+        const { vehicle, userID } = this.props;
 
         if (!vehicle) {
             this.props.updateVehicleError(texts.errors.emptyVehicle);
         } else if (!LICENSE_PLATE_REGEX.test(vehicle)) {
             this.props.updateVehicleError(texts.errors.invalidVehicle);
         } else {
-            this.props.addVehicle(userData.userID, vehicle);
+            this.props.addVehicle(userID, vehicle);
         }
     }
 
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => ({
     vehicle: state.AccountReducer.vehicle,
     vehicleError: state.AccountReducer.vehicleError,
     dialogIsVisible: state.AccountReducer.dialogIsVisible,
-    userData: state.AccountReducer.userData,
+    userID: state.AuthenticationReducer.userID,
 });
 
 export default connect(mapStateToProps, {
