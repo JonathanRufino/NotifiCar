@@ -10,6 +10,7 @@ import {
     fetchUserVehicles
 } from '../../actions/AccountActions';
 import VehicleModal from '../vehicleModal';
+import LicensePlate from '../licensePlate';
 
 class Account extends Component {
     componentWillMount() {
@@ -34,15 +35,13 @@ class Account extends Component {
                     enableEmptySections
                     dataSource={this.vehiclesData}
                     renderRow={data => (
-                        <View style={styles.row}>
-                            <Text style={{ fontSize: 25 }}>{ data.vehicle }</Text>
-                        </View>
+                        <LicensePlate licensePlate={data.vehicle} />
                     )}
                 />
                 <ActionButton
                     buttonColor='rgba(231,76,60,1)'
                     onPress={() => this.props.showDialog(true)}
-                />  
+                />
             </View>
         );
     }

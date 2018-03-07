@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -42,6 +41,7 @@
 		C75AD7A2203A678300FFDD5F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75AD79E203A678200FFDD5F /* FBSDKShareKit.framework */; };
 		C75AD7A3203A678300FFDD5F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75AD79F203A678200FFDD5F /* Bolts.framework */; };
 		C75AD7A4203A678300FFDD5F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75AD7A0203A678200FFDD5F /* FBSDKLoginKit.framework */; };
+		C2F1FBD558F34DD0B8A49D92 /* Mandatory.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3545160C2A6A4EA4B4DF512C /* Mandatory.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -360,6 +360,7 @@
 		C75AD79E203A678200FFDD5F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		C75AD79F203A678200FFDD5F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		C75AD7A0203A678200FFDD5F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3545160C2A6A4EA4B4DF512C /* Mandatory.ttf */ = {isa = PBXFileReference; name = "Mandatory.ttf"; path = "../src/assets/fonts/Mandatory.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -605,6 +606,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C75AD75A203A5F1500FFDD5F /* Recovered References */,
+				76D7BD00330D4CA78FBABCAD /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -646,6 +648,15 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		76D7BD00330D4CA78FBABCAD /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				3545160C2A6A4EA4B4DF512C /* Mandatory.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -1104,6 +1115,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				C2F1FBD558F34DD0B8A49D92 /* Mandatory.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
