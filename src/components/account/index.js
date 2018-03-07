@@ -1,24 +1,44 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
+import _ from 'lodash';
 
 import styles from './styles';
 import {
-    getUserData,
-    showDialog
+    showDialog,
+    fetchUserVehicles
 } from '../../actions/AccountActions';
 import VehicleModal from '../vehicleModal';
 
 class Account extends Component {
     componentWillMount() {
-        this.props.getUserData();
+        this.props.fetchUserVehicles(this.props.userID);
+        this._createVehiclesList(this.props.vehicles);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this._createVehiclesList(nextProps.vehicles);
+    }
+
+    _createVehiclesList(vehicles) {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        this.vehiclesData = ds.cloneWithRows(vehicles);
     }
 
     render() {
         return (
             <View style={styles.screen}>
                 <VehicleModal />
+                <ListView
+                    enableEmptySections
+                    dataSource={this.vehiclesData}
+                    renderRow={data => (
+                        <View style={styles.row}>
+                            <Text style={{ fontSize: 25 }}>{ data.vehicle }</Text>
+                        </View>
+                    )}
+                />
                 <ActionButton
                     buttonColor='rgba(231,76,60,1)'
                     onPress={() => this.props.showDialog(true)}
@@ -28,12 +48,16 @@ class Account extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    vehicles: state.AccountReducer.vehicles,
-    error: state.AccountReducer.error,
-    userData: state.AccountReducer.userData,
-});
+const mapStateToProps = state => {
+    const vehicles = _.map(state.AccountReducer.vehicles, (val, uid) => ({ ...val, uid }));
+
+    return {
+        vehicles,
+        error: state.AccountReducer.error,
+        userID: state.AuthenticationReducer.userID,
+    };
+};
 
 export default connect(mapStateToProps, {
-    getUserData, showDialog
+    showDialog, fetchUserVehicles
 })(Account);
