@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebaseApp from '../../services/firebase';
 
 import {
     WRITE_VEHICLE,
@@ -15,7 +15,7 @@ export const writeVehicle = (vehicle) => ({
 });
 
 export const addVehicle = (userID, vehicle) => (dispatch) => {
-    firebase.database().ref(`/vehicles/${userID}`)
+    firebaseApp.database().ref(`/vehicles/${userID}`)
         .push({ vehicle })
         .then(() => dispatch({
             type: ADD_VEHICLE_SUCCESS,
@@ -37,7 +37,7 @@ export const updateVehicleError = (error) => ({
 });
 
 export const fetchUserVehicles = userID => dispatch => {
-    firebase.database().ref(`/vehicles/${userID}`)
+    firebaseApp.database().ref(`/vehicles/${userID}`)
         .on('value', snapshot => {
             dispatch({
                 type: FETCH_USER_VEHICLES,
