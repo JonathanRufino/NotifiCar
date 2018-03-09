@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../commom/colors';
+
+import { Colors } from '../../commom';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.blue,
+        backgroundColor: Colors.BLUE,
         borderRadius: 5,
         width: '100%',
         height: 50,
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        color: colors.white,
+        color: Colors.WHITE,
         fontWeight: '100',
         fontSize: 20,
     }

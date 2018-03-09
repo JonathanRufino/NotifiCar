@@ -3,23 +3,22 @@ import { View, Text, TextInput, Modal } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from './styles';
+import { Texts, Regexes } from '../../commom';
 import {
     writeVehicle,
     addVehicle,
     updateVehicleError
 } from '../../actions/AccountActions';
 import Button from '../../components/button';
-import texts from '../../commom/texts';
-import { LICENSE_PLATE_REGEX } from '../../commom/regex';
 
 class VehicleModal extends Component {
     _validateVehicle() {
         const { vehicle, userID } = this.props;
 
         if (!vehicle) {
-            this.props.updateVehicleError(texts.errors.emptyVehicle);
-        } else if (!LICENSE_PLATE_REGEX.test(vehicle)) {
-            this.props.updateVehicleError(texts.errors.invalidVehicle);
+            this.props.updateVehicleError(Texts.Errors.EMPTY_LICENSE_PLATE);
+        } else if (!Regexes.LICENSE_PLATE.test(vehicle)) {
+            this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
         } else {
             this.props.addVehicle(userID, vehicle);
         }
@@ -35,7 +34,7 @@ class VehicleModal extends Component {
                 <View style={styles.modal}>
                     <View style={styles.container}>
                         <Text style={styles.title}>
-                            {texts.titles.registerVehicle}
+                            {Texts.Titles.REGISTER_VEHICLE}
                         </Text>
                         <View>
                             <TextInput
@@ -44,14 +43,14 @@ class VehicleModal extends Component {
                                 onChangeText={(text) => this.props.writeVehicle(text)}
                                 maxLength={8}
                                 autoCapitalize='characters'
-                                placeholder={texts.placeholders.vehicle}
+                                placeholder={Texts.Placeholders.LICENSE_PLATE}
                             />
                             <Text style={styles.error}>
                                 {this.props.vehicleError}
                             </Text>
                         </View>
                         <Button
-                            title={texts.buttons.register}
+                            title={Texts.Buttons.REGISTER}
                             onPress={() => this._validateVehicle()}
                         />
                     </View>

@@ -1,10 +1,10 @@
-const colors = {
-    white: '#FFF',
-    black: '#000',
-    blue: '#1E88E5',
-    red: '#FF0000',
-    gray: '#aeb2b7',
-    lightGray: '#d6d8db',
+const Colors = {
+    WHITE: '#FFF',
+    BLACK: '#000',
+    BLUE: '#1E88E5',
+    RED: '#FF0000',
+    GRAY: '#aeb2b7',
+    LIGHT_GRAY: '#d6d8db',
 };
 
-export default colors;
+export { Colors };
