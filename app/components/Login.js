@@ -7,7 +7,7 @@ import { LoginButton, AccessToken } from 'react-native-fbsdk';
 import {
     userLoginSuccess,
     checkUserLogged
-} from '../actions/AuthenticationActions';
+} from '../redux/actions/AuthenticationActions';
 
 const backgroundImage = require('../assets/images/login_background.png');
 

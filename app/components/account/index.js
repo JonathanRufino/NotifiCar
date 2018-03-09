@@ -8,7 +8,7 @@ import styles from './styles';
 import {
     showDialog,
     fetchUserVehicles
-} from '../../actions/AccountActions';
+} from '../../redux/actions/AccountActions';
 import VehicleModal from '../vehicleModal';
 import LicensePlate from '../licensePlate';
 

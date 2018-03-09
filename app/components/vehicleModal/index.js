@@ -8,7 +8,7 @@ import {
     writeVehicle,
     addVehicle,
     updateVehicleError
-} from '../../actions/AccountActions';
+} from '../../redux/actions/AccountActions';
 import Button from '../../components/button';
 
 class VehicleModal extends Component {
