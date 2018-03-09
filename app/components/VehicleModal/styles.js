@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-import colors from '../../commom/colors';
+import { Colors } from '../../commom';
 
 const { width, height } = Dimensions.get('window');
 
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     container: {
         justifyContent: 'space-between',
-        backgroundColor: colors.white,
+        backgroundColor: Colors.WHITE,
         marginHorizontal: 0.1 * width,
         paddingHorizontal: 0.05 * width,
         paddingVertical: 0.02 * height,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
     },
     error: {
-        color: colors.red,
+        color: Colors.RED,
     }
 });
 

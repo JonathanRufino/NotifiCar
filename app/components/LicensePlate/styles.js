@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../../commom/colors';
+import { Colors } from '../../commom';
 
 const styles = StyleSheet.create({
     container: {
-        borderColor: colors.gray,
-        backgroundColor: colors.lightGray,
+        borderColor: Colors.GRAY,
+        backgroundColor: Colors.LIGHT_GRAY,
         borderWidth: 5,
         borderRadius: 10,
         marginVertical: 10,

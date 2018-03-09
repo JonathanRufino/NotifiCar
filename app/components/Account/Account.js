@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { View, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import _ from 'lodash';
@@ -8,9 +8,9 @@ import styles from './styles';
 import {
     showDialog,
     fetchUserVehicles
-} from '../../actions/AccountActions';
-import VehicleModal from '../vehicleModal';
-import LicensePlate from '../licensePlate';
+} from '../../redux/actions/AccountActions';
+import VehicleModal from '../VehicleModal/VehicleModal';
+import LicensePlate from '../LicensePlate/LicensePlate';
 
 class Account extends Component {
     componentWillMount() {
