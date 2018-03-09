@@ -9,7 +9,7 @@ import {
     addVehicle,
     updateVehicleError
 } from '../../redux/actions/AccountActions';
-import Button from '../../components/button';
+import Button from '../Button/Button';
 
 class VehicleModal extends Component {
     _validateVehicle() {
