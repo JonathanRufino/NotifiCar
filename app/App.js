@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
 
-import Routes from './Routes';
+import Routes from './routes/index';
 import reduxStore from './redux/store';
 
 class App extends Component {

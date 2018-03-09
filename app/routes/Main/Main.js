@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
 
-import TabBarMenu from './TabBarMenu';
-import Feed from './Feed';
-import Ranking from './Ranking';
-import Account from './account';
+import styles from './styles';
+import TabBarMenu from '../../components/TabBarMenu';
+import Feed from '../../components/Feed';
+import Ranking from '../../components/Ranking';
+import Account from '../../components/account/index';
 
 const initialLayout = {
     height: 0,
@@ -45,11 +46,5 @@ class Main extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-});
 
 export default Main;
