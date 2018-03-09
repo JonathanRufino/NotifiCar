@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, ImageBackground, Alert } from 'react-native';
+import { View, Text, ImageBackground, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
+import styles from './styles';
+import { Images } from '../../commom';
 import {
     userLoginSuccess,
     checkUserLogged
-} from '../actions/AuthenticationActions';
-
-const backgroundImage = require('../imgs/login_background.png');
+} from '../../redux/actions/AuthenticationActions';
 
 class Login extends Component {
     componentWillMount() {
@@ -18,7 +18,7 @@ class Login extends Component {
     
     render() {
         return (
-            <ImageBackground style={styles.backgroundImage} source={backgroundImage}>
+            <ImageBackground style={styles.backgroundImage} source={Images.LOGIN_BACKGROUND}>
                 <View style={styles.container}>
                     <View style={styles.viewText}>
                         <Text style={styles.txtTitle}>NotifiCar</Text>
@@ -50,30 +50,6 @@ class Login extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10
-    },
-    backgroundImage: {
-        flex: 1
-    },
-    viewText: {
-        flex: 3, 
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    viewButton: {
-        flex: 2,
-        alignItems: 'center'
-    },
-    txtTitle: {
-        fontSize: 25, 
-        color: '#000', 
-        backgroundColor: 'transparent'
-    }
-});
 
 const mapStateToProps = state => ({
     accessToken: state.AuthenticationReducer.accessToken
