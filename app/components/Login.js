@@ -9,7 +9,7 @@ import {
     checkUserLogged
 } from '../actions/AuthenticationActions';
 
-const backgroundImage = require('../imgs/login_background.png');
+const backgroundImage = require('../assets/images/login_background.png');
 
 class Login extends Component {
     componentWillMount() {
