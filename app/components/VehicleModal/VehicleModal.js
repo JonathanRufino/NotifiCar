@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Modal, TouchableWithoutFeedback } from 'react-native';
+import {
+    View,
+    Text,
+    TextInput,
+    Modal,
+    TouchableWithoutFeedback,
+    ActivityIndicator,
+} from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from './styles';
@@ -23,6 +30,21 @@ class VehicleModal extends Component {
         } else {
             this.props.addVehicle(userID, vehicle);
         }
+    }
+
+    _renderRegisterButton() {
+        if (this.props.isSavingVehicle) {
+            return (
+                <ActivityIndicator size='large' />
+            );
+        }
+
+        return (
+            <Button
+                title={Texts.Buttons.REGISTER}
+                onPress={() => this._validateVehicle()}
+            />
+        );
     }
 
     render() {
@@ -51,10 +73,9 @@ class VehicleModal extends Component {
                                     { this.props.vehicleError }
                                 </Text>
                             </View>
-                            <Button
-                                title={Texts.Buttons.REGISTER}
-                                onPress={() => this._validateVehicle()}
-                            />
+                            <View>
+                                { this._renderRegisterButton() }
+                            </View>
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
@@ -67,6 +88,7 @@ const mapStateToProps = (state) => ({
     vehicle: state.AccountReducer.vehicle,
     vehicleError: state.AccountReducer.vehicleError,
     dialogIsVisible: state.AccountReducer.dialogIsVisible,
+    isSavingVehicle: state.AccountReducer.isSavingVehicle,
     userID: state.AuthenticationReducer.userID,
 });
 

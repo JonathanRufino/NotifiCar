@@ -7,6 +7,7 @@ import {
     SHOW_DIALOG,
     UPDATE_VEHICLE_ERROR,
     FETCH_USER_VEHICLES,
+    SAVING_VEHICLE,
 } from './types';
 
 export const writeVehicle = (vehicle) => ({
@@ -15,6 +16,10 @@ export const writeVehicle = (vehicle) => ({
 });
 
 export const addVehicle = (userID, vehicle) => (dispatch) => {
+    dispatch({
+        type: SAVING_VEHICLE,
+    });
+
     firebaseApp.database().ref(`/vehicles/${userID}`)
         .push({ vehicle })
         .then(() => dispatch({
