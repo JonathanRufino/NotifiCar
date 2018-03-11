@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Modal } from 'react-native';
+import { View, Text, TextInput, Modal, TouchableWithoutFeedback } from 'react-native';
 import { connect } from 'react-redux';
 
 import styles from './styles';
@@ -7,7 +7,8 @@ import { Texts, Regexes } from '../../commom';
 import {
     writeVehicle,
     addVehicle,
-    updateVehicleError
+    updateVehicleError,
+    showDialog,
 } from '../../redux/actions/AccountActions';
 import Button from '../Button/Button';
 
@@ -29,32 +30,34 @@ class VehicleModal extends Component {
             <Modal
                 transparent
                 visible={this.props.dialogIsVisible}
-                onRequestClose={() => {}}
+                onRequestClose={() => this.props.showDialog(false)}
             >
-                <View style={styles.modal}>
-                    <View style={styles.container}>
-                        <Text style={styles.title}>
-                            {Texts.Titles.REGISTER_VEHICLE}
-                        </Text>
-                        <View>
-                            <TextInput
-                                style={styles.inputField}
-                                value={this.props.vehicle}
-                                onChangeText={(text) => this.props.writeVehicle(text)}
-                                maxLength={8}
-                                autoCapitalize='characters'
-                                placeholder={Texts.Placeholders.LICENSE_PLATE}
-                            />
-                            <Text style={styles.error}>
-                                {this.props.vehicleError}
+                <TouchableWithoutFeedback onPress={() => this.props.showDialog(false)}>
+                    <View style={styles.modal}>
+                        <View style={styles.container}>
+                            <Text style={styles.title}>
+                                { Texts.Titles.REGISTER_VEHICLE }
                             </Text>
+                            <View>
+                                <TextInput
+                                    style={styles.inputField}
+                                    value={this.props.vehicle}
+                                    onChangeText={(text) => this.props.writeVehicle(text)}
+                                    maxLength={8}
+                                    autoCapitalize='characters'
+                                    placeholder={Texts.Placeholders.LICENSE_PLATE}
+                                />
+                                <Text style={styles.error}>
+                                    { this.props.vehicleError }
+                                </Text>
+                            </View>
+                            <Button
+                                title={Texts.Buttons.REGISTER}
+                                onPress={() => this._validateVehicle()}
+                            />
                         </View>
-                        <Button
-                            title={Texts.Buttons.REGISTER}
-                            onPress={() => this._validateVehicle()}
-                        />
                     </View>
-                </View>
+                </TouchableWithoutFeedback>
             </Modal>
         );
     }
@@ -68,5 +71,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    writeVehicle, addVehicle, updateVehicleError
+    writeVehicle, addVehicle, updateVehicleError, showDialog
 })(VehicleModal);
