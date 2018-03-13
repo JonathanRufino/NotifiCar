@@ -4,6 +4,7 @@ import {
     WRITE_VEHICLE,
     ADD_VEHICLE_SUCCESS,
     ADD_VEHICLE_ERROR,
+    REMOVE_VEHICLE,
     SHOW_DIALOG,
     UPDATE_VEHICLE_ERROR,
     FETCH_USER_VEHICLES,
@@ -20,12 +21,26 @@ export const addVehicle = (userID, vehicle) => (dispatch) => {
         type: SAVING_VEHICLE,
     });
 
-    firebaseApp.database().ref(`/vehicles/${userID}`)
-        .push({ vehicle })
+    firebaseApp.database().ref(`/users/${userID}/vehicles`)
+        .child(vehicle.toUpperCase())
+        .set(true)
         .then(() => dispatch({
             type: ADD_VEHICLE_SUCCESS,
         }))
-        .catch((error) => dispatch({
+        .catch(error => dispatch({
+            type: ADD_VEHICLE_ERROR,
+            payload: error
+        }));
+};
+
+export const removeVehicle = (userID, vehicle) => dispatch => {
+    firebaseApp.database().ref(`/users/${userID}/vehicles`)
+        .child(vehicle)
+        .remove()
+        .then(() => dispatch({
+            type: REMOVE_VEHICLE
+        }))
+        .catch(error => dispatch({
             type: ADD_VEHICLE_ERROR,
             payload: error
         }));
@@ -42,7 +57,7 @@ export const updateVehicleError = (error) => ({
 });
 
 export const fetchUserVehicles = userID => dispatch => {
-    firebaseApp.database().ref(`/vehicles/${userID}`)
+    firebaseApp.database().ref(`/users/${userID}/vehicles/`)
         .on('value', snapshot => {
             dispatch({
                 type: FETCH_USER_VEHICLES,

@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
         flex: 1,
         height: 0.4 * height,
         width: 0.8 * width,
-    }
+    },
+    vehiclesList: {
+        width
+    },
 });
 
 export default styles;
