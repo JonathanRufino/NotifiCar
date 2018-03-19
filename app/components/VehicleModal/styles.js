@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     modal: {
         flex: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     container: {
         justifyContent: 'space-between',
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         height: 0.25 * width,
         width: 0.57 * width,
         fontSize: 0.120 * width,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     title: {
         fontSize: 0.07 * width,

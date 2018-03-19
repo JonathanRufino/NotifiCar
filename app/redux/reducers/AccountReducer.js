@@ -6,6 +6,7 @@ import {
     UPDATE_VEHICLE_ERROR,
     SHOW_DIALOG,
     FETCH_USER_VEHICLES,
+    SAVING_VEHICLE,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
     error: '',
     dialogIsVisible: false,
     vehicleError: '',
+    isSavingVehicle: false,
 };
 
 const AccountReducer = (state = INITIAL_STATE, action) => {
@@ -29,6 +31,7 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 dialogIsVisible: false,
                 vehicle: '',
+                isSavingVehicle: false,
             };
         case ADD_VEHICLE_ERROR:
             return {
@@ -54,6 +57,11 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 vehicles: action.payload,
+            };
+        case SAVING_VEHICLE:
+            return {
+                ...state,
+                isSavingVehicle: true,
             };
         default:
             return state;
