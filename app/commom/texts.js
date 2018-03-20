@@ -1,6 +1,7 @@
 const Texts = {
     Titles: {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
+        REGISTER_OCURRENCE: 'Cadastrar Ocorrência',
     },
     Errors: {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',

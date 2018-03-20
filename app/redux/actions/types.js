@@ -4,6 +4,10 @@ export const CHECKING_USER_IS_LOGGED = 'checking_user_is_logged';
 export const USER_IS_LOGGED = 'user_is_logged';
 export const USER_IS_NOT_LOGGED = 'user_is_not_logged';
 
+// Feed
+export const SHOW_DIALOG_FEED = 'SHOW_DIALOG_FEED';
+export const WRITE_VEHICLE_FEED = 'WRITE_VEHICLE_FEED';
+
 // Account
 export const WRITE_VEHICLE = 'WRITE_VEHICLE';
 export const ADD_VEHICLE_SUCCESS = 'ADD_VEHICLE_SUCCESS';
