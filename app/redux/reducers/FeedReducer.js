@@ -6,6 +6,9 @@ import {
     CHANGE_OCURRENCE_TYPE,
     OCURRENCE_TYPE_IS_LOADING,
     OCURRENCE_TYPE_LOADING_FINISHED,
+    SAVING_OCURRENCE,
+    ADD_OCURRENCE_SUCCESS,
+    ADD_OCURRENCE_ERROR,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -15,6 +18,7 @@ const INITIAL_STATE = {
     ocurrenceTypes: {},
     pickerValueHolder: 'Farol Aceso',
     isLoadingPicker: true,
+    error: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -54,7 +58,24 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isLoadingPicker: false
-            };    
+            };
+        case SAVING_OCURRENCE:
+            return {
+                ...state,
+                isLoadingPicker: true
+            };
+        case ADD_OCURRENCE_SUCCESS:
+            return {
+                ...state,
+                dialogIsVisible: false,
+                vehicle: '',
+                isLoadingPicker: false
+            }; 
+        case ADD_OCURRENCE_ERROR:
+            return {
+                ...state,
+                error: action.payload
+            };
         default:
             return state;
     }

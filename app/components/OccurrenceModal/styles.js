@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 0.1 * width,
         paddingHorizontal: 0.05 * width,
         paddingVertical: 0.02 * height,
-        height: 0.4 * height,
+        height: 0.5 * height,
     },
     inputField: {
         height: 0.25 * width,

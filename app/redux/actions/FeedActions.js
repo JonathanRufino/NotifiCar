@@ -8,6 +8,9 @@ import {
     CHANGE_OCURRENCE_TYPE,
     OCURRENCE_TYPE_IS_LOADING,
     OCURRENCE_TYPE_LOADING_FINISHED,
+    SAVING_OCURRENCE,
+    ADD_OCURRENCE_SUCCESS,
+    ADD_OCURRENCE_ERROR,
 } from './types';
 
 export const showDialog = (dialogIsVisible) => dispatch => {
@@ -32,6 +35,32 @@ export const updateVehicleError = (error) => ({
     type: UPDATE_VEHICLE_ERROR_FEED,
     payload: error
 });
+
+export const addOcurrence = (userID, typeOcurrence, vehicle) => (dispatch) => {
+    dispatch({
+        type: SAVING_OCURRENCE,
+    });
+
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const time = `${hour}:${minute}`;
+
+    firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`)
+        .push()
+        .set({ userID, vehicle, typeOcurrence, time })
+        .then(() => dispatch({
+            type: ADD_OCURRENCE_SUCCESS,
+        }))
+        .catch(error => dispatch({
+            type: ADD_OCURRENCE_ERROR,
+            payload: error
+        }));
+};
 
 export const changeOcurrenceType = (ocurrenceType) => ({
     type: CHANGE_OCURRENCE_TYPE,

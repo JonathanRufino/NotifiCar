@@ -18,6 +18,7 @@ import {
     writeVehicle,
     changeOcurrenceType,
     updateVehicleError,
+    addOcurrence,
 } from '../../redux/actions/FeedActions';
 import Button from '../Button/Button';
 
@@ -46,10 +47,27 @@ class OcurrenceModal extends Component {
             </View>
         );
     }
-
-    _showThings() {
-        console.log(this.props.vehicle);
-        console.log(this.props.pickerValueHolder);
+    
+    _validateOcurrence() {
+        if (this.props.vehicle === '') {
+            this.props.updateVehicleError(Texts.Errors.EMPTY_LICENSE_PLATE);
+        } else if (!Regexes.LICENSE_PLATE.test(this.props.vehicle)) {
+            this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
+        } else {
+            this.props.addOcurrence(this.props.userID, 
+                this.props.pickerValueHolder, this.props.vehicle);
+        }
+    }
+    
+    _renderRegisterOcurrenceButton() {
+        if (!this.props.isLoadingPicker) {
+            return (
+                <Button
+                    title={Texts.Buttons.REGISTER_OCURRENCE}
+                    onPress={() => this._validateOcurrence()}
+                />
+            );
+        }
     }
 
     render() {
@@ -77,12 +95,11 @@ class OcurrenceModal extends Component {
                                 />
                                 <Text style={styles.error}>
                                     { this.props.vehicleError }
-                                    oi
                                 </Text>
-                                <Button
-                                    title={Texts.Buttons.REGISTER_OCURRENCE}
-                                    onPress={() => this._showThings()}
-                                />
+                                <View>
+                                    { this._renderRegisterOcurrenceButton() }
+                                </View>
+                                
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -98,9 +115,10 @@ const mapStateToProps = (state) => ({
         vehicle: state.FeedReducer.vehicle,
         pickerValueHolder: state.FeedReducer.pickerValueHolder,
         isLoadingPicker: state.FeedReducer.isLoadingPicker,
-        vehicleError: state.AccountReducer.vehicleError,
+        vehicleError: state.FeedReducer.vehicleError,
+        userID: state.AuthenticationReducer.userID,
 });
 
 export default connect(mapStateToProps, {
-    showDialog, writeVehicle, changeOcurrenceType, updateVehicleError
+    showDialog, writeVehicle, changeOcurrenceType, updateVehicleError, addOcurrence
 })(OcurrenceModal);
