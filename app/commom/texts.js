@@ -12,6 +12,10 @@ const Texts = {
     },
     Buttons: {
         REGISTER: 'Cadastrar',
+        REGISTER_OCURRENCE: 'Registrar Ocorrência',
+    },
+    Informative: {
+        OCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
     }
 };
 

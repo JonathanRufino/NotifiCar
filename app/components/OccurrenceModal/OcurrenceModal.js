@@ -5,52 +5,102 @@ import {
     TextInput,
     Modal,
     TouchableWithoutFeedback,
+    Picker,
+    ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import styles from './styles';
-import { Texts } from '../../commom';
+import { Texts, Regexes } from '../../commom';
 import {
     showDialog,
-    writeVehicle
+    writeVehicle,
+    changeOcurrenceType,
+    updateVehicleError,
 } from '../../redux/actions/FeedActions';
+import Button from '../Button/Button';
 
 class OcurrenceModal extends Component {
+    _showPickerWhenDataFetch() {
+        if (this.props.isLoadingPicker) {
+            return (
+                <ActivityIndicator size='small' />
+            );
+        }
+
+        return (
+            <View>
+                <Text>
+                    { Texts.Informative.OCURRENCE_TYPE }
+                </Text>
+                <Picker
+                    selectedValue={this.props.pickerValueHolder}
+                    onValueChange={(itemValue, itemIndex) => 
+                        this.props.changeOcurrenceType(itemValue)} 
+                >
+                    { _.map(this.props.ocurrenceTypes, (item, key) => 
+                        (<Picker.Item label={item.type} value={item.type} key={key} />)
+                    )}
+                </Picker>
+            </View>
+        );
+    }
+
+    _showThings() {
+        console.log(this.props.vehicle);
+        console.log(this.props.pickerValueHolder);
+    }
+
     render() {
         return (
-            <Modal
-                transparent
-                visible={this.props.dialogIsVisible}
-                onRequestClose={() => this.props.showDialog(false)}
-            >
-                <TouchableWithoutFeedback onPress={() => this.props.showDialog(false)}>
-                    <View style={styles.modal}>
-                        <View style={styles.container}>
-                            <Text style={styles.title}>
-                                { Texts.Titles.REGISTER_OCURRENCE }
-                            </Text>
-
-                            <TextInput
-                                style={styles.inputField}
-                                value={this.props.vehicle}
-                                onChangeText={(text) => this.props.writeVehicle(text)}
-                                maxLength={8}
-                                autoCapitalize='characters'
-                                placeholder={Texts.Placeholders.LICENSE_PLATE}
-                            />
+            <View>
+                <Modal
+                    transparent
+                    visible={this.props.dialogIsVisible}
+                    onRequestClose={() => this.props.showDialog(false)}
+                >
+                    <TouchableWithoutFeedback onPress={() => this.props.showDialog(false)}>
+                        <View style={styles.modal}>
+                            <View style={styles.container}>
+                                <Text style={styles.title}>
+                                    { Texts.Titles.REGISTER_OCURRENCE }
+                                </Text>
+                                {this._showPickerWhenDataFetch()}
+                                <TextInput
+                                    style={styles.inputField}
+                                    value={this.props.vehicle}
+                                    onChangeText={(text) => this.props.writeVehicle(text)}
+                                    maxLength={8}
+                                    autoCapitalize='characters'
+                                    placeholder={Texts.Placeholders.LICENSE_PLATE}
+                                />
+                                <Text style={styles.error}>
+                                    { this.props.vehicleError }
+                                    oi
+                                </Text>
+                                <Button
+                                    title={Texts.Buttons.REGISTER_OCURRENCE}
+                                    onPress={() => this._showThings()}
+                                />
+                            </View>
                         </View>
-                    </View>
-                </TouchableWithoutFeedback>
-            </Modal>
+                    </TouchableWithoutFeedback>
+                </Modal>
+            </View>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    dialogIsVisible: state.FeedReducer.dialogIsVisible,
-    vehicle: state.FeedReducer.vehicle,
+        ocurrenceTypes: state.FeedReducer.ocurrenceTypes,
+        dialogIsVisible: state.FeedReducer.dialogIsVisible,
+        vehicle: state.FeedReducer.vehicle,
+        pickerValueHolder: state.FeedReducer.pickerValueHolder,
+        isLoadingPicker: state.FeedReducer.isLoadingPicker,
+        vehicleError: state.AccountReducer.vehicleError,
 });
 
 export default connect(mapStateToProps, {
-    showDialog, writeVehicle
+    showDialog, writeVehicle, changeOcurrenceType, updateVehicleError
 })(OcurrenceModal);

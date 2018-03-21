@@ -13,7 +13,7 @@ class Feed extends Component {
     render() {
         return (
             <View style={styles.screen}>
-                <OcurrenceModal />]
+                <OcurrenceModal />
 
                 <ActionButton
                     buttonColor='rgba(231,76,60,1)'
