@@ -74,9 +74,6 @@ export const fetchTenOcurrencesOfTheDay = () => dispatch => {
     const month = date.getMonth() + 1;
     const day = date.getDate();
 
-    console.log(year);
-    console.log(month);
-    console.log(day);
     firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`).limitToLast(20)
         .on('value', snapshot => {
             dispatch({

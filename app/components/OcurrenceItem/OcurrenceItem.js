@@ -1,22 +1,26 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 
 import styles from './styles';
 
-const OcurrenceOfTheDay = ({ ocurrence }) => (
+const OcurrenceOfTheDay = ({ ocurrence, image }) => (
     <View style={styles.container}>
-        <Text style={styles.text}>
-            { ocurrence.time }
-        </Text>
-        <Text style={styles.text}>
-            { ocurrence.typeOcurrence }
-        </Text>
-        <Text style={styles.text}>
-            { ocurrence.userID }
-        </Text>
-        <Text style={styles.text}>
-            { ocurrence.vehicle }
-        </Text>
+        <View style={styles.photo}>
+            <Image style={styles.photo} source={image} />
+        </View>
+        <View style={styles.itemView}>
+            <Text style={styles.text}>
+                { ocurrence.vehicle }
+            </Text>
+            <Text style={styles.text}>
+                { ocurrence.typeOcurrence }
+            </Text>
+        </View>
+        <View>
+            <Text style={styles.textTime}>
+                { ocurrence.time }
+            </Text>
+        </View>
     </View>
 );
 

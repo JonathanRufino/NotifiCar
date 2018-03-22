@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ListView, Text } from 'react-native';
+import { View, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import _ from 'lodash';
@@ -11,6 +11,7 @@ import {
 } from '../../redux/actions/FeedActions';
 import OcurrenceModal from '../OccurrenceModal/OcurrenceModal';
 import OcurrenceItem from '../OcurrenceItem/OcurrenceItem';
+import { Images } from '../../commom';
 
 class Feed extends Component {
     componentWillMount() {
@@ -28,8 +29,20 @@ class Feed extends Component {
     }
 
     _renderRow(ocurrenceData) {
+        let icon;
+
+        if (ocurrenceData.typeOcurrence === 'Farol Aceso') {
+            icon = Images.ICON_LIGHTS;
+        } else if (ocurrenceData.typeOcurrence === 'Vidro Aberto') {
+            icon = Images.ICON_WINDOW;
+        } else if (ocurrenceData.typeOcurrence === 'Alarme Disparado') {
+            icon = Images.ICON_ALARM;
+        } else {
+            icon = Images.ICON_WARNING;
+        }
+
         return (
-            <OcurrenceItem ocurrence={ocurrenceData} />
+            <OcurrenceItem ocurrence={ocurrenceData} image={icon} />
         );
     }
 
@@ -69,4 +82,6 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { showDialog, fetchTenOcurrencesOfTheDay })(Feed);
+export default connect(mapStateToProps, {
+    showDialog, fetchTenOcurrencesOfTheDay
+})(Feed);

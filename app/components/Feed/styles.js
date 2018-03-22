@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         width: 0.8 * width,
     },
     ocurrenceList: {
-        width
+        flex: 1
     },
 });
 
