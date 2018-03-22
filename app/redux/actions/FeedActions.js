@@ -12,6 +12,7 @@ import {
     ADD_OCURRENCE_SUCCESS,
     ADD_OCURRENCE_ERROR,
     FETCH_OCURRENCES_OF_THE_DAY,
+    FETCH_OCURRENCES_IS_LOADING,
 } from './types';
 
 export const showDialog = (dialogIsVisible) => dispatch => {
@@ -73,6 +74,7 @@ export const fetchTenOcurrencesOfTheDay = () => dispatch => {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
+    dispatch({ type: FETCH_OCURRENCES_IS_LOADING });
 
     firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`).limitToLast(20)
         .on('value', snapshot => {

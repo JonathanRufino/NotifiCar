@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     ocurrenceList: {
         flex: 1
     },
+    indicator: {
+        marginTop: 10
+    },
 });
 
 export default styles;

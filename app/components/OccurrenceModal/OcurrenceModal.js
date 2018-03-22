@@ -75,6 +75,7 @@ class OcurrenceModal extends Component {
             <View>
                 <Modal
                     transparent
+                    animationType='fade'
                     visible={this.props.dialogIsVisible}
                     onRequestClose={() => this.props.showDialog(false)}
                 >

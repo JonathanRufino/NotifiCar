@@ -10,6 +10,7 @@ import {
     ADD_OCURRENCE_SUCCESS,
     ADD_OCURRENCE_ERROR,
     FETCH_OCURRENCES_OF_THE_DAY,
+    FETCH_OCURRENCES_IS_LOADING,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -21,6 +22,7 @@ const INITIAL_STATE = {
     pickerValueHolder: 'Farol Aceso',
     isLoadingPicker: true,
     error: '',
+    isLoadingListOfOcurrences: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -81,7 +83,13 @@ export default (state = INITIAL_STATE, action) => {
         case FETCH_OCURRENCES_OF_THE_DAY:
             return {
                 ...state,
-                ocurrencesOfTheDay: action.payload
+                ocurrencesOfTheDay: action.payload,
+                isLoadingListOfOcurrences: false
+            };
+        case FETCH_OCURRENCES_IS_LOADING:
+            return {
+                ...state,
+                isLoadingListOfOcurrences: true
             };
         default:
             return state;

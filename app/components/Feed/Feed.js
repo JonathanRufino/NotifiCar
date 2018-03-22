@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ListView } from 'react-native';
+import { View, ListView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import _ from 'lodash';
@@ -46,17 +46,29 @@ class Feed extends Component {
         );
     }
 
+    _renderListOfOcurrences() {
+        if (this.props.isLoadingListOfOcurrences) {
+            return (
+                <ActivityIndicator style={styles.indicator} size='large' />
+            );
+        }
+
+        return (
+            <ListView
+                style={styles.ocurrenceList}
+                enableEmptySections
+                dataSource={this.dataSource}
+                renderRow={this._renderRow}
+            />
+        );
+    }
+
     render() {
         return (
             <View style={styles.screen}>
                 <OcurrenceModal />
 
-                <ListView
-                    style={styles.ocurrenceList}
-                    enableEmptySections
-                    dataSource={this.dataSource}
-                    renderRow={this._renderRow}
-                />
+                {this._renderListOfOcurrences()}
 
                 <ActionButton
                     buttonColor='rgba(231,76,60,1)'
@@ -78,7 +90,8 @@ const mapStateToProps = state => {
     }
 
     return {
-        ocurrencesOfTheDay
+        ocurrencesOfTheDay,
+        isLoadingListOfOcurrences: state.FeedReducer.isLoadingListOfOcurrences
     };
 };
 
