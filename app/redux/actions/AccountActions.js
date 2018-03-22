@@ -9,6 +9,7 @@ import {
     UPDATE_VEHICLE_ERROR,
     FETCH_USER_VEHICLES,
     SAVING_VEHICLE,
+    FETCH_VEHICLES_IS_LOADING,
 } from './types';
 
 export const writeVehicle = (vehicle) => ({
@@ -57,6 +58,8 @@ export const updateVehicleError = (error) => ({
 });
 
 export const fetchUserVehicles = userID => dispatch => {
+    dispatch({ type: FETCH_VEHICLES_IS_LOADING });
+
     firebaseApp.database().ref(`/users/${userID}/vehicles/`)
         .on('value', snapshot => {
             dispatch({

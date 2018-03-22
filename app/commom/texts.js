@@ -1,6 +1,7 @@
 const Texts = {
     Titles: {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
+        REGISTER_OCURRENCE: 'Cadastrar Ocorrência',
     },
     Errors: {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',
@@ -11,6 +12,10 @@ const Texts = {
     },
     Buttons: {
         REGISTER: 'Cadastrar',
+        REGISTER_OCURRENCE: 'Registrar Ocorrência',
+    },
+    Informative: {
+        OCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
     }
 };
 

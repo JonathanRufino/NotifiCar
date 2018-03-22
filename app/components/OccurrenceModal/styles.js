@@ -27,6 +27,13 @@ const styles = StyleSheet.create({
         fontSize: 0.07 * width,
         alignSelf: 'center',
     },
+    type_ocurrence: {
+        fontSize: 0.04 * width,
+        alignSelf: 'center',
+    },
+    picker_ocurrence: {
+        alignSelf: 'center',
+    },
     error: {
         color: Colors.RED,
         alignSelf: 'center',

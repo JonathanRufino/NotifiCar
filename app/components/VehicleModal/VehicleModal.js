@@ -3,11 +3,11 @@ import {
     View,
     Text,
     TextInput,
-    Modal,
     TouchableWithoutFeedback,
     ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
 
 import styles from './styles';
 import { Texts, Regexes } from '../../commom';
@@ -50,35 +50,33 @@ class VehicleModal extends Component {
     render() {
         return (
             <Modal
-                transparent
-                visible={this.props.dialogIsVisible}
-                onRequestClose={() => this.props.showDialog(false)}
+                isVisible={this.props.dialogIsVisible}
+                onBackdropPress={() => this.props.showDialog(false)}
+                onBackButtonPress={() => this.props.showDialog(false)}
             >
-                <TouchableWithoutFeedback onPress={() => this.props.showDialog(false)}>
-                    <View style={styles.modal}>
-                        <View style={styles.container}>
-                            <Text style={styles.title}>
-                                { Texts.Titles.REGISTER_VEHICLE }
+                <View style={styles.modal}>
+                    <View style={styles.container}>
+                        <Text style={styles.title}>
+                            { Texts.Titles.REGISTER_VEHICLE }
+                        </Text>
+                        <View>
+                            <TextInput
+                                style={styles.inputField}
+                                value={this.props.vehicle}
+                                onChangeText={(text) => this.props.writeVehicle(text)}
+                                maxLength={8}
+                                autoCapitalize='characters'
+                                placeholder={Texts.Placeholders.LICENSE_PLATE}
+                            />
+                            <Text style={styles.error}>
+                                { this.props.vehicleError }
                             </Text>
-                            <View>
-                                <TextInput
-                                    style={styles.inputField}
-                                    value={this.props.vehicle}
-                                    onChangeText={(text) => this.props.writeVehicle(text)}
-                                    maxLength={8}
-                                    autoCapitalize='characters'
-                                    placeholder={Texts.Placeholders.LICENSE_PLATE}
-                                />
-                                <Text style={styles.error}>
-                                    { this.props.vehicleError }
-                                </Text>
-                            </View>
-                            <View>
-                                { this._renderRegisterButton() }
-                            </View>
+                        </View>
+                        <View>
+                            { this._renderRegisterButton() }
                         </View>
                     </View>
-                </TouchableWithoutFeedback>
+                </View>
             </Modal>
         );
     }

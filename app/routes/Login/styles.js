@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     txtTitle: {
-        fontSize: 25,
+        fontSize: 50,
         color: '#000',
         backgroundColor: 'transparent'
     }

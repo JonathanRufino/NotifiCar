@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ListView } from 'react-native';
+import { View, ListView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import Swipeout from 'react-native-swipeout';
@@ -42,28 +42,40 @@ class Account extends Component {
         return swiperButtons;
     }
 
+    _renderListOfVehicles() {
+        if (this.props.isLoadingListOfVehicles) {
+            return (
+                <ActivityIndicator style={styles.indicator} size='large' />
+            );
+        }
+
+        return (
+            <ListView
+                style={styles.vehiclesList}
+                enableEmptySections
+                dataSource={this.vehiclesData}
+                renderRow={data => (
+                    <Swipeout
+                        autoClose
+                        right={this._getSwiperButtons(data)}
+                        style={{
+                            alignItems: 'center',
+                            backgroundColor: Colors.TRANSPARENT,
+                        }}
+                    >
+                        <LicensePlate licensePlate={data} />
+                    </Swipeout>
+                )}
+            />
+        );
+    }
+
     render() {
         return (
             <View style={styles.screen}>
                 <VehicleModal />
 
-                <ListView
-                    style={styles.vehiclesList}
-                    enableEmptySections
-                    dataSource={this.vehiclesData}
-                    renderRow={data => (
-                        <Swipeout
-                            autoClose
-                            right={this._getSwiperButtons(data)}
-                            style={{
-                                alignItems: 'center',
-                                backgroundColor: Colors.TRANSPARENT,
-                            }}
-                        >
-                            <LicensePlate licensePlate={data} />
-                        </Swipeout>
-                    )}
-                />
+                {this._renderListOfVehicles()}
 
                 <ActionButton
                     buttonColor='rgba(231,76,60,1)'
@@ -86,6 +98,7 @@ const mapStateToProps = state => {
     return {
         vehicles,
         error: state.AccountReducer.error,
+        isLoadingListOfVehicles: state.AccountReducer.isLoadingListOfVehicles,
         userID: state.AuthenticationReducer.userID,
     };
 };

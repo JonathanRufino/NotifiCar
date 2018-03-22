@@ -1,0 +1,1 @@
+export { OcurrenceItem } from './OcurrenceItem';

@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
         height: 0.4 * height,
         width: 0.8 * width,
     },
-    vehiclesList: {
-        width
+    ocurrenceList: {
+        flex: 1
     },
     indicator: {
         marginTop: 10
