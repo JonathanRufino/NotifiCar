@@ -11,6 +11,7 @@ import {
     SAVING_OCURRENCE,
     ADD_OCURRENCE_SUCCESS,
     ADD_OCURRENCE_ERROR,
+    FETCH_OCURRENCES_OF_THE_DAY,
 } from './types';
 
 export const showDialog = (dialogIsVisible) => dispatch => {
@@ -43,8 +44,8 @@ export const addOcurrence = (userID, typeOcurrence, vehicle) => (dispatch) => {
 
     const date = new Date();
     const year = date.getFullYear();
-    const month = date.getUTCMonth() + 1;
-    const day = date.getUTCDate();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
 
     const hour = date.getHours();
     const minute = date.getMinutes();
@@ -66,3 +67,21 @@ export const changeOcurrenceType = (ocurrenceType) => ({
     type: CHANGE_OCURRENCE_TYPE,
     payload: ocurrenceType
 });
+
+export const fetchTenOcurrencesOfTheDay = () => dispatch => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    console.log(year);
+    console.log(month);
+    console.log(day);
+    firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`).limitToLast(20)
+        .on('value', snapshot => {
+            dispatch({
+                type: FETCH_OCURRENCES_OF_THE_DAY,
+                payload: snapshot.val()
+            });
+        });
+};

@@ -9,6 +9,7 @@ import {
     SAVING_OCURRENCE,
     ADD_OCURRENCE_SUCCESS,
     ADD_OCURRENCE_ERROR,
+    FETCH_OCURRENCES_OF_THE_DAY,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -16,6 +17,7 @@ const INITIAL_STATE = {
     dialogIsVisible: false,
     vehicleError: '',
     ocurrenceTypes: {},
+    ocurrencesOfTheDay: {},
     pickerValueHolder: 'Farol Aceso',
     isLoadingPicker: true,
     error: '',
@@ -75,6 +77,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 error: action.payload
+            };
+        case FETCH_OCURRENCES_OF_THE_DAY:
+            return {
+                ...state,
+                ocurrencesOfTheDay: action.payload
             };
         default:
             return state;
