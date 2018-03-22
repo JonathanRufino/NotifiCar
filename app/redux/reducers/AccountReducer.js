@@ -7,6 +7,7 @@ import {
     SHOW_DIALOG,
     FETCH_USER_VEHICLES,
     SAVING_VEHICLE,
+    FETCH_VEHICLES_IS_LOADING,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -16,6 +17,7 @@ const INITIAL_STATE = {
     dialogIsVisible: false,
     vehicleError: '',
     isSavingVehicle: false,
+    isLoadingListOfVehicles: false,
 };
 
 const AccountReducer = (state = INITIAL_STATE, action) => {
@@ -57,11 +59,17 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 vehicles: action.payload,
+                isLoadingListOfVehicles: false
             };
         case SAVING_VEHICLE:
             return {
                 ...state,
                 isSavingVehicle: true,
+            };
+        case FETCH_VEHICLES_IS_LOADING:
+            return {
+                ...state,
+                isLoadingListOfVehicles: true
             };
         default:
             return state;

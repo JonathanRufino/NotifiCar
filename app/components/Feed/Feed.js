@@ -7,7 +7,7 @@ import _ from 'lodash';
 import styles from './styles';
 import {
     showDialog,
-    fetchTenOcurrencesOfTheDay,
+    fetchOcurrencesOfTheDay,
 } from '../../redux/actions/FeedActions';
 import OcurrenceModal from '../OccurrenceModal/OcurrenceModal';
 import OcurrenceItem from '../OcurrenceItem/OcurrenceItem';
@@ -15,7 +15,7 @@ import { Images } from '../../commom';
 
 class Feed extends Component {
     componentWillMount() {
-        this.props.fetchTenOcurrencesOfTheDay();
+        this.props.fetchOcurrencesOfTheDay();
         this._createOcurrenceList(this.props.ocurrencesOfTheDay);
     }
 
@@ -96,5 +96,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-    showDialog, fetchTenOcurrencesOfTheDay
+    showDialog, fetchOcurrencesOfTheDay
 })(Feed);

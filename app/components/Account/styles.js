@@ -15,6 +15,9 @@ const styles = StyleSheet.create({
     vehiclesList: {
         width
     },
+    indicator: {
+        marginTop: 10
+    },
 });
 
 export default styles;

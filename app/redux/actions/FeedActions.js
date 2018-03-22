@@ -69,11 +69,12 @@ export const changeOcurrenceType = (ocurrenceType) => ({
     payload: ocurrenceType
 });
 
-export const fetchTenOcurrencesOfTheDay = () => dispatch => {
+export const fetchOcurrencesOfTheDay = () => dispatch => {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
+    
     dispatch({ type: FETCH_OCURRENCES_IS_LOADING });
 
     firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`).limitToLast(20)
