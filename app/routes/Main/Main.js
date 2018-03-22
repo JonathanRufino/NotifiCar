@@ -19,7 +19,7 @@ class Main extends Component {
         routes: [
             { key: '1', title: 'Feed' },
             { key: '2', title: 'Ranking' },
-            { key: '3', title: 'Account' },
+            { key: '3', title: 'Conta' },
         ],
     };
 
