@@ -10,7 +10,7 @@ const OcurrenceOfTheDay = ({ ocurrence, image }) => (
         </View>
         <View style={styles.itemView}>
             <Text style={styles.text}>
-                { ocurrence.vehicle }
+                { ocurrence.vehicle.toUpperCase() }
             </Text>
             <Text style={styles.text}>
                 { ocurrence.typeOcurrence }
