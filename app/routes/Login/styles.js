@@ -1,26 +1,28 @@
 import { StyleSheet } from 'react-native';
 
+import { Colors, Values } from '../../commom';
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 10
-    },
     backgroundImage: {
-        flex: 1
-    },
-    viewText: {
-        flex: 3,
+        flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
     },
-    viewButton: {
-        flex: 2,
-        alignItems: 'center'
+    content: {
+        flex: 1,
     },
-    txtTitle: {
-        fontSize: 50,
-        color: '#000',
-        backgroundColor: 'transparent'
+    logoContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    logo: {
+        fontSize: 0.15 * Values.SCREEN_WIDTH,
+        color: Colors.BLACK,
     }
 });
 

@@ -1,4 +1,5 @@
 const Texts = {
+    APP_NAME: 'NotifiCar',
     Titles: {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
         REGISTER_OCURRENCE: 'Cadastrar Ocorrência',
@@ -6,6 +7,7 @@ const Texts = {
     Errors: {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',
         INVALID_LICENSE_PLATE: 'Informe uma placa válida',
+        LOGIN_CANCELLED: 'Login cancelado',
     },
     Placeholders: {
         LICENSE_PLATE: 'AAA-0000',

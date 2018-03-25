@@ -1,26 +1,13 @@
 import { AccessToken } from 'react-native-fbsdk';
 import { Actions } from 'react-native-router-flux';
-import { 
-    USER_LOGIN_SUCCESS, 
-    CHECKING_USER_IS_LOGGED,
-    USER_IS_LOGGED, 
-    USER_IS_NOT_LOGGED
-} from './types';
+import * as Types from './types';
 
-export const userLoginSuccess = (accessToken, userID) => ({
-    type: USER_LOGIN_SUCCESS,
-    payload: {
-        accessToken,
-        userID,
-    }
-});
-
-export const checkUserLogged = () => dispatch => {
-    dispatch({ type: CHECKING_USER_IS_LOGGED });
+export const checkUserIsLogged = () => dispatch => {
+    dispatch({ type: Types.CHECKING_USER_IS_LOGGED });
 
     AccessToken.getCurrentAccessToken()
-        .then((data) => { 
-            if (data != null) {
+        .then(data => { 
+            if (data !== null) {
                 userIsLogged(data, dispatch);
             } else {
                 userIsNotLogged(dispatch);
@@ -31,7 +18,7 @@ export const checkUserLogged = () => dispatch => {
 
 const userIsLogged = (data, dispatch) => {
     dispatch({
-        type: USER_IS_LOGGED,
+        type: Types.USER_IS_LOGGED,
         payload: {
             accessToken: data.accessToken,
             userID: data.userID
@@ -42,5 +29,13 @@ const userIsLogged = (data, dispatch) => {
 };
 
 const userIsNotLogged = (dispatch) => {
-    dispatch({ type: USER_IS_NOT_LOGGED });
+    dispatch({ type: Types.USER_IS_NOT_LOGGED });
 };
+
+export const userLoginSuccess = (accessToken, userID) => ({
+    type: Types.USER_LOGIN_SUCCESS,
+    payload: {
+        accessToken,
+        userID,
+    }
+});
