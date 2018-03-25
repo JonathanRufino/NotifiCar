@@ -18,8 +18,7 @@ class Main extends Component {
         index: 0,
         routes: [
             { key: '1', title: 'Feed' },
-            { key: '2', title: 'Ranking' },
-            { key: '3', title: 'Conta' },
+            { key: '2', title: 'Conta' },
         ],
     };
 
@@ -29,8 +28,7 @@ class Main extends Component {
 
     _renderScene = SceneMap({
         '1': Feed,
-        '2': Ranking,
-        '3': Account,
+        '2': Account,
     });
 
     render() {

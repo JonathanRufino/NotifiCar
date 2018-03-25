@@ -18,6 +18,10 @@ const Texts = {
     },
     Informative: {
         OCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
+        NO_VEHICLES: 'Nenhum Veículo Cadastrado',
+        ADD_VEHICLE_INSTRUCTIONS: 'Cadastre um veículo tocando no botão +',
+        NO_OCCURRENCES: 'Nenhuma Ocorrência Registrada',
+        ADD_OCCURRENCE_INSTRUCTIONS: 'Cadastre uma ocorrência tocando no botão +',
     }
 };
 
