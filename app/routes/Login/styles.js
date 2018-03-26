@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         fontSize: 0.15 * Values.SCREEN_WIDTH,
+        fontFamily: 'KolnMesseDeutz',
         color: Colors.BLACK,
     }
 });

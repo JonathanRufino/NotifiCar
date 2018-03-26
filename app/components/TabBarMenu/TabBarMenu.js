@@ -6,17 +6,18 @@ import { connect } from 'react-redux';
 import { LoginButton } from 'react-native-fbsdk';
 
 import styles from './styles';
+import { Colors, Texts } from '../../commom';
 import { userLoginSuccess } from '../../redux/actions/AuthenticationActions';
 
 class TabBarMenu extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <StatusBar backgroundColor="#114D44" />
+            <StatusBar backgroundColor={Colors.GREEN_DARK} />
 
             <View style={styles.viewPrincipal}>
                 <View style={styles.viewTitle}>
-                    <Text style={styles.txtTitle}> NotifiCar </Text>
+                    <Text style={styles.txtTitle}>{ Texts.APP_NAME }</Text>
                 </View>
 
                 <View style={styles.viewElements}>

@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
+import { Colors } from '../../commom';
+
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#115E54',
+        backgroundColor: Colors.GREEN,
         elevation: 4,
         marginBottom: 6
     },
@@ -22,12 +24,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     txtTitle: {
-        color: '#fff',
+        color: Colors.WHITE,
         fontSize: 20,
         marginLeft: 20
     },
     tabBarStyle: {
-        backgroundColor: '#115E54',
+        backgroundColor: Colors.GREEN,
         elevation: 0
     }
 });

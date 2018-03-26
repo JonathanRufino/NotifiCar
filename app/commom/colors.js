@@ -7,6 +7,7 @@ const Colors = {
     LIGHT_GRAY: '#d6d8db',
     TRANSPARENT: 'transparent',
     GREEN: '#115E54',
+    GREEN_DARK: '#114D44',
 };
 
 export { Colors };
