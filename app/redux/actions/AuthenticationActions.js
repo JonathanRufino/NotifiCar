@@ -1,5 +1,6 @@
 import { AccessToken } from 'react-native-fbsdk';
 import { Actions } from 'react-native-router-flux';
+
 import * as Types from './types';
 
 export const checkUserIsLogged = () => dispatch => {

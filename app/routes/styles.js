@@ -1,11 +1,13 @@
 import { StyleSheet } from 'react-native';
 
+import { Colors } from '../commom';
+
 const styles = StyleSheet.create({
     navBar: {
-        backgroundColor: '#115E54',
+        backgroundColor: Colors.GREEN,
     },
     navBarTitle: {
-        color: '#fff',
+        color: Colors.WHITE,
     }
 });
 
