@@ -3,10 +3,9 @@ import { Dimensions } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
 
 import styles from './styles';
-import TabBarMenu from '../../components/TabBarMenu/TabBarMenu';
-import Feed from '../../components/Feed/Feed';
-import Ranking from '../../components/Ranking/Ranking';
-import Account from '../../components/Account/Account';
+import TabBarMenu from '../../components/TabBarMenu';
+import Feed from '../../components/Feed';
+import Account from '../../components/Account';
 
 const initialLayout = {
     height: 0,

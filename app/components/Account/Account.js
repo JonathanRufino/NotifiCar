@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ListView, ActivityIndicator, Text } from 'react-native';
+import { View, ListView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import Swipeout from 'react-native-swipeout';
@@ -11,9 +11,9 @@ import {
     fetchUserVehicles,
     removeVehicle,
 } from '../../redux/actions/AccountActions';
-import VehicleModal from '../VehicleModal/VehicleModal';
-import LicensePlate from '../LicensePlate/LicensePlate';
-import EmptyState from '../../components/EmptyState/';
+import VehicleModal from '../VehicleModal';
+import LicensePlate from '../LicensePlate';
+import EmptyState from '../../components/EmptyState';
 
 class Account extends Component {
     componentWillMount() {

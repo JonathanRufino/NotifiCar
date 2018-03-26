@@ -1,1 +1,3 @@
-export { OcurrenceItem } from './OcurrenceItem';
+import OcurrenceItem from './OcurrenceItem';
+
+export default OcurrenceItem;

@@ -3,9 +3,9 @@ import { View, Text, StatusBar } from 'react-native';
 import { TabBar } from 'react-native-tab-view';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
+import { LoginButton } from 'react-native-fbsdk';
 
 import styles from './styles';
-import { LoginButton } from 'react-native-fbsdk';
 import { userLoginSuccess } from '../../redux/actions/AuthenticationActions';
 
 class TabBarMenu extends Component {

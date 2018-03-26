@@ -2,8 +2,8 @@ import React from 'react';
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
 
 import styles from './styles';
-import Main from './Main/Main';
-import Login from './Login/Login';
+import Main from './Main';
+import Login from './Login';
 
 const Routes = () => (
     <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle}>

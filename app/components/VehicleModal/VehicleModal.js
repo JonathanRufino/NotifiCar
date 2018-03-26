@@ -3,7 +3,6 @@ import {
     View,
     Text,
     TextInput,
-    TouchableWithoutFeedback,
     ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -17,7 +16,7 @@ import {
     updateVehicleError,
     showDialog,
 } from '../../redux/actions/AccountActions';
-import Button from '../Button/Button';
+import Button from '../Button';
 
 class VehicleModal extends Component {
     _validateVehicle() {

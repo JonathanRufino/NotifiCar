@@ -10,8 +10,8 @@ import {
     showDialog,
     fetchOcurrencesOfTheDay,
 } from '../../redux/actions/FeedActions';
-import OcurrenceModal from '../OccurrenceModal/OcurrenceModal';
-import OcurrenceItem from '../OcurrenceItem/OcurrenceItem';
+import OcurrenceModal from '../OccurrenceModal';
+import OcurrenceItem from '../OcurrenceItem';
 import EmptyState from '../EmptyState';
 
 class Feed extends Component {

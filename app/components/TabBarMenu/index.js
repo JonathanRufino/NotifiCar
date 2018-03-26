@@ -1,1 +1,3 @@
-export { TabBarMenu } from './TabBarMenu';
+import TabBarMenu from './TabBarMenu';
+
+export default TabBarMenu;

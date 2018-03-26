@@ -1,1 +1,3 @@
-export { OcurrenceModal } from './OcurrenceModal';
+import OcurrenceModal from './OcurrenceModal';
+
+export default OcurrenceModal;
