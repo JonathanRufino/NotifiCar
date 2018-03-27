@@ -5,7 +5,7 @@ const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     modal: {
         flex: 1,
@@ -13,11 +13,18 @@ const styles = StyleSheet.create({
         width: 0.8 * width,
     },
     vehiclesList: {
-        width
+        width,
     },
     indicator: {
-        marginTop: 10
+        flex: 1,
     },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+    },
+    message: {
+        fontSize: 25,
+    }
 });
 
 export default styles;

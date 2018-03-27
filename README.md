@@ -1,16 +1,11 @@
 # NotifiCar
 
-### Troubleshooting
+[![CircleCI](https://circleci.com/gh/JonathanRufino/NotifiCar/tree/master.svg?style=shield&circle-token=f1b2e8d17126fdd2a7918298696260cafd5dc898)](https://circleci.com/gh/JonathanRufino/NotifiCar/tree/master)
 
-If you get the following error:
+[![CircleCI](https://circleci.com/gh/JonathanRufino/NotifiCar/tree/staging.svg?style=shield&circle-token=f1b2e8d17126fdd2a7918298696260cafd5dc898)](https://circleci.com/gh/JonathanRufino/NotifiCar/tree/staging)
 
-````
-error: bundling failed: Error: Unable to resolve module @firebase/app from ~\node_modules\@firebase\auth\dist\auth.js: Module does not exist in the module map
-````
+### Icons
 
-Do these steps:
-
-1. Delete the ````node_modules```` folder
-1. Remove "firebase" from ````package.json```` file
-1. Install dependencies
-1. Install the "firebase" package
+Icons Provided by:
+- https://icons8.com/
+- https://www.flaticon.com

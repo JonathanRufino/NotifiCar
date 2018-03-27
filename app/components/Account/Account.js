@@ -5,14 +5,15 @@ import ActionButton from 'react-native-action-button';
 import Swipeout from 'react-native-swipeout';
 
 import styles from './styles';
-import { Colors } from '../../commom';
+import { Colors, Values, Images, Texts } from '../../commom';
 import {
     showDialog,
     fetchUserVehicles,
     removeVehicle,
 } from '../../redux/actions/AccountActions';
-import VehicleModal from '../VehicleModal/VehicleModal';
-import LicensePlate from '../LicensePlate/LicensePlate';
+import VehicleModal from '../VehicleModal';
+import LicensePlate from '../LicensePlate';
+import EmptyState from '../../components/EmptyState';
 
 class Account extends Component {
     componentWillMount() {
@@ -46,6 +47,16 @@ class Account extends Component {
         if (this.props.isLoadingListOfVehicles) {
             return (
                 <ActivityIndicator style={styles.indicator} size='large' />
+            );
+        }
+
+        if (this.props.vehicles.length === Values.EMPTY) {
+            return (
+                <EmptyState
+                    image={Images.ICON_CAR}
+                    title={Texts.Informative.NO_VEHICLES}
+                    message={Texts.Informative.ADD_VEHICLE_INSTRUCTIONS}
+                />
             );
         }
 

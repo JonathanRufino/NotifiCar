@@ -5,7 +5,7 @@ const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     modal: {
         flex: 1,
@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
         width: 0.8 * width,
     },
     ocurrenceList: {
-        flex: 1
+        flex: 1,
     },
     indicator: {
-        marginTop: 10
+        flex: 1,
     },
 });
 

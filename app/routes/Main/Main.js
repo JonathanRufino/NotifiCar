@@ -3,10 +3,9 @@ import { Dimensions } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
 
 import styles from './styles';
-import TabBarMenu from '../../components/TabBarMenu/TabBarMenu';
-import Feed from '../../components/Feed/Feed';
-import Ranking from '../../components/Ranking/Ranking';
-import Account from '../../components/Account/Account';
+import TabBarMenu from '../../components/TabBarMenu';
+import Feed from '../../components/Feed';
+import Account from '../../components/Account';
 
 const initialLayout = {
     height: 0,
@@ -18,8 +17,7 @@ class Main extends Component {
         index: 0,
         routes: [
             { key: '1', title: 'Feed' },
-            { key: '2', title: 'Ranking' },
-            { key: '3', title: 'Conta' },
+            { key: '2', title: 'Conta' },
         ],
     };
 
@@ -29,8 +27,7 @@ class Main extends Component {
 
     _renderScene = SceneMap({
         '1': Feed,
-        '2': Ranking,
-        '3': Account,
+        '2': Account,
     });
 
     render() {

@@ -5,13 +5,14 @@ import ActionButton from 'react-native-action-button';
 import _ from 'lodash';
 
 import styles from './styles';
+import { Images, Texts, Values } from '../../commom';
 import {
     showDialog,
     fetchOcurrencesOfTheDay,
 } from '../../redux/actions/FeedActions';
-import OcurrenceModal from '../OccurrenceModal/OcurrenceModal';
-import OcurrenceItem from '../OcurrenceItem/OcurrenceItem';
-import { Images } from '../../commom';
+import OcurrenceModal from '../OccurrenceModal';
+import OcurrenceItem from '../OcurrenceItem';
+import EmptyState from '../EmptyState';
 
 class Feed extends Component {
     componentWillMount() {
@@ -53,6 +54,16 @@ class Feed extends Component {
             );
         }
 
+        if (this.props.ocurrencesOfTheDay.length === Values.EMPTY) {
+            return (
+                <EmptyState
+                    image={Images.ICON_ATTENTION}
+                    title={Texts.Informative.NO_OCCURRENCES}
+                    message={Texts.Informative.ADD_OCCURRENCE_INSTRUCTIONS}
+                />
+            );
+        }
+
         return (
             <ListView
                 style={styles.ocurrenceList}
@@ -68,7 +79,7 @@ class Feed extends Component {
             <View style={styles.screen}>
                 <OcurrenceModal />
 
-                {this._renderListOfOcurrences()}
+                { this._renderListOfOcurrences() }
 
                 <ActionButton
                     buttonColor='rgba(231,76,60,1)'

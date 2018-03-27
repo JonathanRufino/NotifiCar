@@ -1,26 +1,36 @@
-import {
-    USER_LOGIN_SUCCESS,
-    USER_IS_LOGGED,
-} from '../actions/types';
+import * as Types from '../actions/types';
 
 const INITIAL_STATE = {
     accessToken: '',
     userID: '',
+    isLoading: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case USER_LOGIN_SUCCESS:
+        case Types.CHECKING_USER_IS_LOGGED:
             return {
                 ...state,
-                accessToken: action.payload.accessToken,
-                userID: action.payload.userID
+                isLoading: true,
             };
-        case USER_IS_LOGGED:
+        case Types.USER_LOGIN_SUCCESS:
             return {
                 ...state,
                 accessToken: action.payload.accessToken,
-                userID: action.payload.userID
+                userID: action.payload.userID,
+                isLoading: false,
+            };
+        case Types.USER_IS_LOGGED:
+            return {
+                ...state,
+                accessToken: action.payload.accessToken,
+                userID: action.payload.userID,
+                isLoading: false,
+            };
+        case Types.USER_IS_NOT_LOGGED:
+            return {
+                ...state,
+                isLoading: false,
             };
         default:
             return state;

@@ -1,60 +1,80 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, Alert } from 'react-native';
+import {
+    View, Text, ImageBackground, Alert, ActivityIndicator
+} from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
 import styles from './styles';
-import { Images } from '../../commom';
+import { Images, Texts } from '../../commom';
 import {
     userLoginSuccess,
-    checkUserLogged
+    checkUserIsLogged
 } from '../../redux/actions/AuthenticationActions';
 
 class Login extends Component {
     componentWillMount() {
-        this.props.checkUserLogged();
+        this.props.checkUserIsLogged();
     }
-    
+
+    _onLoginFinished(error, result) {
+        if (error) {
+            Alert.alert(result.error);
+        } else if (result.isCancelled) {
+            Alert.alert(Texts.Errors.LOGIN_CANCELLED);
+        } else {
+            AccessToken.getCurrentAccessToken()
+                .then(data => {
+                    this.props.userLoginSuccess(
+                        data.accessToken.toString(),
+                        data.userID);
+                })
+                .then(() => Actions.main());
+        }
+    }
+
+    _renderLogin() {
+        if (this.props.isLoading) {
+            return (
+                <ActivityIndicator size='large' />
+            );
+        }
+
+        return (
+            <View style={styles.content}>
+                <View style={styles.logoContainer}>
+                    <Text style={styles.logo}>
+                        { Texts.APP_NAME }
+                    </Text>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <LoginButton
+                        publishPermissions={['publish_actions']}
+                        onLoginFinished={(error, result) => this._onLoginFinished(error, result)}
+                    />
+                </View> 
+            </View>
+        );
+    }
+
     render() {
         return (
-            <ImageBackground style={styles.backgroundImage} source={Images.LOGIN_BACKGROUND}>
-                <View style={styles.container}>
-                    <View style={styles.viewText}>
-                        <Text style={styles.txtTitle}>NotifiCar</Text>
-                    </View>
-                    <View style={styles.viewButton}>
-                        <LoginButton
-                            publishPermissions={['publish_actions']}
-                            onLoginFinished={
-                                (error, result) => {
-                                    if (error) {
-                                        Alert.alert(`Login has error: ${result.error}`);
-                                    } else if (result.isCancelled) {
-                                        Alert.alert('Login is cancelled');
-                                    } else {
-                                        AccessToken.getCurrentAccessToken()
-                                        .then((data) => {
-                                            this.props.userLoginSuccess(
-                                                data.accessToken.toString(),
-                                                data.userID);
-                                        })
-                                        .then(() => Actions.main());
-                                    }
-                                }
-                            }
-                        />
-                    </View> 
-                </View>
+            <ImageBackground
+                style={styles.backgroundImage}
+                source={Images.LOGIN_BACKGROUND}
+            >
+                { this._renderLogin() }
              </ImageBackground>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    accessToken: state.AuthenticationReducer.accessToken
+    accessToken: state.AuthenticationReducer.accessToken,
+    isLoading: state.AuthenticationReducer.isLoading,
 });
 
 export default connect(mapStateToProps, {
-    userLoginSuccess, checkUserLogged
+    userLoginSuccess, checkUserIsLogged
 })(Login);

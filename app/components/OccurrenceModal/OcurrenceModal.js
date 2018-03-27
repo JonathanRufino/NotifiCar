@@ -3,7 +3,6 @@ import {
     View,
     Text,
     TextInput,
-    TouchableWithoutFeedback,
     Picker,
     ActivityIndicator
 } from 'react-native';
@@ -20,7 +19,7 @@ import {
     updateVehicleError,
     addOcurrence,
 } from '../../redux/actions/FeedActions';
-import Button from '../Button/Button';
+import Button from '../Button';
 
 class OcurrenceModal extends Component {
     _showPickerWhenDataFetch() {

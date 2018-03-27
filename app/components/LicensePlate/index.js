@@ -1,1 +1,3 @@
-export { LicensePlate } from './LicensePlate';
+import LicensePlate from './LicensePlate';
+
+export default LicensePlate;

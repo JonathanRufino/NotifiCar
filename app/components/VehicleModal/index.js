@@ -1,1 +1,3 @@
-export { VehicleModal } from './VehicleModal';
+import VehicleModal from './VehicleModal';
+
+export default VehicleModal;
