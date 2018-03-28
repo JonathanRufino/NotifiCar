@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         height: 0.4 * height,
         width: 0.8 * width,
     },
-    ocurrenceList: {
+    occurrenceList: {
         flex: 1,
     },
     indicator: {

@@ -8,53 +8,53 @@ import styles from './styles';
 import { Images, Texts, Values } from '../../commom';
 import {
     showDialog,
-    fetchOcurrencesOfTheDay,
+    fetchOccurrencesOfTheDay,
 } from '../../redux/actions/FeedActions';
-import OcurrenceModal from '../OccurrenceModal';
-import OcurrenceItem from '../OcurrenceItem';
+import OccurrenceModal from '../OccurrenceModal';
+import OccurrenceItem from '../OccurrenceItem';
 import EmptyState from '../EmptyState';
 
 class Feed extends Component {
     componentWillMount() {
-        this.props.fetchOcurrencesOfTheDay();
-        this._createOcurrenceList(this.props.ocurrencesOfTheDay);
+        this.props.fetchOccurrencesOfTheDay();
+        this._createOccurrenceList(this.props.occurrencesOfTheDay);
     }
 
     componentWillReceiveProps(nextProps) {
-        this._createOcurrenceList(nextProps.ocurrencesOfTheDay);
+        this._createOccurrenceList(nextProps.occurrencesOfTheDay);
     }
 
-    _createOcurrenceList(ocurrencesOfTheDay) {
+    _createOccurrenceList(occurrencesOfTheDay) {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-        this.dataSource = ds.cloneWithRows(ocurrencesOfTheDay);
+        this.dataSource = ds.cloneWithRows(occurrencesOfTheDay);
     }
 
-    _renderRow(ocurrenceData) {
+    _renderRow(occurrenceData) {
         let icon;
 
-        if (ocurrenceData.ocurrence_type === 'Farol Aceso') {
+        if (occurrenceData.occurrence_type === 'Farol Aceso') {
             icon = Images.ICON_LIGHTS;
-        } else if (ocurrenceData.ocurrence_type === 'Vidro Aberto') {
+        } else if (occurrenceData.occurrence_type === 'Vidro Aberto') {
             icon = Images.ICON_WINDOW;
-        } else if (ocurrenceData.ocurrence_type === 'Alarme Disparado') {
+        } else if (occurrenceData.occurrence_type === 'Alarme Disparado') {
             icon = Images.ICON_ALARM;
         } else {
             icon = Images.ICON_WARNING;
         }
 
         return (
-            <OcurrenceItem ocurrence={ocurrenceData} image={icon} />
+            <OccurrenceItem occurrence={occurrenceData} image={icon} />
         );
     }
 
-    _renderListOfOcurrences() {
-        if (this.props.isLoadingListOfOcurrences) {
+    _renderListOfOccurrences() {
+        if (this.props.isLoadingListOfOccurrences) {
             return (
                 <ActivityIndicator style={styles.indicator} size='large' />
             );
         }
 
-        if (this.props.ocurrencesOfTheDay.length === Values.EMPTY) {
+        if (this.props.occurrencesOfTheDay.length === Values.EMPTY) {
             return (
                 <EmptyState
                     image={Images.ICON_ATTENTION}
@@ -66,7 +66,7 @@ class Feed extends Component {
 
         return (
             <ListView
-                style={styles.ocurrenceList}
+                style={styles.occurrenceList}
                 enableEmptySections
                 dataSource={this.dataSource}
                 renderRow={this._renderRow}
@@ -77,9 +77,9 @@ class Feed extends Component {
     render() {
         return (
             <View style={styles.screen}>
-                <OcurrenceModal />
+                <OccurrenceModal />
 
-                { this._renderListOfOcurrences() }
+                { this._renderListOfOccurrences() }
 
                 <ActionButton
                     buttonColor='rgba(231,76,60,1)'
@@ -91,21 +91,21 @@ class Feed extends Component {
 }
 
 const mapStateToProps = state => {
-    let ocurrencesOfTheDay;
+    let occurrencesOfTheDay;
 
-    if (state.FeedReducer.ocurrencesOfTheDay === null) {
-        ocurrencesOfTheDay = [];
+    if (state.FeedReducer.occurrencesOfTheDay === null) {
+        occurrencesOfTheDay = [];
     } else {
-        ocurrencesOfTheDay = _.map(state.FeedReducer.ocurrencesOfTheDay, 
+        occurrencesOfTheDay = _.map(state.FeedReducer.occurrencesOfTheDay, 
             (val, uid) => ({ ...val, uid }));
     }
 
     return {
-        ocurrencesOfTheDay,
-        isLoadingListOfOcurrences: state.FeedReducer.isLoadingListOfOcurrences
+        occurrencesOfTheDay,
+        isLoadingListOfOccurrences: state.FeedReducer.isLoadingListOfOccurrences
     };
 };
 
 export default connect(mapStateToProps, {
-    showDialog, fetchOcurrencesOfTheDay
+    showDialog, fetchOccurrencesOfTheDay
 })(Feed);

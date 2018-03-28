@@ -4,7 +4,7 @@ const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
 exports.sendNotification = 
-    functions.database.ref('/ocurrences/{pushId}/{year}/{month}/{day}')
+    functions.database.ref('/occurrences/{pushId}/{year}/{month}/{day}')
     .onWrite(event => {
         const occurrence = event.data.val();
         const vehicle = occurrence.vehicle;
@@ -12,7 +12,7 @@ exports.sendNotification =
         const payload = {
             notification: {
                 title: `Veículo: ${vehicle}`,
-                body: `Se encontra com: ${occurrence.ocurrence_type}`
+                body: `Se encontra com: ${occurrence.occurrence_type}`
             }
         };
 

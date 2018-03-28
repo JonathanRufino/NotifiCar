@@ -15,13 +15,13 @@ import { Texts, Regexes } from '../../commom';
 import {
     showDialog,
     writeVehicle,
-    changeOcurrenceType,
+    changeOccurrenceType,
     updateVehicleError,
-    addOcurrence,
+    addOccurrence,
 } from '../../redux/actions/FeedActions';
 import Button from '../Button';
 
-class OcurrenceModal extends Component {
+class OccurrenceModal extends Component {
     _showPickerWhenDataFetch() {
         if (this.props.isLoadingPicker) {
             return (
@@ -31,15 +31,15 @@ class OcurrenceModal extends Component {
 
         return (
             <View>
-                <Text style={styles.type_ocurrence}>
-                    { Texts.Informative.OCURRENCE_TYPE }
+                <Text style={styles.type_occurrence}>
+                    { Texts.Informative.OCCURRENCE_TYPE }
                 </Text>
                 <Picker
                     selectedValue={this.props.pickerValueHolder}
                     onValueChange={(itemValue, itemIndex) => 
-                        this.props.changeOcurrenceType(itemValue)} 
+                        this.props.changeOccurrenceType(itemValue)} 
                 >
-                    { _.map(this.props.ocurrenceTypes, (item, key) => 
+                    { _.map(this.props.occurrenceTypes, (item, key) => 
                         (<Picker.Item label={item.type} value={item.type} key={key} />)
                     )}
                 </Picker>
@@ -47,23 +47,23 @@ class OcurrenceModal extends Component {
         );
     }
     
-    _validateOcurrence() {
+    _validateOccurrence() {
         if (this.props.vehicle === '') {
             this.props.updateVehicleError(Texts.Errors.EMPTY_LICENSE_PLATE);
         } else if (!Regexes.LICENSE_PLATE.test(this.props.vehicle)) {
             this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
         } else {
-            this.props.addOcurrence(this.props.userID, 
+            this.props.addOccurrence(this.props.userID, 
                 this.props.pickerValueHolder, this.props.vehicle);
         }
     }
     
-    _renderRegisterOcurrenceButton() {
+    _renderRegisterOccurrenceButton() {
         if (!this.props.isLoadingPicker) {
             return (
                 <Button
-                    title={Texts.Buttons.REGISTER_OCURRENCE}
-                    onPress={() => this._validateOcurrence()}
+                    title={Texts.Buttons.REGISTER_OCCURRENCE}
+                    onPress={() => this._validateOccurrence()}
                 />
             );
         }
@@ -80,7 +80,7 @@ class OcurrenceModal extends Component {
                     <View style={styles.modal}>
                         <View style={styles.container}>
                             <Text style={styles.title}>
-                                { Texts.Titles.REGISTER_OCURRENCE }
+                                { Texts.Titles.REGISTER_OCCURRENCE }
                             </Text>
                             {this._showPickerWhenDataFetch()}
                             <TextInput
@@ -95,7 +95,7 @@ class OcurrenceModal extends Component {
                                 { this.props.vehicleError }
                             </Text>
                             <View>
-                                { this._renderRegisterOcurrenceButton() }
+                                { this._renderRegisterOccurrenceButton() }
                             </View>
                         </View>
                     </View>
@@ -106,7 +106,7 @@ class OcurrenceModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-        ocurrenceTypes: state.FeedReducer.ocurrenceTypes,
+        occurrenceTypes: state.FeedReducer.occurrenceTypes,
         dialogIsVisible: state.FeedReducer.dialogIsVisible,
         vehicle: state.FeedReducer.vehicle,
         pickerValueHolder: state.FeedReducer.pickerValueHolder,
@@ -116,5 +116,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-    showDialog, writeVehicle, changeOcurrenceType, updateVehicleError, addOcurrence
-})(OcurrenceModal);
+    showDialog, writeVehicle, changeOccurrenceType, updateVehicleError, addOccurrence
+})(OccurrenceModal);

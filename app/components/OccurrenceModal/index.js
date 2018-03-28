@@ -1,3 +1,3 @@
-import OcurrenceModal from './OcurrenceModal';
+import OccurrenceModal from './OccurrenceModal';
 
-export default OcurrenceModal;
+export default OccurrenceModal;
