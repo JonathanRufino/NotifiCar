@@ -32,11 +32,11 @@ class Feed extends Component {
     _renderRow(ocurrenceData) {
         let icon;
 
-        if (ocurrenceData.typeOcurrence === 'Farol Aceso') {
+        if (ocurrenceData.ocurrence_type === 'Farol Aceso') {
             icon = Images.ICON_LIGHTS;
-        } else if (ocurrenceData.typeOcurrence === 'Vidro Aberto') {
+        } else if (ocurrenceData.ocurrence_type === 'Vidro Aberto') {
             icon = Images.ICON_WINDOW;
-        } else if (ocurrenceData.typeOcurrence === 'Alarme Disparado') {
+        } else if (ocurrenceData.ocurrence_type === 'Alarme Disparado') {
             icon = Images.ICON_ALARM;
         } else {
             icon = Images.ICON_WARNING;

@@ -25,7 +25,7 @@ export const updateVehicleError = (error) => ({
     payload: error
 });
 
-export const addOcurrence = (userID, typeOcurrence, vehicle) => (dispatch) => {
+export const addOcurrence = (userID, ocurrenceType, vehicle) => (dispatch) => {
     dispatch({
         type: Types.SAVING_OCURRENCE,
     });
@@ -36,12 +36,15 @@ export const addOcurrence = (userID, typeOcurrence, vehicle) => (dispatch) => {
     const day = date.getDate();
 
     const hour = date.getHours();
-    const minute = date.getMinutes();
+    let minute = date.getMinutes();
+    if (minute < 10) {
+        minute = `0${minute}`;
+    }
     const time = `${hour}:${minute}`;
 
     firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`)
         .push()
-        .set({ userID, vehicle, typeOcurrence, time })
+        .set({ userID, vehicle, ocurrence_type: ocurrenceType, time })
         .then(() => dispatch({
             type: Types.ADD_OCURRENCE_SUCCESS,
         }))

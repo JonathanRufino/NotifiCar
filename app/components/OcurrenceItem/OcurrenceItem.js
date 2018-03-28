@@ -13,7 +13,7 @@ const OcurrenceOfTheDay = ({ ocurrence, image }) => (
                 { ocurrence.vehicle.toUpperCase() }
             </Text>
             <Text style={styles.text}>
-                { ocurrence.typeOcurrence }
+                { ocurrence.ocurrence_type }
             </Text>
         </View>
         <View>
