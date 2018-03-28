@@ -30,6 +30,12 @@ build/
 local.properties
 *.iml
 
+#Firebase
+#Android
+android/app/google-services.json
+#IOS
+ios/NotifiCar/GoogleService-Info.plist
+
 # node.js
 #
 node_modules/
