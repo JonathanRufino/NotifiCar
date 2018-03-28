@@ -18,9 +18,20 @@ exports.sendNotification =
 
         return admin.database().ref(`/vehicles/${vehicle}`).once('value').then(snap => {
             const usersVehicle = snap.val();
-            const users = Object.keys(usersVehicle);
+            if(usersVehicle !== null){
+                const users = Object.keys(usersVehicle);
             
-            return sendDeviceNotification(users, 0, payload);
+                return sendDeviceNotification(users, 0, payload);
+            } else {
+                return admin.database().ref(`/vehiclesWithoutUserRegistred/`)
+                    .push()
+                    .set({
+                        vehicle, 
+                        occurrence_type: occurrence.occurrence_type, 
+                        userID: occurrence.userID, 
+                        time: occurrence.time
+                    })
+            }
         });
     });
 
