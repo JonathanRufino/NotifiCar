@@ -4,12 +4,12 @@ const INITIAL_STATE = {
     vehicle: '',
     dialogIsVisible: false,
     vehicleError: '',
-    ocurrenceTypes: {},
-    ocurrencesOfTheDay: {},
+    occurrenceTypes: {},
+    occurrencesOfTheDay: {},
     pickerValueHolder: 'Farol Aceso',
     isLoadingPicker: true,
     error: '',
-    isLoadingListOfOcurrences: false,
+    isLoadingListOfOccurrences: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -30,53 +30,53 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 vehicleError: action.payload
             };
-        case Types.OCURRENCE_TYPE_LOAD:
+        case Types.OCCURRENCE_TYPE_LOAD:
             return {
                 ...state,
-                ocurrenceTypes: action.payload
+                occurrenceTypes: action.payload
             };
-        case Types.CHANGE_OCURRENCE_TYPE:
+        case Types.CHANGE_OCCURRENCE_TYPE:
             return {
                 ...state,
                 pickerValueHolder: action.payload
             };
-        case Types.OCURRENCE_TYPE_IS_LOADING:
+        case Types.OCCURRENCE_TYPE_IS_LOADING:
             return {
                 ...state,
                 isLoadingPicker: true
             };
-        case Types.OCURRENCE_TYPE_LOADING_FINISHED:
+        case Types.OCCURRENCE_TYPE_LOADING_FINISHED:
             return {
                 ...state,
                 isLoadingPicker: false
             };
-        case Types.SAVING_OCURRENCE:
+        case Types.SAVING_OCCURRENCE:
             return {
                 ...state,
                 isLoadingPicker: true
             };
-        case Types.ADD_OCURRENCE_SUCCESS:
+        case Types.ADD_OCCURRENCE_SUCCESS:
             return {
                 ...state,
                 dialogIsVisible: false,
                 vehicle: '',
                 isLoadingPicker: false
             }; 
-        case Types.ADD_OCURRENCE_ERROR:
+        case Types.ADD_OCCURRENCE_ERROR:
             return {
                 ...state,
                 error: action.payload
             };
-        case Types.FETCH_OCURRENCES_OF_THE_DAY:
+        case Types.FETCH_OCCURRENCES_OF_THE_DAY:
             return {
                 ...state,
-                ocurrencesOfTheDay: action.payload,
-                isLoadingListOfOcurrences: false
+                occurrencesOfTheDay: action.payload,
+                isLoadingListOfOccurrences: false
             };
-        case Types.FETCH_OCURRENCES_IS_LOADING:
+        case Types.FETCH_OCCURRENCES_IS_LOADING:
             return {
                 ...state,
-                isLoadingListOfOcurrences: true
+                isLoadingListOfOccurrences: true
             };
         default:
             return state;

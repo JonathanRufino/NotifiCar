@@ -15,6 +15,11 @@ export const addVehicle = (userID, vehicle) => (dispatch) => {
     firebaseApp.database().ref(`/users/${userID}/vehicles`)
         .child(vehicle.toUpperCase())
         .set(true)
+        .then(() => {
+            firebaseApp.database().ref(`/vehicles/${vehicle.toUpperCase()}/`)
+            .child(userID)
+            .set(true);
+        })
         .then(() => dispatch({
             type: Types.ADD_VEHICLE_SUCCESS,
         }))
@@ -28,6 +33,11 @@ export const removeVehicle = (userID, vehicle) => dispatch => {
     firebaseApp.database().ref(`/users/${userID}/vehicles`)
         .child(vehicle)
         .remove()
+        .then(() => {
+            firebaseApp.database().ref(`/vehicles/${vehicle.toUpperCase()}/`)
+            .child(userID)
+            .remove();
+        })
         .then(() => dispatch({
             type: Types.REMOVE_VEHICLE
         }))

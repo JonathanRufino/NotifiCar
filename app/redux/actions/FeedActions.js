@@ -4,13 +4,13 @@ import * as Types from './types';
 
 export const showDialog = (dialogIsVisible) => dispatch => {
     dispatch({ type: Types.SHOW_DIALOG_FEED, payload: dialogIsVisible });
-    dispatch({ type: Types.OCURRENCE_TYPE_IS_LOADING });
+    dispatch({ type: Types.OCCURRENCE_TYPE_IS_LOADING });
         
     if (dialogIsVisible) {
-        firebaseApp.database().ref('/ocurrence_types/')
+        firebaseApp.database().ref('/occurrence_types/')
         .on('value', snapshot => {
-            dispatch({ type: Types.OCURRENCE_TYPE_LOAD, payload: snapshot.val() });
-            dispatch({ type: Types.OCURRENCE_TYPE_LOADING_FINISHED });
+            dispatch({ type: Types.OCCURRENCE_TYPE_LOAD, payload: snapshot.val() });
+            dispatch({ type: Types.OCCURRENCE_TYPE_LOADING_FINISHED });
         });
     }   
 };
@@ -25,9 +25,9 @@ export const updateVehicleError = (error) => ({
     payload: error
 });
 
-export const addOcurrence = (userID, typeOcurrence, vehicle) => (dispatch) => {
+export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => {
     dispatch({
-        type: Types.SAVING_OCURRENCE,
+        type: Types.SAVING_OCCURRENCE,
     });
 
     const date = new Date();
@@ -36,38 +36,41 @@ export const addOcurrence = (userID, typeOcurrence, vehicle) => (dispatch) => {
     const day = date.getDate();
 
     const hour = date.getHours();
-    const minute = date.getMinutes();
+    let minute = date.getMinutes();
+    if (minute < 10) {
+        minute = `0${minute}`;
+    }
     const time = `${hour}:${minute}`;
 
-    firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`)
+    firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .push()
-        .set({ userID, vehicle, typeOcurrence, time })
+        .set({ userID, vehicle, occurrence_type: occurrenceType, time })
         .then(() => dispatch({
-            type: Types.ADD_OCURRENCE_SUCCESS,
+            type: Types.ADD_OCCURRENCE_SUCCESS,
         }))
         .catch(error => dispatch({
-            type: Types.ADD_OCURRENCE_ERROR,
+            type: Types.ADD_OCCURRENCE_ERROR,
             payload: error
         }));
 };
 
-export const changeOcurrenceType = (ocurrenceType) => ({
-    type: Types.CHANGE_OCURRENCE_TYPE,
-    payload: ocurrenceType
+export const changeOccurrenceType = (occurrenceType) => ({
+    type: Types.CHANGE_OCCURRENCE_TYPE,
+    payload: occurrenceType
 });
 
-export const fetchOcurrencesOfTheDay = () => dispatch => {
+export const fetchOccurrencesOfTheDay = () => dispatch => {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
     
-    dispatch({ type: Types.FETCH_OCURRENCES_IS_LOADING });
+    dispatch({ type: Types.FETCH_OCCURRENCES_IS_LOADING });
 
-    firebaseApp.database().ref(`/ocurrences/${year}/${month}/${day}/`).limitToLast(20)
+    firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`).limitToLast(20)
         .on('value', snapshot => {
             dispatch({
-                type: Types.FETCH_OCURRENCES_OF_THE_DAY,
+                type: Types.FETCH_OCCURRENCES_OF_THE_DAY,
                 payload: snapshot.val()
             });
         });
