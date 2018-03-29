@@ -22,6 +22,11 @@ const Texts = {
         ADD_VEHICLE_INSTRUCTIONS: 'Cadastre um veículo tocando no botão +',
         NO_OCCURRENCES: 'Nenhuma Ocorrência Registrada',
         ADD_OCCURRENCE_INSTRUCTIONS: 'Cadastre uma ocorrência tocando no botão +',
+    },
+    Occurrence_Type: {
+        FAROL_ACESO: 'Farol Aceso',
+        VIDRO_ABERTO: 'Vidro Aberto',
+        ALARME_DISPARADO: 'Alarme Disparado',
     }
 };
 
