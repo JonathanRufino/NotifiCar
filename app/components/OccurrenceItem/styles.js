@@ -18,12 +18,10 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 12,
         color: Colors.BLACK,
-        fontFamily: 'Roboto'
     },
     textTime: {
         fontSize: 12,
         color: Colors.BLACK,
-        fontFamily: 'Roboto',
         marginRight: 10
     },
     photo: {
