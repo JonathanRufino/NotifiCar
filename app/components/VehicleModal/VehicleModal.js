@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 
 import styles from './styles';
-import { Texts, Regexes } from '../../commom';
+import { Texts, Regexes, Values } from '../../commom';
 import {
     writeVehicle,
     addVehicle,
@@ -53,28 +53,25 @@ class VehicleModal extends Component {
                 onBackdropPress={() => this.props.showDialog(false)}
                 onBackButtonPress={() => this.props.showDialog(false)}
             >
-                <View style={styles.modal}>
-                    <View style={styles.container}>
-                        <Text style={styles.title}>
-                            { Texts.Titles.REGISTER_VEHICLE }
+                <View style={styles.container}>
+                    <Text style={styles.title}>
+                        { Texts.Titles.REGISTER_VEHICLE }
+                    </Text>
+                    <View style={styles.inputContainer}>
+                        <TextInput
+                            style={styles.inputField}
+                            value={this.props.vehicle}
+                            onChangeText={(text) => this.props.writeVehicle(text)}
+                            maxLength={Values.LICENSE_PLATE_MAX_LENGTH}
+                            autoCapitalize='characters'
+                            placeholder={Texts.Placeholders.LICENSE_PLATE}
+                        />
+                        <Text style={styles.error}>
+                            { this.props.vehicleError }
                         </Text>
-                        <View>
-                            <TextInput
-                                style={styles.inputField}
-                                value={this.props.vehicle}
-                                onChangeText={(text) => this.props.writeVehicle(text)}
-                                maxLength={8}
-                                autoCapitalize='characters'
-                                placeholder={Texts.Placeholders.LICENSE_PLATE}
-                            />
-                            <Text style={styles.error}>
-                                { this.props.vehicleError }
-                            </Text>
-                        </View>
-                        <View>
-                            { this._renderRegisterButton() }
-                        </View>
                     </View>
+
+                    { this._renderRegisterButton() }
                 </View>
             </Modal>
         );
