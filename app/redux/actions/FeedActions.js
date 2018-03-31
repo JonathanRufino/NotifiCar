@@ -44,7 +44,7 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .push()
-        .set({ userID, vehicle, occurrence_type: occurrenceType, time })
+        .set({ userID, vehicle: vehicle.toUpperCase(), occurrence_type: occurrenceType, time })
         .then(() => dispatch({
             type: Types.ADD_OCCURRENCE_SUCCESS,
         }))
