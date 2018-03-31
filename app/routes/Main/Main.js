@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Dimensions } from 'react-native';
 import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
+import FCM from 'react-native-fcm';
+import { connect } from 'react-redux';
 
 import styles from './styles';
 import TabBarMenu from '../../components/TabBarMenu';
 import Feed from '../../components/Feed';
 import Account from '../../components/Account';
+import firebaseApp from '../../services/firebase';
 
 const initialLayout = {
     height: 0,
@@ -30,6 +33,15 @@ class Main extends Component {
         '2': Account,
     });
 
+    async componentDidMount() {
+        FCM.getFCMToken()
+            .then(token => {
+                firebaseApp.database().ref(`/users/${this.props.userID}`)
+                    .child('token')
+                    .set(token);
+            });
+    }
+
     render() {
         return (
             <TabViewAnimated
@@ -44,4 +56,8 @@ class Main extends Component {
     }
 }
 
-export default Main;
+const mapStateToProps = (state) => ({
+    userID: state.AuthenticationReducer.userID,
+});
+
+export default connect(mapStateToProps)(Main);
