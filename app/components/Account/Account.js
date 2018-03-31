@@ -36,11 +36,28 @@ class Account extends Component {
                 backgroundColor: Colors.RED,
                 color: Colors.WHITE,
                 onPress: () => this.props.removeVehicle(this.props.userID, vehicle),
-                text: 'Remover',
+                text: Texts.Buttons.DELETE,
+                type: 'delete',
             }
         ];
 
         return swiperButtons;
+    }
+
+    _renderRow(data) {
+        return (
+            <Swipeout
+                autoClose
+                backgroundColor={Colors.TRANSPARENT}
+                right={this._getSwiperButtons(data)}
+                style={{
+                    alignItems: 'center',
+                    backgroundColor: Colors.TRANSPARENT,
+                }}
+            >
+                <LicensePlate licensePlate={data} />
+            </Swipeout>
+        );
     }
 
     _renderListOfVehicles() {
@@ -65,18 +82,7 @@ class Account extends Component {
                 style={styles.vehiclesList}
                 enableEmptySections
                 dataSource={this.vehiclesData}
-                renderRow={data => (
-                    <Swipeout
-                        autoClose
-                        right={this._getSwiperButtons(data)}
-                        style={{
-                            alignItems: 'center',
-                            backgroundColor: Colors.TRANSPARENT,
-                        }}
-                    >
-                        <LicensePlate licensePlate={data} />
-                    </Swipeout>
-                )}
+                renderRow={data => this._renderRow(data)}
             />
         );
     }
