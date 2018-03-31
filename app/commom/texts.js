@@ -15,6 +15,7 @@ const Texts = {
     Buttons: {
         REGISTER: 'Cadastrar',
         REGISTER_OCCURRENCE: 'Registrar Ocorrência',
+        DELETE: 'Remover',
     },
     Informative: {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',

@@ -6,7 +6,7 @@ const Values = {
     SCREEN_WIDTH: width,
     SCREEN_HEIGHT: height,
     EMPTY: 0,
-    LICENSE_PLATE_MAX_LENGTH: 7,
+    LICENSE_PLATE_MAX_LENGTH: 8,
 };
 
 export { Values };

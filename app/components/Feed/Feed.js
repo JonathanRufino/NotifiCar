@@ -47,6 +47,12 @@ class Feed extends Component {
         );
     }
 
+    _renderSeparator() {
+        return (
+            <View style={styles.separator} />
+        );
+    }
+
     _renderListOfOccurrences() {
         if (this.props.isLoadingListOfOccurrences) {
             return (
@@ -70,6 +76,7 @@ class Feed extends Component {
                 enableEmptySections
                 dataSource={this.dataSource}
                 renderRow={this._renderRow}
+                renderSeparator={this._renderSeparator}
             />
         );
     }

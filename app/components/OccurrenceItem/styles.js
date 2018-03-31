@@ -1,35 +1,37 @@
 import { StyleSheet } from 'react-native';
 
-import { Colors } from '../../commom';
+import { Colors, Values } from '../../commom';
 
 const styles = StyleSheet.create({
     container: {
-        borderColor: Colors.GRAY,
-        backgroundColor: Colors.LIGHT_GRAY,
-        borderWidth: 1,
-        borderRadius: 10,
-        marginVertical: 4,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 50,
-        width: 345,
+        paddingHorizontal: 20,
+        marginVertical: 20,
+        width: Values.SCREEN_WIDTH,
         flexDirection: 'row',
     },
-    text: {
-        fontSize: 12,
+    licensePlate: {
+        fontSize: 25,
         color: Colors.BLACK,
+        fontFamily: 'Mandatory',
+        marginBottom: 10,
     },
-    textTime: {
-        fontSize: 12,
-        color: Colors.BLACK,
+    description: {
+        fontSize: 18,
+        color: Colors.DARK_GRAY,
+    },
+    time: {
+        fontSize: 20,
+        color: Colors.DARK_GRAY,
         marginRight: 10
     },
-    photo: {
-        height: 32, 
-        width: 32,
-        marginLeft: 8,
+    icon: {
+        height: 50, 
+        width: 50,
     },
-    itemView: {
+    infoContainer: {
         justifyContent: 'space-around',
         alignItems: 'flex-start',
         flex: 7,

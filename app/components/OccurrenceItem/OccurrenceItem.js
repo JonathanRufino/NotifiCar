@@ -5,22 +5,20 @@ import styles from './styles';
 
 const OccurrenceOfTheDay = ({ occurrence, image }) => (
     <View style={styles.container}>
-        <View style={styles.photo}>
-            <Image style={styles.photo} source={image} />
-        </View>
-        <View style={styles.itemView}>
-            <Text style={styles.text}>
+        <Image style={styles.photo} source={image} />
+
+        <View style={styles.infoContainer}>
+            <Text style={styles.licensePlate}>
                 { occurrence.vehicle.toUpperCase() }
             </Text>
-            <Text style={styles.text}>
+            <Text style={styles.description}>
                 { occurrence.occurrence_type }
             </Text>
         </View>
-        <View>
-            <Text style={styles.textTime}>
-                { occurrence.time }
-            </Text>
-        </View>
+
+        <Text style={styles.time}>
+            { occurrence.time }
+        </Text>
     </View>
 );
 
