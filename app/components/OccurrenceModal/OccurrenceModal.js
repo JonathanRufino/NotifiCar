@@ -11,7 +11,7 @@ import _ from 'lodash';
 import Modal from 'react-native-modal';
 
 import styles from './styles';
-import { Texts, Regexes } from '../../commom';
+import { Texts, Regexes, Values } from '../../commom';
 import {
     showDialog,
     writeVehicle,
@@ -77,27 +77,26 @@ class OccurrenceModal extends Component {
                     onBackdropPress={() => this.props.showDialog(false)}
                     onBackButtonPress={() => this.props.showDialog(false)}
                 >
-                    <View style={styles.modal}>
-                        <View style={styles.container}>
-                            <Text style={styles.title}>
-                                { Texts.Titles.REGISTER_OCCURRENCE }
-                            </Text>
-                            {this._showPickerWhenDataFetch()}
-                            <TextInput
-                                style={styles.inputField}
-                                value={this.props.vehicle}
-                                onChangeText={(text) => this.props.writeVehicle(text)}
-                                maxLength={8}
-                                autoCapitalize='characters'
-                                placeholder={Texts.Placeholders.LICENSE_PLATE}
-                            />
-                            <Text style={styles.error}>
-                                { this.props.vehicleError }
-                            </Text>
-                            <View>
-                                { this._renderRegisterOccurrenceButton() }
-                            </View>
-                        </View>
+                    <View style={styles.container}>
+                        <Text style={styles.title}>
+                            { Texts.Titles.REGISTER_OCCURRENCE }
+                        </Text>
+
+                        {this._showPickerWhenDataFetch()}
+
+                        <TextInput
+                            style={styles.inputField}
+                            value={this.props.vehicle}
+                            onChangeText={(text) => this.props.writeVehicle(text)}
+                            maxLength={Values.LICENSE_PLATE_MAX_LENGTH}
+                            autoCapitalize='characters'
+                            placeholder={Texts.Placeholders.LICENSE_PLATE}
+                        />
+                        <Text style={styles.error}>
+                            { this.props.vehicleError }
+                        </Text>
+
+                        { this._renderRegisterOccurrenceButton() }
                     </View>
                 </Modal>
             </View>

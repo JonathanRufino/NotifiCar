@@ -1,34 +1,30 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
-import { Colors } from '../../commom';
-
-const { width, height } = Dimensions.get('window');
+import { Colors, Values } from '../../commom';
 
 const styles = StyleSheet.create({
-    modal: {
-        marginHorizontal: 0.05 * width,
-        height: 0.5 * height,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        justifyContent: 'center',
-    },
     container: {
-        justifyContent: 'space-between',
         backgroundColor: Colors.WHITE,
         padding: 15,
-        flex: 1,
     },
     inputField: {
-        height: 0.25 * width,
-        width: 0.57 * width,
-        fontSize: 0.120 * width,
+        width: '80%',
+        fontSize: 0.120 * Values.SCREEN_WIDTH,
         alignSelf: 'center',
+        textAlign: 'center',
+        ...Platform.select({
+            ios: {
+                borderBottomWidth: 1,
+                borderBottomColor: Colors.BLACK,
+            }
+        })
     },
     title: {
-        fontSize: 0.07 * width,
+        fontSize: 0.07 * Values.SCREEN_WIDTH,
         alignSelf: 'center',
     },
     type_occurrence: {
-        fontSize: 0.04 * width,
+        fontSize: 0.04 * Values.SCREEN_WIDTH,
         alignSelf: 'center',
     },
     picker_occurrence: {
@@ -36,8 +32,8 @@ const styles = StyleSheet.create({
     },
     error: {
         color: Colors.RED,
-        alignSelf: 'center',
-    }
+        alignSelf: 'flex-start',
+    },
 });
 
 export default styles;
