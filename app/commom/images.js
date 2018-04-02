@@ -6,6 +6,9 @@ const Images = {
     ICON_WINDOW: require('../assets/images/window.png'),
     ICON_CAR: require('../assets/images/car.png'),
     ICON_ATTENTION: require('../assets/images/attention.png'),
+    ICON_DOOR_OPEN: require('../assets/images/door_open.png'),
+    ICON_CAR_BLOCKING: require('../assets/images/car_blocking.png'),
+    ICON_FLAT_TIRE: require('../assets/images/flat_tire.png'),
 };
 
 export { Images };
