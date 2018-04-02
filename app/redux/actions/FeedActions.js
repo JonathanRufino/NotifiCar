@@ -36,7 +36,10 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
     const month = date.getMonth() + 1;
     const day = date.getDate();
 
-    const hour = date.getHours();
+    let hour = date.getHours();
+    if (hour < 10) {
+        hour = `0${hour}`;
+    }
     let minute = date.getMinutes();
     if (minute < 10) {
         minute = `0${minute}`;
