@@ -75,17 +75,6 @@ function registerKilledListener() {
 // these callback will be triggered only when app is foreground or background
 function registerAppListener() {
     FCM.on(FCMEvent.Notification, notif => {
-        FCM.presentLocalNotification({
-            title: Platform.OS === 'ios' ? notif.aps.alert.title : notif.fcm.title,
-            body: Platform.OS === 'ios' ? notif.aps.alert.body : notif.fcm.body,
-            sound: 'default',
-            priority: 'high',
-            vibrate: 300,
-            wake_screen: true,
-            show_in_foreground: true,
-            click_action: 'com.jldevs.notificar', // for ios
-        });
-
         if (Platform.OS === 'ios'
                 && notif._notificationType === NotificationType.WillPresent
                 && !notif.local_notification) {
