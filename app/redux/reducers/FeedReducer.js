@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import * as Types from '../actions/types';
 
 const INITIAL_STATE = {
@@ -33,7 +34,7 @@ export default (state = INITIAL_STATE, action) => {
         case Types.OCCURRENCE_TYPE_LOAD:
             return {
                 ...state,
-                occurrenceTypes: action.payload
+                occurrenceTypes: _.sortBy(action.payload, ['type'])
             };
         case Types.CHANGE_OCCURRENCE_TYPE:
             return {

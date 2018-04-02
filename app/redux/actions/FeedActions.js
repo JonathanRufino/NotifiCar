@@ -69,7 +69,7 @@ export const fetchOccurrencesOfTheDay = () => dispatch => {
     dispatch({ type: Types.FETCH_OCCURRENCES_IS_LOADING });
 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
-        .limitToLast(Values.MAX_OCCURRENCE_ON_LIST_OF_OCCURRENCES)
+        .limitToLast(10)
         .on('value', snapshot => {
             dispatch({
                 type: Types.FETCH_OCCURRENCES_OF_THE_DAY,
