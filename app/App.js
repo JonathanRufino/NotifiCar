@@ -86,7 +86,7 @@ function registerAppListener() {
                 // this notification is only to decide if you want to 
                 // show the notification when user if in foreground.
                 // usually you can ignore it. just decide to show or not.
-                notif.finish(WillPresentNotificationResult.All);
+                // notif.finish(WillPresentNotificationResult.All);
                 return;
             }
       
