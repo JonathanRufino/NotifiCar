@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import { Colors } from '../../commom';
 
@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.GREEN,
         elevation: 4,
-        marginBottom: 6
+        marginBottom: 6,
+        paddingTop: Platform.OS === 'ios' ? 20 : 0
     },
     viewPrincipal: {
         flexDirection: 'row',

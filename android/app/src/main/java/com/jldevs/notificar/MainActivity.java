@@ -1,4 +1,4 @@
-package com.notificar;
+package com.jldevs.notificar;
 
 import android.content.Intent;
 

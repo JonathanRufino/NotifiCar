@@ -61,6 +61,7 @@ export const fetchUserVehicles = userID => dispatch => {
     dispatch({ type: Types.FETCH_VEHICLES_IS_LOADING });
 
     firebaseApp.database().ref(`/users/${userID}/vehicles/`)
+        .orderByKey()
         .on('value', snapshot => {
             dispatch({
                 type: Types.FETCH_USER_VEHICLES,

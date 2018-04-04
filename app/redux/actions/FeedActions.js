@@ -1,6 +1,7 @@
 import firebaseApp from '../../services/firebase';
 
 import * as Types from './types';
+import Values from '../../commom/values';
 
 export const showDialog = (dialogIsVisible) => dispatch => {
     dispatch({ type: Types.SHOW_DIALOG_FEED, payload: dialogIsVisible });
@@ -35,7 +36,10 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
     const month = date.getMonth() + 1;
     const day = date.getDate();
 
-    const hour = date.getHours();
+    let hour = date.getHours();
+    if (hour < 10) {
+        hour = `0${hour}`;
+    }
     let minute = date.getMinutes();
     if (minute < 10) {
         minute = `0${minute}`;
@@ -44,7 +48,7 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .push()
-        .set({ userID, vehicle, occurrence_type: occurrenceType, time })
+        .set({ userID, vehicle: vehicle.toUpperCase(), occurrence_type: occurrenceType, time })
         .then(() => dispatch({
             type: Types.ADD_OCCURRENCE_SUCCESS,
         }))
@@ -67,7 +71,8 @@ export const fetchOccurrencesOfTheDay = () => dispatch => {
     
     dispatch({ type: Types.FETCH_OCCURRENCES_IS_LOADING });
 
-    firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`).limitToLast(20)
+    firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
+        .limitToLast(10)
         .on('value', snapshot => {
             dispatch({
                 type: Types.FETCH_OCCURRENCES_OF_THE_DAY,

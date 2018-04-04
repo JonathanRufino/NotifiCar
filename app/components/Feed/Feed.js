@@ -32,18 +32,30 @@ class Feed extends Component {
     _renderRow(occurrenceData) {
         let icon;
 
-        if (occurrenceData.occurrence_type === Texts.Occurrence_Type.FAROL_ACESO) {
+        if (occurrenceData.occurrence_type === Texts.Occurrence_Type.HEADLIGHTS_ON) {
             icon = Images.ICON_LIGHTS;
-        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.VIDRO_ABERTO) {
+        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.OPEN_GLASS) {
             icon = Images.ICON_WINDOW;
-        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.ALARME_DISPARADO) {
+        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.ALARM) {
             icon = Images.ICON_ALARM;
+        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.CAR_BLOCKING) {
+            icon = Images.ICON_CAR_BLOCKING;
+        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.DOOR_OPEN) {
+            icon = Images.ICON_DOOR_OPEN;
+        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.FLAT_TIRE) {
+            icon = Images.ICON_FLAT_TIRE;
         } else {
             icon = Images.ICON_WARNING;
         }
 
         return (
             <OccurrenceItem occurrence={occurrenceData} image={icon} />
+        );
+    }
+
+    _renderSeparator() {
+        return (
+            <View style={styles.separator} />
         );
     }
 
@@ -70,6 +82,7 @@ class Feed extends Component {
                 enableEmptySections
                 dataSource={this.dataSource}
                 renderRow={this._renderRow}
+                renderSeparator={this._renderSeparator}
             />
         );
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    View, Text, ImageBackground, Alert, ActivityIndicator
+    View, Text, ImageBackground, Alert, ActivityIndicator, StatusBar
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -43,6 +43,8 @@ class Login extends Component {
 
         return (
             <View style={styles.content}>
+                <StatusBar barStyle="dark-content" />
+
                 <View style={styles.logoContainer}>
                     <Text style={styles.logo}>
                         { Texts.APP_NAME }

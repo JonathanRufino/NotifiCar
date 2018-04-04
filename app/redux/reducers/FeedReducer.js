@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import * as Types from '../actions/types';
 
 const INITIAL_STATE = {
@@ -33,7 +35,7 @@ export default (state = INITIAL_STATE, action) => {
         case Types.OCCURRENCE_TYPE_LOAD:
             return {
                 ...state,
-                occurrenceTypes: action.payload
+                occurrenceTypes: _.sortBy(action.payload, ['type'])
             };
         case Types.CHANGE_OCCURRENCE_TYPE:
             return {
@@ -70,7 +72,7 @@ export default (state = INITIAL_STATE, action) => {
         case Types.FETCH_OCCURRENCES_OF_THE_DAY:
             return {
                 ...state,
-                occurrencesOfTheDay: action.payload,
+                occurrencesOfTheDay: _.sortBy(action.payload, ['time']).reverse(),
                 isLoadingListOfOccurrences: false
             };
         case Types.FETCH_OCCURRENCES_IS_LOADING:

@@ -13,7 +13,7 @@ class TabBarMenu extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={Colors.GREEN_DARK} />
+            <StatusBar backgroundColor={Colors.GREEN_DARK} barStyle="light-content" />
 
             <View style={styles.viewPrincipal}>
                 <View style={styles.viewTitle}>
