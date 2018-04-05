@@ -13,7 +13,7 @@ class TabBarMenu extends Component {
     render() {
         return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={Colors.GREEN_DARK} barStyle="light-content" />
+            <StatusBar backgroundColor={Colors.RED_DARK} barStyle="light-content" />
 
             <View style={styles.viewPrincipal}>
                 <View style={styles.viewTitle}>
@@ -32,7 +32,7 @@ class TabBarMenu extends Component {
                 </View>
             </View>
 
-            <TabBar {...this.props} style={styles.tabBarStyle} />
+            <TabBar {...this.props} indicatorStyle={styles.indicatorStyle} style={styles.tabBarStyle} />
         </View>
         );
     }

@@ -95,7 +95,7 @@ class Account extends Component {
                 {this._renderListOfVehicles()}
 
                 <ActionButton
-                    buttonColor='rgba(231,76,60,1)'
+                    buttonColor={Colors.RED_LIGHT}
                     onPress={() => this.props.showDialog(true)}
                 />
             </View>
@@ -109,7 +109,7 @@ const mapStateToProps = state => {
     if (state.AccountReducer.vehicles === null) {
         vehicles = [];
     } else {
-        vehicles = Object.keys(state.AccountReducer.vehicles); /* Zé GOD */
+        vehicles = Object.keys(state.AccountReducer.vehicles);
     }
 
     return {

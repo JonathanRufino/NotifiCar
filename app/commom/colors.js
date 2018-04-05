@@ -9,6 +9,9 @@ const Colors = {
     TRANSPARENT: 'transparent',
     GREEN: '#115E54',
     GREEN_DARK: '#114D44',
+    RED_DARK: '#D23438',
+    RED_MIDDLE: '#Ed3237',
+    RED_LIGHT: '#Eb7575',
 };
 
 export { Colors };

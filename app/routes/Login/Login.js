@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { LoginButton, AccessToken } from 'react-native-fbsdk';
 
 import styles from './styles';
-import { Images, Texts } from '../../commom';
+import { Images, Texts, Colors } from '../../commom';
 import {
     userLoginSuccess,
     checkUserIsLogged
@@ -43,7 +43,7 @@ class Login extends Component {
 
         return (
             <View style={styles.content}>
-                <StatusBar barStyle="dark-content" />
+                <StatusBar backgroundColor={Colors.RED_DARK} barStyle="light-content" />
 
                 <View style={styles.logoContainer}>
                     <Text style={styles.logo}>

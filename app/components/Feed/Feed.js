@@ -5,7 +5,7 @@ import ActionButton from 'react-native-action-button';
 import _ from 'lodash';
 
 import styles from './styles';
-import { Images, Texts, Values } from '../../commom';
+import { Images, Texts, Values, Colors } from '../../commom';
 import {
     showDialog,
     fetchOccurrencesOfTheDay,
@@ -95,7 +95,7 @@ class Feed extends Component {
                 { this._renderListOfOccurrences() }
 
                 <ActionButton
-                    buttonColor='rgba(231,76,60,1)'
+                    buttonColor={Colors.RED_LIGHT}
                     onPress={() => this.props.showDialog(true)}
                 />
             </View>

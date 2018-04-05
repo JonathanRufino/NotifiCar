@@ -4,7 +4,7 @@ import { Colors } from '../../commom';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.GREEN,
+        backgroundColor: Colors.RED_MIDDLE,
         elevation: 4,
         marginBottom: 6,
         paddingTop: Platform.OS === 'ios' ? 20 : 0
@@ -30,9 +30,12 @@ const styles = StyleSheet.create({
         marginLeft: 20
     },
     tabBarStyle: {
-        backgroundColor: Colors.GREEN,
+        backgroundColor: Colors.RED_MIDDLE,
         elevation: 0
-    }
+    },
+    indicatorStyle: {
+        backgroundColor: Colors.WHITE,
+    },
 });
 
 export default styles;
