@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
 
 import styles from './styles';
-import SplashScreen from './splashscreen';
+import Splashscreen from './splashscreen';
 import Main from './Main';
 import Login from './Login';
 
@@ -11,7 +11,7 @@ const Routes = () => (
         <Scene key="root">
             <Scene
                 key='splashscreen'
-                component={SplashScreen}
+                component={Splashscreen}
                 hideNavBar
                 type={ActionConst.RESET}
                 initial

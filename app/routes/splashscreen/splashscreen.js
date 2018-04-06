@@ -1,38 +1,31 @@
 import React, { Component } from 'react';
-import { View, Image, Text, Platform, StatusBar } from 'react-native';
+import { View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+// import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
-import { Texts, Colors, Images } from '../../commom';
+import { Colors, Images } from '../../commom';
 import { checkUserIsLogged } from '../../redux/actions/AuthenticationActions';
 
-class SplashScreen extends Component {
+class Splashscreen extends Component {
     componentDidMount() {
-        setTimeout(() => this.props.checkUserIsLogged(), 2000);
-    }
-
-    _setStatusBar() {
-        if (Platform.OS === 'android') {
-            return <StatusBar backgroundColor={Colors.RED_DARK} />;
-        }
+        // SplashScreen.hide();
+        this.props.checkUserIsLogged();
     }
 
     render() {
         return (
             <View style={styles.screen}>
-                { this._setStatusBar() }
+                <StatusBar style='light-content' backgroundColor={Colors.RED_DARK} />
 
                 <Image
                     style={styles.logo}
-                    source={Images.LOGO_WHITE}
+                    source={Images.LOGO_SPLASHSCREEN}
                     resizeMode='contain'
                 />
-                <Text style={styles.title}>
-                    { Texts.APP_NAME }
-                </Text>
             </View>
         );
     }
 }
 
-export default connect(null, { checkUserIsLogged })(SplashScreen);
+export default connect(null, { checkUserIsLogged })(Splashscreen);

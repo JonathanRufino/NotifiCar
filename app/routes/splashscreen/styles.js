@@ -12,10 +12,6 @@ const styles = StyleSheet.create({
     logo: {
         width: 0.4 * Values.SCREEN_WIDTH,
     },
-    title: {
-        fontSize: 0.05 * Values.SCREEN_WIDTH,
-        color: Colors.WHITE,
-    }
 });
 
 export default styles;
