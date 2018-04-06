@@ -57,6 +57,8 @@ const checkUserDeviceToken = (data, dispatch) => {
 
 const userIsNotLogged = (dispatch) => {
     dispatch({ type: Types.USER_IS_NOT_LOGGED });
+
+    Actions.login();
 };
 
 export const userLoginSuccess = (accessToken, userID) => ({

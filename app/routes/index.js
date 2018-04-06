@@ -2,12 +2,20 @@ import React from 'react';
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
 
 import styles from './styles';
+import SplashScreen from './splashscreen';
 import Main from './Main';
 import Login from './Login';
 
 const Routes = () => (
     <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle}>
         <Scene key="root">
+            <Scene
+                key='splashscreen'
+                component={SplashScreen}
+                hideNavBar
+                type={ActionConst.RESET}
+                initial
+            />
             <Scene
                 key='login'
                 component={Login}
