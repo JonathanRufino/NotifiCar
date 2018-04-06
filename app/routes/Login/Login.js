@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    View, Text, ImageBackground, Alert, ActivityIndicator, StatusBar
+    View, Image, Alert, ActivityIndicator, StatusBar
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -43,12 +43,12 @@ class Login extends Component {
 
         return (
             <View style={styles.content}>
-                <StatusBar backgroundColor={Colors.RED_DARK} barStyle="light-content" />
-
                 <View style={styles.logoContainer}>
-                    <Text style={styles.logo}>
-                        { Texts.APP_NAME }
-                    </Text>
+                    <Image
+                        style={styles.logo}
+                        source={Images.LOGO_SPLASHSCREEN}
+                        resizeMode='contain'
+                    />
                 </View>
                 <View style={styles.buttonContainer}>
                     <LoginButton
@@ -62,12 +62,11 @@ class Login extends Component {
 
     render() {
         return (
-            <ImageBackground
-                style={styles.backgroundImage}
-                source={Images.LOGIN_BACKGROUND}
-            >
+            <View style={styles.screen}>
+                <StatusBar backgroundColor={Colors.RED_DARK} barStyle="light-content" />
+
                 { this._renderLogin() }
-             </ImageBackground>
+             </View>
         );
     }
 }

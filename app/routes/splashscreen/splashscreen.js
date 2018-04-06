@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
-// import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
 import { Colors, Images } from '../../commom';
@@ -9,14 +9,14 @@ import { checkUserIsLogged } from '../../redux/actions/AuthenticationActions';
 
 class Splashscreen extends Component {
     componentDidMount() {
-        // SplashScreen.hide();
+        SplashScreen.hide();
         this.props.checkUserIsLogged();
     }
 
     render() {
         return (
             <View style={styles.screen}>
-                <StatusBar style='light-content' backgroundColor={Colors.RED_DARK} />
+                <StatusBar barStyle='light-content' backgroundColor={Colors.BLUE} />
 
                 <Image
                     style={styles.logo}
