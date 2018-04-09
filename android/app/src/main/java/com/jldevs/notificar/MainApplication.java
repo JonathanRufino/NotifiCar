@@ -33,12 +33,12 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new SplashScreenReactPackage(),
-            new LinearGradientPackage(),
-            new FIRMessagingPackage(),
-              new FBSDKPackage(mCallbackManager)
+      return Arrays.asList(
+        new MainReactPackage(),
+        new SplashScreenReactPackage(),
+        new LinearGradientPackage(),
+        new FIRMessagingPackage(),
+        new FBSDKPackage(mCallbackManager)
       );
     }
 

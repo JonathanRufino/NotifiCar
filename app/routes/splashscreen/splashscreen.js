@@ -16,7 +16,7 @@ class Splashscreen extends Component {
     render() {
         return (
             <View style={styles.screen}>
-                <StatusBar barStyle='light-content' backgroundColor={Colors.BLUE} />
+                <StatusBar barStyle='light-content' backgroundColor={Colors.RED_DARK} />
 
                 <Image
                     style={styles.logo}
