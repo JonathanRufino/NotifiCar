@@ -11,12 +11,7 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    logoContainer: {
-        flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
     },
     buttonContainer: {
@@ -26,6 +21,19 @@ const styles = StyleSheet.create({
     },
     logo: {
         width: 0.4 * Values.SCREEN_WIDTH,
+    },
+    facebookButtonContainer: {
+        width: 0.7 * Values.SCREEN_WIDTH,
+        justifyContent: 'center',
+        backgroundColor: Colors.FACEBOOK_BLUE,
+        height: 45,
+        borderRadius: 50,
+    },
+    facebookButtonText: {
+        color: Colors.WHITE,
+        textAlign: 'center',
+        fontSize: 0.045 * Values.SCREEN_WIDTH,
+        marginHorizontal: 30,
     },
 });
 
