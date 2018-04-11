@@ -12,6 +12,10 @@ const Images = {
     ICON_CAR_BLOCKING: require('../assets/images/car_blocking.png'),
     ICON_FLAT_TIRE: require('../assets/images/flat_tire.png'),
     ICON_TRASH: require('../assets/images/icon-trash.png'),
+    DOT_MENU: require('../assets/images/dot-menu.png'),
+    LOGOUT: require('../assets/images/logout.png'),
+    ARROW_BACK_ANDROID: require('../assets/images/arrow-back.android.png'),
+    ARROW_BACK_IOS: require('../assets/images/arrow-back.ios.png'),
 };
 
 export { Images };

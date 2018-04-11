@@ -19,12 +19,13 @@ const styles = StyleSheet.create({
     },
     viewElements: {
         flexDirection: 'row',
-        marginRight: 20
+        marginRight: 20,
+        alignItems: 'center',
     },
     viewButton: {
         justifyContent: 'center'
     },
-    txtTitle: {
+    title: {
         color: Colors.WHITE,
         fontSize: 20,
         marginLeft: 20
@@ -36,6 +37,9 @@ const styles = StyleSheet.create({
     indicatorStyle: {
         backgroundColor: Colors.WHITE,
     },
+    toolbarIcons: {
+        marginRight: 15,
+    }
 });
 
 export default styles;

@@ -1,5 +1,9 @@
 const Texts = {
     APP_NAME: 'NotifiCar',
+    Messages: {
+        EXITING: 'Saindo',
+        WANT_TO_EXIT: 'Deseja sair do aplicativo?'
+    },
     Titles: {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
         REGISTER_OCCURRENCE: 'Cadastrar Ocorrência',
@@ -16,6 +20,8 @@ const Texts = {
         REGISTER: 'Cadastrar',
         REGISTER_OCCURRENCE: 'Registrar Ocorrência',
         DELETE: 'Remover',
+        CANCEL: 'Cancelar',
+        EXIT: 'Sair',
     },
     Informative: {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
