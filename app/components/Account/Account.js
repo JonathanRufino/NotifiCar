@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, ListView, ActivityIndicator } from 'react-native';
+import { View, ListView, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
-import Swipeout from 'react-native-swipeout';
+import Swipeable from 'react-native-swipeable';
 
 import styles from './styles';
 import { Colors, Values, Images, Texts } from '../../commom';
@@ -16,6 +16,13 @@ import LicensePlate from '../LicensePlate';
 import EmptyState from '../../components/EmptyState';
 
 class Account extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentlyOpenSwipeable: null
+        };
+    }
+
     componentWillMount() {
         this.props.fetchUserVehicles(this.props.userID);
         this._createVehiclesList(this.props.vehicles);
@@ -30,33 +37,42 @@ class Account extends Component {
         this.vehiclesData = ds.cloneWithRows(vehicles);
     }
 
-    _getSwiperButtons(vehicle) {
+    _getRightButtons(vehicle) {
         const swiperButtons = [
-            {
-                backgroundColor: Colors.RED,
-                color: Colors.WHITE,
-                onPress: () => this.props.removeVehicle(this.props.userID, vehicle),
-                text: Texts.Buttons.DELETE,
-                type: 'delete',
-            }
+            <TouchableOpacity
+                onPress={() => this.props.removeVehicle(this.props.userID, vehicle)} 
+                style={styles.button}
+            >
+                <Image style={styles.image} source={Images.ICON_TRASH} />
+            </TouchableOpacity>
         ];
 
         return swiperButtons;
     }
 
     _renderRow(data) {
+        const { currentlyOpenSwipeable } = this.state;
+        const itemProps = {
+          onOpen: (event, gestureState, swipeable) => {
+            if (currentlyOpenSwipeable && currentlyOpenSwipeable !== swipeable) {
+              currentlyOpenSwipeable.recenter();
+            }
+    
+            this.setState({ currentlyOpenSwipeable: swipeable });
+          },
+          onClose: () => this.setState({ currentlyOpenSwipeable: null })
+        };
+
         return (
-            <Swipeout
-                autoClose
-                backgroundColor={Colors.TRANSPARENT}
-                right={this._getSwiperButtons(data)}
-                style={{
-                    alignItems: 'center',
-                    backgroundColor: Colors.TRANSPARENT,
-                }}
+            <Swipeable
+                rightButtons={this._getRightButtons(data)}
+                onRightButtonsOpenRelease={itemProps.onOpen}
+                onRightButtonsCloseRelease={itemProps.onClose}
             >
-                <LicensePlate licensePlate={data} />
-            </Swipeout>
+                <View style={styles.listItem}>
+                    <LicensePlate licensePlate={data} />
+                </View>
+            </Swipeable>
         );
     }
 
@@ -95,7 +111,7 @@ class Account extends Component {
                 {this._renderListOfVehicles()}
 
                 <ActionButton
-                    buttonColor='rgba(231,76,60,1)'
+                    buttonColor={Colors.RED_LIGHT}
                     onPress={() => this.props.showDialog(true)}
                 />
             </View>
@@ -109,7 +125,7 @@ const mapStateToProps = state => {
     if (state.AccountReducer.vehicles === null) {
         vehicles = [];
     } else {
-        vehicles = Object.keys(state.AccountReducer.vehicles); /* Zé GOD */
+        vehicles = Object.keys(state.AccountReducer.vehicles);
     }
 
     return {

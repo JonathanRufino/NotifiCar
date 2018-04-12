@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
-    View, Text, ImageBackground, Alert, ActivityIndicator, StatusBar
+    View, Image, Alert, ActivityIndicator, StatusBar, TouchableOpacity, Text
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { LoginButton, AccessToken } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import styles from './styles';
-import { Images, Texts } from '../../commom';
+import { Images, Texts, Colors } from '../../commom';
 import {
     userLoginSuccess,
     checkUserIsLogged
@@ -18,19 +18,24 @@ class Login extends Component {
         this.props.checkUserIsLogged();
     }
 
-    _onLoginFinished(error, result) {
-        if (error) {
-            Alert.alert(result.error);
-        } else if (result.isCancelled) {
-            Alert.alert(Texts.Errors.LOGIN_CANCELLED);
-        } else {
-            AccessToken.getCurrentAccessToken()
-                .then(data => {
-                    this.props.userLoginSuccess(
-                        data.accessToken.toString(),
-                        data.userID);
-                })
-                .then(() => Actions.main());
+    async _loginWithFacebook() {
+        try {
+            const result = await LoginManager.logInWithPublishPermissions(['publish_actions']);
+
+            if (result.isCancelled) {
+                Alert.alert(Texts.Errors.LOGIN_CANCELLED);
+                return;
+            }
+
+            const data = await AccessToken.getCurrentAccessToken();
+            this.props.userLoginSuccess(data.accessToken.toString(), data.userID);
+
+            Actions.main();
+        } catch (err) {
+            Alert.alert(
+                Texts.Errors.OOPS,
+                Texts.Errors.GENERIC_ERROR
+            );
         }
     }
 
@@ -43,31 +48,30 @@ class Login extends Component {
 
         return (
             <View style={styles.content}>
-                <StatusBar barStyle="dark-content" />
-
-                <View style={styles.logoContainer}>
-                    <Text style={styles.logo}>
-                        { Texts.APP_NAME }
+                <Image
+                    style={styles.logo}
+                    source={Images.LOGO_SPLASHSCREEN}
+                    resizeMode='contain'
+                />
+                <TouchableOpacity
+                    style={styles.facebookButtonContainer}
+                    onPress={() => this._loginWithFacebook()}
+                >
+                    <Text style={styles.facebookButtonText}>
+                        { Texts.Buttons.LOGIN_WITH_FACEBOOK }
                     </Text>
-                </View>
-                <View style={styles.buttonContainer}>
-                    <LoginButton
-                        publishPermissions={['publish_actions']}
-                        onLoginFinished={(error, result) => this._onLoginFinished(error, result)}
-                    />
-                </View> 
+                </TouchableOpacity>
             </View>
         );
     }
 
     render() {
         return (
-            <ImageBackground
-                style={styles.backgroundImage}
-                source={Images.LOGIN_BACKGROUND}
-            >
+            <View style={styles.screen}>
+                <StatusBar backgroundColor={Colors.RED_DARK} barStyle="light-content" />
+
                 { this._renderLogin() }
-             </ImageBackground>
+             </View>
         );
     }
 }

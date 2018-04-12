@@ -4,7 +4,7 @@ import { Colors } from '../../commom';
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.BLUE,
+        backgroundColor: Colors.RED_LIGHT,
         borderRadius: 5,
         width: '100%',
         height: 50,

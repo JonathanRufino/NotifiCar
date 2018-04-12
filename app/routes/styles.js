@@ -4,7 +4,7 @@ import { Colors } from '../commom';
 
 const styles = StyleSheet.create({
     navBar: {
-        backgroundColor: Colors.GREEN,
+        backgroundColor: Colors.RED_MIDDLE,
     },
     navBarTitle: {
         color: Colors.WHITE,

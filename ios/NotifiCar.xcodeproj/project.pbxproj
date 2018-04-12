@@ -24,6 +24,7 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		14A4A01D495F48C79B1AE452 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D53D126B9C146C3BBFF59A6 /* libRCTFBSDK.a */; };
 		2608F461206EBAB9008F0F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2608F439206EBAB9008F0F69 /* GoogleService-Info.plist */; };
+		26EC14A82077F95B00AD1C35 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EC14A72077F90C00AD1C35 /* libSplashScreen.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -123,6 +124,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFIRMessaging;
+		};
+		26EC14A62077F90C00AD1C35 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26EC14A22077F90C00AD1C35 /* SplashScreen.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3D7682761D8E76B80014119E;
+			remoteInfo = SplashScreen;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -366,6 +374,7 @@
 		1D83D8196F3F430C9874E4D4 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = "<group>"; };
 		2608F41C206EAEC0008F0F69 /* NotifiCar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NotifiCar.entitlements; path = NotifiCar/NotifiCar.entitlements; sourceTree = "<group>"; };
 		2608F439206EBAB9008F0F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		26EC14A22077F90C00AD1C35 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* NotifiCar-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NotifiCar-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* NotifiCar-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NotifiCar-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D112C947E5D4F2484CE647A /* libPods-NotifiCar-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotifiCar-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -411,6 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26EC14A82077F95B00AD1C35 /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				C75AD7A4203A678300FFDD5F /* FBSDKLoginKit.framework in Frameworks */,
@@ -587,6 +597,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		26EC14A32077F90C00AD1C35 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26EC14A72077F90C00AD1C35 /* libSplashScreen.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,6 +652,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				26EC14A22077F90C00AD1C35 /* SplashScreen.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -920,6 +939,10 @@
 					ProductGroup = 2608F3E2206EAC9B008F0F69 /* Products */;
 					ProjectRef = 7B02F135C67F40DE9407D7BB /* RNFIRMessaging.xcodeproj */;
 				},
+				{
+					ProductGroup = 26EC14A32077F90C00AD1C35 /* Products */;
+					ProjectRef = 26EC14A22077F90C00AD1C35 /* SplashScreen.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -993,6 +1016,13 @@
 			fileType = archive.ar;
 			path = libRNFIRMessaging.a;
 			remoteRef = 2608F3E5206EAC9B008F0F69 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		26EC14A72077F90C00AD1C35 /* libSplashScreen.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSplashScreen.a;
+			remoteRef = 26EC14A62077F90C00AD1C35 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */ = {
@@ -1611,6 +1641,7 @@
 					node_modules,
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios/**",
 					"react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios/**",
 				);
 				INFOPLIST_FILE = NotifiCar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1645,6 +1676,7 @@
 					node_modules,
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios/**",
 					"react-native-fcm/ios",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios/**",
 				);
 				INFOPLIST_FILE = NotifiCar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -1,5 +1,9 @@
 const Texts = {
     APP_NAME: 'NotifiCar',
+    Messages: {
+        EXITING: 'Saindo',
+        WANT_TO_EXIT: 'Deseja sair do aplicativo?'
+    },
     Titles: {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
         REGISTER_OCCURRENCE: 'Cadastrar Ocorrência',
@@ -8,6 +12,8 @@ const Texts = {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',
         INVALID_LICENSE_PLATE: 'Informe uma placa válida',
         LOGIN_CANCELLED: 'Login cancelado',
+        OOPS: 'Opa',
+        GENERIC_ERROR: 'Ocorreu um erro, tente novamente'
     },
     Placeholders: {
         LICENSE_PLATE: 'AAA-0000',
@@ -16,6 +22,9 @@ const Texts = {
         REGISTER: 'Cadastrar',
         REGISTER_OCCURRENCE: 'Registrar Ocorrência',
         DELETE: 'Remover',
+        CANCEL: 'Cancelar',
+        EXIT: 'Sair',
+        LOGIN_WITH_FACEBOOK: 'Continuar com facebook',
     },
     Informative: {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
