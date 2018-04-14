@@ -34,11 +34,15 @@ build/
 local.properties
 *.iml
 
-#Firebase
-#Android
+# Secrets
+#
+# Firebase
 android/app/google-services.json
-#IOS
 ios/GoogleService-Info.plist
+#
+# keystore
+*.keystore
+android/keystore.properties
 
 # node.js
 #
@@ -49,7 +53,6 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
 
 # fastlane
 #
