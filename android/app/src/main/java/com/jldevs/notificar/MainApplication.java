@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.react.ReactNativeHost;
@@ -36,7 +35,6 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.asList(
         new MainReactPackage(),
         new SplashScreenReactPackage(),
-        new LinearGradientPackage(),
         new FIRMessagingPackage(),
         new FBSDKPackage(mCallbackManager)
       );
