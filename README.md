@@ -1,5 +1,5 @@
 # NotifiCar
-[![CircleCI](https://circleci.com/gh/JonathanRufino/NotifiCar/tree/master.svg?style=shield&circle-token=f1b2e8d17126fdd2a7918298696260cafd5dc898)](https://circleci.com/gh/JonathanRufino/NotifiCar/tree/master) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CircleCI](https://circleci.com/gh/NotifiCar/NotifiCar.svg?style=shield)](https://circleci.com/gh/NotifiCar/NotifiCar)(https://circleci.com/gh/JonathanRufino/NotifiCar/tree/master) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ### Description
 
