@@ -4,10 +4,6 @@ jobs:
     working_directory: ~/project
     docker:
       - image: circleci/node:8
-    branches:
-      only:
-        - master
-        - staging
     steps:
       - checkout
       - run: npm install
@@ -61,7 +57,12 @@ workflows:
   version: 2
   node-android-ios:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+                - staging
       - android:
           requires:
             - build
