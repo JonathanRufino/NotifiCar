@@ -1,4 +1,17 @@
-# NotifiCar
+<h1 align="center"> NotifiCar </h1> <br>
+
+<p align="center">
+    <a href="https://github.com/NotifiCar/NotifiCar">
+        <img alt="NotifiCar" title="NotifiCar" src="https://avatars1.githubusercontent.com/u/38195808?s=400&u=7aaa6816bdbbe8e27972b28d5c64ecd27f70db87&v=4" width="200">
+    </a>
+</p>
+
+<p align="center">
+    <a href='https://play.google.com/store/apps/details?id=com.jldevs.notificar&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+        <img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="200"/>
+    </a>
+</p>
+
 [![CircleCI](https://circleci.com/gh/NotifiCar/NotifiCar.svg?style=shield)](https://circleci.com/gh/NotifiCar/NotifiCar) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 ### Description
