@@ -1,8 +1,6 @@
-<h1 align="center"> NotifiCar </h1> <br>
-
 <p align="center">
     <a href="https://github.com/NotifiCar/NotifiCar">
-        <img alt="NotifiCar" title="NotifiCar" src="https://avatars1.githubusercontent.com/u/38195808?s=400&u=7aaa6816bdbbe8e27972b28d5c64ecd27f70db87&v=4" width="200">
+        <img alt="NotifiCar" title="NotifiCar" src="https://raw.githubusercontent.com/wiki/NotifiCar/NotifiCar/imgs/logotype_primary.png">
     </a>
 </p>
 
