@@ -24,6 +24,9 @@ jobs:
           path: ~/project
       - attach_workspace:
           at: ~/project
+      - run:
+          name: Configure Android Secret Files
+          command: bash ../.circleci/android.sh
       - run: bundle install
       - run: bundle exec fastlane test
       - store_test_results:
