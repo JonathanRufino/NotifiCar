@@ -91,11 +91,7 @@ def enableSeparateBuildPerCPUArchitecture = true
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = false
-
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def enableProguardInReleaseBuilds = true
 
 android {
     compileSdkVersion 27
@@ -116,10 +112,10 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+            storeFile file("release.keystore")
+            storePassword System.getenv("KEYSTORE_PASSWORD")
         }
     }
     splits {
