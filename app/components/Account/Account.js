@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, ListView, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
+import { View, ListView, ActivityIndicator, TouchableOpacity, Image, Text } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import Swipeable from 'react-native-swipeable';
+import Camera from 'react-native-openalpr';
 
 import styles from './styles';
 import { Colors, Values, Images, Texts } from '../../commom';
@@ -18,7 +19,13 @@ import EmptyState from '../../components/EmptyState';
 class Account extends Component {
     constructor(props) {
         super(props);
+
+        this.camera = null;
         this.state = {
+            camera: {
+                aspect: Camera.constants.Aspect.fill,
+            },
+            plate: 'Scan a plate',
             currentlyOpenSwipeable: null
         };
     }
@@ -30,6 +37,14 @@ class Account extends Component {
 
     componentWillReceiveProps(nextProps) {
         this._createVehiclesList(nextProps.vehicles);
+    }
+
+    _onPlateRecognized = ({ plate, confidence }) => {
+        if (confidence > 90) {
+            this.setState({
+                plate,
+            })
+        }
     }
 
     _createVehiclesList(vehicles) {
@@ -106,14 +121,31 @@ class Account extends Component {
     render() {
         return (
             <View style={styles.screen}>
-                <VehicleModal />
+                {/* <VehicleModal />
 
                 {this._renderListOfVehicles()}
 
                 <ActionButton
                     buttonColor={Colors.RED_LIGHT}
                     onPress={() => this.props.showDialog(true)}
+                /> */}
+                <Camera
+                    ref={(cam) => {
+                        this.camera = cam;
+                    }}
+                    style={styles.preview}
+                    aspect={this.state.camera.aspect}
+                    captureQuality={Camera.constants.CaptureQuality.medium}
+                    country="br"
+                    onPlateRecognized={this._onPlateRecognized.bind(this)}
+                    plateOutlineColor="#ff0000"
+                    showPlateOutline
+                    torchMode={Camera.constants.TorchMode.off}
+                    touchToFocus
                 />
+                <View style={styles.textContainer}>
+                <Text style={styles.text}>{this.state.plate}</Text>
+                </View>
             </View>
         );
     }
