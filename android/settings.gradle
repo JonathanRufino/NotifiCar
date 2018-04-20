@@ -1,4 +1,10 @@
 rootProject.name = 'NotifiCar'
+include ':openalpr'
+project(':openalpr').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-openalpr/android/libraries/openalpr')
+include ':opencv'
+project(':opencv').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-openalpr/android/libraries/opencv')
+include ':react-native-openalpr'
+project(':react-native-openalpr').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-openalpr/android')
 include ':react-native-splash-screen'
 project(':react-native-splash-screen').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-splash-screen/android')
 include ':react-native-fcm'

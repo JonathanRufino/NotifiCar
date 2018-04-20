@@ -3,6 +3,7 @@ package com.jldevs.notificar;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.cardash.openalpr.CameraReactPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.evollu.react.fcm.FIRMessagingPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
         new MainReactPackage(),
+        new CameraReactPackage(),
         new SplashScreenReactPackage(),
         new FIRMessagingPackage(),
         new FBSDKPackage(mCallbackManager)

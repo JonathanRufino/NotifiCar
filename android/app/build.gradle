@@ -154,6 +154,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':react-native-openalpr')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-fcm')
     implementation project(':react-native-fbsdk')
