@@ -1,15 +1,49 @@
 import React, { Component } from 'react';
-import { View, Text, Image, StatusBar, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, StatusBar, Alert } from 'react-native';
 import { TabBar } from 'react-native-tab-view';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { LoginManager } from 'react-native-fbsdk';
+import ModalDropDown from 'react-native-modal-dropdown';
 
 import styles from './styles';
 import { Colors, Texts, Images } from '../../commom';
 import { userLoginSuccess } from '../../redux/actions/AuthenticationActions';
 
+const MenuOptions = {
+    PRIVACY_POLICY: 'Políticas de Privacidade',
+    LOGOUT: 'Sair'
+};
+
 class TabBarMenu extends Component {
+    _onOptionSelected(option) {
+        switch (option) {
+            case MenuOptions.PRIVACY_POLICY:
+                return Actions.privacyPolicy();
+            case MenuOptions.LOGOUT:
+                return Alert.alert(
+                    Texts.Messages.EXITING,
+                    Texts.Messages.WANT_TO_EXIT,
+                    [
+                        {
+                            text: Texts.Buttons.CANCEL,
+                            onPress: () => false
+                        },
+                        {
+                            text: Texts.Buttons.EXIT,
+                            onPress: () => {
+                                LoginManager.logOut();
+                                this.props.userLoginSuccess('');
+                                Actions.login();
+                            }
+                        },
+                    ],
+                    { cancelable: false }
+                );
+            default:
+                return false;
+        }
+    }
     render() {
         return (
         <View style={styles.container}>
@@ -23,35 +57,12 @@ class TabBarMenu extends Component {
                 </View>
 
                 <View style={styles.viewElements}>
-                    <TouchableOpacity
-                        style={styles.toolbarIcons}
-                        onPress={() => {
-                            Alert.alert(
-                                Texts.Messages.EXITING,
-                                Texts.Messages.WANT_TO_EXIT,
-                                [
-                                    {
-                                        text: Texts.Buttons.CANCEL,
-                                        onPress: () => false
-                                    },
-                                    {
-                                        text: Texts.Buttons.EXIT,
-                                        onPress: () => {
-                                            LoginManager.logOut();
-                                            this.props.userLoginSuccess('');
-                                            Actions.login();
-                                        }
-                                    },
-                                ],
-                                { cancelable: false }
-                            );
-                        }}
+                    <ModalDropDown
+                        options={[MenuOptions.PRIVACY_POLICY, MenuOptions.LOGOUT]}
+                        onSelect={(index, value) => this._onOptionSelected(value)}
                     >
-                        <Image source={Images.LOGOUT} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => Actions.privacyPolicy()}>
                         <Image source={Images.DOT_MENU} />
-                    </TouchableOpacity>
+                    </ModalDropDown>
                 </View>
             </View>
 
