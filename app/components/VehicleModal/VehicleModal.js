@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    TextInput,
     ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
 
 import styles from './styles';
-import { Texts, Regexes, Values } from '../../commom';
+import { Texts, Regexes } from '../../commom';
 import {
     writeVehicle,
     addVehicle,
@@ -17,6 +16,7 @@ import {
     showDialog,
 } from '../../redux/actions/AccountActions';
 import Button from '../Button';
+import LicensePlateInput from '../../components/license-plate-input';
 
 class VehicleModal extends Component {
     _validateVehicle() {
@@ -58,13 +58,8 @@ class VehicleModal extends Component {
                         { Texts.Titles.REGISTER_VEHICLE }
                     </Text>
                     <View style={styles.inputContainer}>
-                        <TextInput
-                            style={styles.inputField}
-                            value={this.props.vehicle}
-                            onChangeText={(text) => this.props.writeVehicle(text)}
-                            maxLength={Values.LICENSE_PLATE_MAX_LENGTH}
-                            autoCapitalize='characters'
-                            placeholder={Texts.Placeholders.LICENSE_PLATE}
+                        <LicensePlateInput
+                            onWrite={text => this.props.writeVehicle(text)}
                         />
                         <Text style={styles.error}>
                             { this.props.vehicleError }
