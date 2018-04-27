@@ -3,7 +3,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
-import { Values, Texts } from '../../commom';
+import { Values, Texts, Colors } from '../../commom';
 
 class LicensePlateInput extends Component {
     constructor(props) {
@@ -45,6 +45,7 @@ class LicensePlateInput extends Component {
                 placeholder={this.props.placeholder}
                 type='custom'
                 options={{ mask: 'AAA-9999' }}
+                underlineColorAndroid={Colors.TRANSPARENT}
             />
         );
     }

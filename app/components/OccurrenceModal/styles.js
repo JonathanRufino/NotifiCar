@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
         fontSize: 0.04 * Values.SCREEN_WIDTH,
         alignSelf: 'center',
     },
-    picker_occurrence: {
-        alignSelf: 'center',
+    picker: {
+        marginVertical: 10,
     },
     error: {
         color: Colors.RED,

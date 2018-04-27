@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.WHITE,
         padding: 15,
+        borderRadius: 10,
     },
     inputField: {
         width: '80%',

@@ -35,13 +35,16 @@ class OccurrenceModal extends Component {
                     { Texts.Informative.OCCURRENCE_TYPE }
                 </Text>
                 <Picker
+                    style={styles.picker}
                     selectedValue={this.props.pickerValueHolder}
                     onValueChange={(itemValue, itemIndex) => 
                         this.props.changeOccurrenceType(itemValue)} 
                 >
-                    { _.map(this.props.occurrenceTypes, (item, key) => 
-                        (<Picker.Item label={item.type} value={item.type} key={key} />)
-                    )}
+                    {
+                        _.map(this.props.occurrenceTypes, (item, key) => 
+                            <Picker.Item label={item.type} value={item.type} key={key} />
+                        )
+                    }
                 </Picker>
             </View>
         );
