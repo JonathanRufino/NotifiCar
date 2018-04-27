@@ -10,10 +10,11 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
+        elevation: 5,
     },
     text: {
         color: Colors.WHITE,
-        fontWeight: '100',
+        fontWeight: '400',
         fontSize: 20,
     }
 });
