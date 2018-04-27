@@ -19,29 +19,33 @@ class TabBarMenu extends Component {
     _onOptionSelected(option) {
         switch (option) {
             case MenuOptions.PRIVACY_POLICY:
-                return Actions.privacyPolicy();
+                Actions.privacyPolicy();
+                break;
             case MenuOptions.LOGOUT:
-                return Alert.alert(
-                    Texts.Messages.EXITING,
-                    Texts.Messages.WANT_TO_EXIT,
-                    [
-                        {
-                            text: Texts.Buttons.CANCEL,
-                            onPress: () => false
-                        },
-                        {
-                            text: Texts.Buttons.EXIT,
-                            onPress: () => {
-                                LoginManager.logOut();
-                                this.props.userLoginSuccess('');
-                                Actions.login();
-                            }
-                        },
-                    ],
-                    { cancelable: false }
-                );
+                setTimeout(() => {
+                    Alert.alert(
+                        Texts.Messages.EXITING,
+                        Texts.Messages.WANT_TO_EXIT,
+                        [
+                            {
+                                text: Texts.Buttons.CANCEL,
+                                onPress: () => {}
+                            },
+                            {
+                                text: Texts.Buttons.EXIT,
+                                onPress: () => {
+                                    LoginManager.logOut();
+                                    this.props.userLoginSuccess('');
+                                    Actions.login();
+                                }
+                            },
+                        ],
+                        { cancelable: false }
+                    );
+                }, 500);
+                break;
             default:
-                return false;
+                break;
         }
     }
     render() {
