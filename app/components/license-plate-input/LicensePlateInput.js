@@ -20,7 +20,7 @@ class LicensePlateInput extends Component {
         let keyboard = this.state.keyboard;
         const isErasing = text.length < this.state.vehicle.length;
 
-        if (isErasing && vehicle.length === 3) {
+        if (isErasing && vehicle.length === 4) {
             vehicle = vehicle.slice(0, -1);
             keyboard = 'default';
         } else if (!isErasing && vehicle.length === 3) {
@@ -51,7 +51,7 @@ class LicensePlateInput extends Component {
 }
 
 LicensePlateInput.propTypes = {
-    style: PropTypes.object,
+    style: PropTypes.any,
     maxLength: PropTypes.number,
     autoCapitalize: PropTypes.string,
     returnKeyType: PropTypes.string,
