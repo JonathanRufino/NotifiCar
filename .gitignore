@@ -43,6 +43,9 @@ ios/GoogleService-Info.plist
 # keystore
 *.keystore
 android/keystore.properties
+#
+# Google Play Key
+android/fastlane/Google_Play_Android_Developer.json
 
 # node.js
 #

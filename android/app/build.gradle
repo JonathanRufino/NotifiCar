@@ -105,8 +105,8 @@ android {
         applicationId "com.jldevs.notificar"
         minSdkVersion 18
         targetSdkVersion 27
-        versionCode 2
-        versionName "1.0.2"
+        versionCode 3
+        versionName "1.0.3"
 //        ndk {
 //            abiFilters "armeabi-v7a", "x86"
 //        }

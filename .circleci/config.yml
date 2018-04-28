@@ -29,6 +29,7 @@ jobs:
           command: bash ../.circleci/android.sh
       - run: bundle install
       - run: bundle exec fastlane test
+      - run: bundle exec fastlane playstore
       - store_test_results:
           path: ~/project/android/reports
 
@@ -65,7 +66,6 @@ workflows:
             branches:
               only:
                 - master
-                - staging
       - android:
           requires:
             - build

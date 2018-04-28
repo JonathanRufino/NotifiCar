@@ -1,0 +1,6 @@
+Esta versão possui as seguintes funcionalidades:
+- Login com facebook
+- Registro de Veículos e Ocorrências
+- Notificação de ocorrências para veículos cadastrados
+- Lista de ocorrências do dia
+- Lista de veículos

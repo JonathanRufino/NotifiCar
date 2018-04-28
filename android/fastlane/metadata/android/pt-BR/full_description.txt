@@ -1,0 +1,1 @@
+O NotifiCar é um aplicativo que tem o objetivo de comunicar de forma fácil qualquer eventualidade relacionada ao seu veículo identificada por outras pessoas. Para realizar o registro dessas eventualidades é utilizada a placa do veículo e, desta forma, é enviada uma notificação para o dispositivo do usuário.
