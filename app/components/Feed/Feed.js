@@ -21,6 +21,7 @@ class Feed extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps.occurrencesOfTheDay);
         this._createOccurrenceList(nextProps.occurrencesOfTheDay);
     }
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Platform, AsyncStorage, AppState, Alert } from 'react-native';
+import {
+    Platform, AsyncStorage, AppState, Alert, Dimensions
+} from 'react-native';
 import FCM, {
     FCMEvent, 
     RemoteNotificationResult,
@@ -8,6 +10,8 @@ import FCM, {
     NotificationType,
 } from 'react-native-fcm';
 import { Actions } from 'react-native-router-flux';
+import EStyleSheet from 'react-native-extended-stylesheet';
+
 
 import Routes from './routes/index';
 import reduxStore from './redux/store';
@@ -15,6 +19,10 @@ import reduxStore from './redux/store';
 registerKilledListener();
 
 class App extends Component {
+    componentWillMount() {
+        EStyleSheet.build({ $rem: Dimensions.get('window').width / 380 });
+    }
+
     componentDidMount() {
         FCM.requestPermissions()
             .then(() => {
