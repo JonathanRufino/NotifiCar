@@ -80,6 +80,14 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 isLoadingListOfOccurrences: true
             };
+        case Types.ADD_OCCURRENCE_TYPE_COUNT_SUCCESS:
+            return {
+                ...state,
+            };
+        case Types.ADD_OCCURRENCE_TYPE_COUNT_ERROR:
+            return {
+                ...state,
+            };
         default:
             return state;
     }
