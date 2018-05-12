@@ -2,8 +2,8 @@ import * as Types from '../actions/types';
 
 const INITIAL_STATE = {
     isLoadingListOfRanking: false,
-    occurrencesTypeRankingPodium: {},
-    occurrencesTypeRankingList: {},
+    occurrencesTypeRankingPodium: [],
+    occurrencesTypeRankingList: [],
     totalOccurrenceType: 0,
 };
 
@@ -12,13 +12,12 @@ export default (state = INITIAL_STATE, action) => {
         case Types.FETCH_OCCURRENCES_TYPE_RANKING_IS_LOADING:
             return {
                 ...state,
-                isLoadingListOfRanking: true
+                isLoadingListOfRanking: true,
             };
         case Types.FETCH_OCCURRENCES_TYPE_RANKING_LIST:
             return {
                 ...state,
                 occurrencesTypeRankingList: action.payload,
-                isLoadingListOfRanking: false
             };
         case Types.FETCH_OCCURRENCES_TYPE_RANKING_IMAGES:
             return {
@@ -28,7 +27,8 @@ export default (state = INITIAL_STATE, action) => {
         case Types.FETCH_OCCURRENCES_TYPE_RANKING_TOTAL:
             return {
                 ...state,
-                occurrencesTypeRankingPodium: action.payload,
+                totalOccurrenceType: action.payload,
+                isLoadingListOfRanking: false,
             };
         default:
             return state;

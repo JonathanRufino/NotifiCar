@@ -32,6 +32,7 @@ const Texts = {
         ADD_VEHICLE_INSTRUCTIONS: 'Cadastre um veículo tocando no botão +',
         NO_OCCURRENCES: 'Nenhuma Ocorrência Registrada',
         ADD_OCCURRENCE_INSTRUCTIONS: 'Cadastre uma ocorrência tocando no botão +',
+        TOTAL_OCCURRENCES: 'Total de ocorrências: ',
     },
     Occurrence_Type: {
         HEADLIGHTS_ON: 'Farol Aceso',

@@ -5,7 +5,7 @@ import styles from './styles';
 
 const OccurrenceOfTheDay = ({ occurrence, image }) => (
     <View style={styles.container}>
-        <Image style={styles.photo} source={image} />
+        <Image style={styles.icon} source={image} />
 
         <View style={styles.infoContainer}>
             <Text style={styles.licensePlate}>
