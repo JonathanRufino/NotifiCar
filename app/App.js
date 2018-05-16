@@ -26,7 +26,6 @@ class App extends Component {
     componentDidMount() {
         FCM.requestPermissions()
             .then(() => {
-                console.log('notification permission garanted');
                 registerAppListener();
             })
             .catch(() => console.log('notification permission rejected'));

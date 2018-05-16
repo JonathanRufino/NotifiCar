@@ -8,7 +8,7 @@ import Splashscreen from './splashscreen';
 import Main from './Main';
 import Login from './Login';
 import PrivacyPolicy from './privacy-policy';
-import OccurrenceDetails from '../components/occurrence-details';
+import UserProfile from '../components/user-profile';
 
 const Routes = () => (
     <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle}>
@@ -46,8 +46,8 @@ const Routes = () => (
             </Scene>
             <Scene
                 modal
-                key='occurrenceDetails'
-                component={OccurrenceDetails}
+                key='userProfile'
+                component={UserProfile}
             />
         </Lightbox>
     </Router>

@@ -12,8 +12,9 @@ const Texts = {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',
         INVALID_LICENSE_PLATE: 'Informe uma placa válida',
         LOGIN_CANCELLED: 'Login cancelado',
-        OOPS: 'Opa',
-        GENERIC_ERROR: 'Ocorreu um erro, tente novamente'
+        OOPS: 'Oops!',
+        GENERIC_ERROR: 'Ocorreu um erro, tente novamente',
+        CANT_GET_USER_DATA: 'Não foi possível obter as informações deste usuário',
     },
     Placeholders: {
         LICENSE_PLATE: 'AAA-0000',
