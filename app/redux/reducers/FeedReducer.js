@@ -72,7 +72,7 @@ export default (state = INITIAL_STATE, action) => {
         case Types.FETCH_OCCURRENCES_OF_THE_DAY:
             return {
                 ...state,
-                occurrencesOfTheDay: _.sortBy(action.payload, ['time']).reverse(),
+                occurrencesOfTheDay: action.payload,
                 isLoadingListOfOccurrences: false
             };
         case Types.FETCH_OCCURRENCES_IS_LOADING:
