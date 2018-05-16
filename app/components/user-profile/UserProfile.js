@@ -47,30 +47,34 @@ class UserProfile extends Component {
         
         await new GraphRequestManager().addRequest(profileRequest).start();
 
-        const date = new Date();
-        const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
-
-        firebaseApp.database()
-            .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback`)
-            .on('value', snapshot => {
-                if (snapshot !== undefined) {
-                    if (snapshot.numChildren() === 0) {
-                        this.setState({ canVote: true });
+        if (this.props.occurrence.occurrence.userID === this.props.userID) {
+            this.setState({ canVote: false });
+        } else {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = date.getMonth() + 1;
+            const day = date.getDate();
+    
+            firebaseApp.database()
+                .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback`)
+                .on('value', snapshot => {
+                    if (snapshot !== undefined) {
+                        if (snapshot.numChildren() === 0) {
+                            this.setState({ canVote: true });
+                        } else {
+                            snapshot.forEach(user => {
+                                if (user.key === this.props.userID) {
+                                    this.setState({ canVote: false });
+                                } else {
+                                    this.setState({ canVote: true });
+                                }
+                            });
+                        }
                     } else {
-                        snapshot.forEach(user => {
-                            if (user.key === this.props.userID) {
-                                this.setState({ canVote: false });
-                            } else {
-                                this.setState({ canVote: true });
-                            }
-                        });
+                        this.setState({ canVote: true });
                     }
-                } else {
-                    this.setState({ canVote: true });
-                }
-            });
+                });
+        }
     }
 
     async _responseProfile(err, result) {
