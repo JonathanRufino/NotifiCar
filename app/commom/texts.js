@@ -26,6 +26,8 @@ const Texts = {
         CANCEL: 'Cancelar',
         EXIT: 'Sair',
         LOGIN_WITH_FACEBOOK: 'Continuar com facebook',
+        LIKE: 'Útil',
+        DISLIKE: 'Falsa',
     },
     Informative: {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
@@ -33,6 +35,8 @@ const Texts = {
         ADD_VEHICLE_INSTRUCTIONS: 'Cadastre um veículo tocando no botão +',
         NO_OCCURRENCES: 'Nenhuma Ocorrência Registrada',
         ADD_OCCURRENCE_INSTRUCTIONS: 'Cadastre uma ocorrência tocando no botão +',
+        HOW_DO_YOU_RATE_THIS_OCCURRENCE: 'Como você avalia essa ocorrência?',
+        REPUTATION: 'Reputação:',
     },
     Occurrence_Type: {
         HEADLIGHTS_ON: 'Farol Aceso',

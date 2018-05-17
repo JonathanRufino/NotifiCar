@@ -10,11 +10,11 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
     },
     container: {
-        backgroundColor: Colors.GRAY,
+        backgroundColor: Colors.WHITE,
         justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 5,
-        marginHorizontal: '24rem'
+        width: '80%',
     },
     userContainer: {
         paddingVertical: '24rem',
@@ -30,6 +30,28 @@ const styles = EStyleSheet.create({
     },
     buttonsContainer: {
         flexDirection: 'row',
+    },
+    positiveButton: {
+        flex: 1,
+        backgroundColor: Colors.SILVER_TREE,
+        height: 40,
+        justifyContent: 'center',
+        alignItems:
+        'center',
+    },
+    negativeButton: {
+        flex: 1,
+        backgroundColor: Colors.BITTER_SWEET,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    buttonText: {
+        color: Colors.WHITE,
+        fontWeight: 'bold',
+    },
+    loading: {
+        margin: 4,
     },
 });
 

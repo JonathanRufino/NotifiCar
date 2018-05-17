@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
-    View, Text, Modal, TouchableWithoutFeedback, Image, Alert, ActivityIndicator, TouchableOpacity
+    View, Text, Modal, TouchableWithoutFeedback, Image, Alert,
+    ActivityIndicator, TouchableOpacity
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
@@ -8,7 +9,7 @@ import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 import { connect } from 'react-redux';
 
 import styles from './styles';
-import { Texts, Colors } from '../../commom';
+import { Texts } from '../../commom';
 import firebaseApp from '../../services/firebase';
 
 class UserProfile extends Component {
@@ -46,7 +47,24 @@ class UserProfile extends Component {
         );
         
         await new GraphRequestManager().addRequest(profileRequest).start();
+    }
 
+    async _responseProfile(err, result) {
+        this.setState({ gettingUser: false });
+
+        if (err) {
+            Alert.alert(Texts.Errors.OOPS, Texts.Errors.CANT_GET_USER_DATA);
+        } else {
+            this.setState({
+                user: {
+                    name: result.name,
+                    photo: result.picture.data.url,
+                }
+            }, this._checkCanVote());
+        }
+    }
+
+    _checkCanVote = () => {
         if (this.props.occurrence.occurrence.userID === this.props.userID) {
             this.setState({ canVote: false });
         } else {
@@ -77,21 +95,6 @@ class UserProfile extends Component {
         }
     }
 
-    async _responseProfile(err, result) {
-        this.setState({ gettingUser: false });
-
-        if (err) {
-            Alert.alert(Texts.Errors.OOPS, Texts.Errors.CANT_GET_USER_DATA);
-        } else {
-            this.setState({
-                user: {
-                    name: result.name,
-                    photo: result.picture.data.url,
-                }
-            });
-        }
-    }
-
     _giveFeedback = feedback => {
         const date = new Date();
         const year = date.getFullYear();
@@ -114,7 +117,7 @@ class UserProfile extends Component {
     _renderUserdata = () => {
         if (this.state.gettingUser) {
             return (
-                <ActivityIndicator size='large' alignSelf='center' style={{ margin: 4 }} />
+                <ActivityIndicator size='large' alignSelf='center' style={styles.loading} />
             );
         }
 
@@ -131,7 +134,7 @@ class UserProfile extends Component {
                     </Text>
 
                     <Text>
-                        Reputação: { this.state.reputation }
+                        { `${Texts.Informative.REPUTATION} ${this.state.reputation}` }
                     </Text>
                 </View>
             );
@@ -141,23 +144,28 @@ class UserProfile extends Component {
     _renderButtons = () => {
         if (this.state.canVote) {
             return (
-                <View style={styles.buttonsContainer}>
-                    <TouchableOpacity
-                        style={{ flex: 1, backgroundColor: Colors.GREEN, height: 40, justifyContent: 'center', alignItems: 'center', }}
-                        onPress={() => this._giveFeedback(true)}
-                    >
-                        <Text style={{ color: Colors.WHITE, fontWeight: 'bold' }}>
-                            Like
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{ flex: 1, backgroundColor: Colors.RED, height: 40, justifyContent: 'center', alignItems: 'center', }}
-                        onPress={() => this._giveFeedback(false)}
-                    >
-                    <Text style={{ color: Colors.WHITE, fontWeight: 'bold' }}>
-                            Dislike
-                        </Text>
-                    </TouchableOpacity>
+                <View style={{ width: '100%' }}>
+                    <Text style={{ alignSelf: 'center' }}>
+                        { Texts.Informative.HOW_DO_YOU_RATE_THIS_OCCURRENCE }
+                    </Text>
+                    <View style={styles.buttonsContainer}>
+                        <TouchableOpacity
+                            style={styles.positiveButton}
+                            onPress={() => this._giveFeedback(true)}
+                        >
+                            <Text style={styles.buttonText}>
+                                { Texts.Buttons.LIKE }
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.negativeButton}
+                            onPress={() => this._giveFeedback(false)}
+                        >
+                        <Text style={styles.buttonText}>
+                            { Texts.Buttons.DISLIKE }
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             );
         }
