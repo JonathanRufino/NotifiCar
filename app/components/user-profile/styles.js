@@ -21,9 +21,10 @@ const styles = EStyleSheet.create({
         alignItems: 'center',
     },
     photo: {
-        height: '64rem',
-        width: '64rem',
+        height: '80rem',
+        width: '80rem',
         borderRadius: 100,
+        marginBottom: '8rem',
     },
     name: {
         fontSize: '18rem',

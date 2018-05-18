@@ -41,7 +41,7 @@ class UserProfile extends Component {
             });
 
         const profileRequest = await new GraphRequest(
-            `/${this.props.occurrence.occurrence.userID}?fields=name,picture`,
+            `/${this.props.occurrence.occurrence.userID}?fields=name,picture.type(large)`,
             null,
             this._responseProfile,
         );
@@ -53,6 +53,7 @@ class UserProfile extends Component {
         this.setState({ gettingUser: false });
 
         if (err) {
+            Actions.pop();
             Alert.alert(Texts.Errors.OOPS, Texts.Errors.CANT_GET_USER_DATA);
         } else {
             this.setState({
