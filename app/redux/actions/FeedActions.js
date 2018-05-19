@@ -47,13 +47,15 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .push()
         .set({ userID, vehicle: vehicle.toUpperCase(), occurrence_type: occurrenceType, time })
-        .then(() => dispatch({
-            type: Types.ADD_OCCURRENCE_SUCCESS,
-        }))
+        .then(() => dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS }))
         .catch(error => dispatch({
             type: Types.ADD_OCCURRENCE_ERROR,
             payload: error
         }));
+    
+    firebaseApp.database().ref(`/users/${userID}/`)
+        .child('occurrencesCount')
+        .transaction(occurrencesCount => occurrencesCount + 1);
 };
 
 export const changeOccurrenceType = (occurrenceType) => ({
