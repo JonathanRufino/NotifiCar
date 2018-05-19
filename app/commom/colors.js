@@ -13,6 +13,10 @@ const Colors = {
     RED_MIDDLE: '#Ed3237',
     RED_LIGHT: '#Eb7575',
     FACEBOOK_BLUE: '#3B5998',
+    SILVER_TREE: '#71C38E',
+    BITTER_SWEET: '#F96F6B',
+    GREEN_MEDIUM: '#2f858b',
+    BLUE_MEDIUM: '#0084ff',
 };
 
 export { Colors };
