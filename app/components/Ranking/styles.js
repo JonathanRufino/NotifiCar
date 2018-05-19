@@ -1,8 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
-import { Colors } from '../../commom';
-
-const { height, width } = Dimensions.get('window');
+import { Colors, Values } from '../../commom';
 
 const styles = StyleSheet.create({
     screen: {
@@ -14,6 +12,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        paddingHorizontal: 8,
+        paddingVertical: 16,
     },
     screenList: {
         marginTop: 30,
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     ocurrenceType: {
         color: Colors.BLACK,
         fontSize: 13,
+        textAlign: 'center',
     },
     totalTextOcurrenceType: {
         color: Colors.BLACK,
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     rankingList: {
-        width,
+        width: Values.SCREEN_WIDTH,
     },
     separator: {
         height: 1,
