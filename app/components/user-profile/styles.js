@@ -13,7 +13,7 @@ const styles = EStyleSheet.create({
         backgroundColor: Colors.WHITE,
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 5,
+        borderRadius: 10,
         width: '80%',
     },
     userContainer: {
@@ -39,6 +39,7 @@ const styles = EStyleSheet.create({
         justifyContent: 'center',
         alignItems:
         'center',
+        borderBottomLeftRadius: 10,
     },
     negativeButton: {
         flex: 1,
@@ -46,6 +47,7 @@ const styles = EStyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
+        borderBottomRightRadius: 10,
     },
     buttonText: {
         color: Colors.WHITE,
@@ -53,6 +55,33 @@ const styles = EStyleSheet.create({
     },
     loading: {
         margin: 4,
+    },
+    detailsButton: {
+        backgroundColor: Colors.RED_LIGHT,
+        paddingHorizontal: '32rem',
+        paddingVertical: '8rem',
+        borderRadius: 30
+    },
+    counter: {
+        fontSize: '18rem',
+        fontWeight: 'bold',
+    },
+    label: {
+        textAlign: 'center',
+    },
+    infoContainer: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    detailsContainer: {
+        flexDirection: 'row',
+        marginTop: '24rem',
+    },
+    feedbackTitle: {
+        alignSelf: 'center',
+        fontSize: '14rem',
+        marginBottom: '8rem',
     },
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-    View, Text, Modal, TouchableWithoutFeedback, Image, Alert,
-    ActivityIndicator, TouchableOpacity
+    View, Text, Modal, Image, Alert,
+    ActivityIndicator, TouchableOpacity, TouchableWithoutFeedback
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
@@ -24,6 +24,7 @@ class UserProfile extends Component {
                 photo: '',
             },
             reputation: 0,
+            occurrencesCount: 0,
             canVote: false,
             gettingUser: false,
             db: null,
@@ -34,10 +35,14 @@ class UserProfile extends Component {
         this.setState({ gettingUser: true });
 
         firebaseApp.database()
-            .ref(`/users/${this.props.userID}/reputation`)
+            .ref(`/users/${this.props.userID}`)
             .once('value')
             .then(snapshot => {
-                this.setState({ reputation: snapshot.val() || 0 });
+                const user = snapshot.val();
+                this.setState({
+                    reputation: user.reputation || 0,
+                    occurrencesCount: user.occurrencesCount || 0,
+                });
             });
 
         const profileRequest = await new GraphRequest(
@@ -107,11 +112,11 @@ class UserProfile extends Component {
             .child(`${this.props.userID}`)
             .set(feedback);
 
-        const refTeste = firebaseApp.database()
+        const reputationRef = firebaseApp.database()
             .ref(`/users/${this.props.occurrence.occurrence.userID}/`)
             .child('reputation');
 
-        refTeste.transaction(reputation => (feedback ? reputation + 1 : reputation - 1))
+        reputationRef.transaction(reputation => (feedback ? reputation + 1 : reputation - 1))
             .then(() => this.setState({ canVote: false }));
     }
 
@@ -134,9 +139,24 @@ class UserProfile extends Component {
                         { this.state.user.name }
                     </Text>
 
-                    <Text>
-                        { `${Texts.Informative.REPUTATION} ${this.state.reputation}` }
-                    </Text>
+                    <View style={styles.detailsContainer}>
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.counter}>
+                                { this.state.reputation }
+                            </Text>
+                            <Text style={styles.label}>
+                                { Texts.Labels.REPUTATION_COUNT }
+                            </Text>
+                        </View>
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.counter}>
+                                { this.state.occurrencesCount }
+                            </Text>
+                            <Text style={styles.label}>
+                                { Texts.Labels.OCCURRENCES_COUNT }
+                            </Text>
+                        </View>
+                    </View>
                 </View>
             );
         }
@@ -146,7 +166,7 @@ class UserProfile extends Component {
         if (this.state.canVote) {
             return (
                 <View style={{ width: '100%' }}>
-                    <Text style={{ alignSelf: 'center' }}>
+                    <Text style={styles.feedbackTitle}>
                         { Texts.Informative.HOW_DO_YOU_RATE_THIS_OCCURRENCE }
                     </Text>
                     <View style={styles.buttonsContainer}>

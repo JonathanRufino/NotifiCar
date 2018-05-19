@@ -8,6 +8,10 @@ const Texts = {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
         REGISTER_OCCURRENCE: 'Cadastrar Ocorrência',
     },
+    Labels: {
+        REPUTATION_COUNT: 'Reputação',
+        OCCURRENCES_COUNT: 'Ocorrências\nRegistradas',
+    },
     Errors: {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',
         INVALID_LICENSE_PLATE: 'Informe uma placa válida',
