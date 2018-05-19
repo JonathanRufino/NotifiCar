@@ -35,7 +35,7 @@ class UserProfile extends Component {
         this.setState({ gettingUser: true });
 
         firebaseApp.database()
-            .ref(`/users/${this.props.userID}`)
+            .ref(`/users/${this.props.occurrence.occurrence.userID}`)
             .once('value')
             .then(snapshot => {
                 const user = snapshot.val();
