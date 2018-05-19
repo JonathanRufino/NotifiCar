@@ -34,6 +34,9 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
     const month = date.getMonth() + 1;
     const day = date.getDate();
 
+    let occurrenceTypeKey;
+    const occurrencesOfTime = [];
+    let lastOccurrenceKey;
     let hour = date.getHours();
     if (hour < 10) {
         hour = `0${hour}`;
@@ -48,6 +51,36 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
         .push()
         .set({ userID, vehicle: vehicle.toUpperCase(), occurrence_type: occurrenceType, time })
         .then(() => dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS }))
+        .then(() => {
+            firebaseApp.database().ref('/occurrence_types/')
+            .orderByChild('type')
+            .equalTo(occurrenceType)
+            .on('value', (snapshot) => {
+                occurrenceTypeKey = Object.keys(snapshot.val())[0];
+
+                firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
+                .orderByChild('time')
+                .equalTo(time)
+                .on('value', (snapshotOccurrence) => {
+                    snapshotOccurrence.forEach((data) => {
+                        occurrencesOfTime.push(data.key);
+                    });
+                    
+                    lastOccurrenceKey = occurrencesOfTime.slice(-1)[0];
+
+                    firebaseApp.database().ref(`/occurrence_types/${occurrenceTypeKey}/occurrences`)
+                    .child(lastOccurrenceKey)
+                    .set(true)
+                    .then(() => dispatch({
+                        type: Types.ADD_OCCURRENCE_TYPE_COUNT_SUCCESS,
+                    }))
+                    .catch(error => dispatch({
+                        type: Types.ADD_OCCURRENCE_TYPE_COUNT_ERROR,
+                        payload: error
+                    }));
+                });
+            });
+        })
         .catch(error => dispatch({
             type: Types.ADD_OCCURRENCE_ERROR,
             payload: error

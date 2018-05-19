@@ -8,6 +8,9 @@ const Values = {
     EMPTY: 0,
     LICENSE_PLATE_MAX_LENGTH: 8,
     MAX_OCCURRENCE_ON_LIST_OF_OCCURRENCES: 10,
+    FIRST: 0,
+    SECOND: 1,
+    THIRD: 2,
 };
 
 export { Values };

@@ -7,34 +7,34 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20,
-        marginVertical: 20,
+        marginVertical: 10,
+        marginLeft: 20,
         width: Values.SCREEN_WIDTH,
         flexDirection: 'row',
     },
-    licensePlate: {
-        fontSize: 25,
+    type: {
+        fontSize: 22,
         color: Colors.BLACK,
-        fontFamily: 'Mandatory',
-        marginBottom: 10,
     },
-    description: {
+    count: {
+        color: Colors.GREEN_LIGHT,
+        alignItems: 'flex-end',
         fontSize: 18,
-        color: Colors.DARK_GRAY,
-    },
-    time: {
-        fontSize: 20,
-        color: Colors.DARK_GRAY,
-        marginRight: 10
     },
     icon: {
         height: 32, 
         width: 32,
     },
-    infoContainer: {
+    typeContainer: {
+        flex: 7,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        marginLeft: 20
+    },
+    countContainer: {
+        flex: 2,
         justifyContent: 'space-around',
         alignItems: 'flex-start',
-        flex: 7,
         marginLeft: 20
     },
 });

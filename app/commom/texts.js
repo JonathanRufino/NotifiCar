@@ -41,6 +41,7 @@ const Texts = {
         ADD_OCCURRENCE_INSTRUCTIONS: 'Cadastre uma ocorrência tocando no botão +',
         HOW_DO_YOU_RATE_THIS_OCCURRENCE: 'Como você avalia essa ocorrência?',
         REPUTATION: 'Reputação:',
+        TOTAL_OCCURRENCES: 'Total de ocorrências: ',
     },
     Occurrence_Type: {
         HEADLIGHTS_ON: 'Farol Aceso',
