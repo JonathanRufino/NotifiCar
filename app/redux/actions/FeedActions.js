@@ -1,6 +1,5 @@
-import firebaseApp from '../../services/firebase';
-
 import * as Types from './types';
+import firebaseApp from '../../services/firebase';
 
 export const showDialog = (dialogIsVisible) => dispatch => {
     dispatch({ type: Types.SHOW_DIALOG_FEED, payload: dialogIsVisible });
@@ -51,9 +50,7 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .push()
         .set({ userID, vehicle: vehicle.toUpperCase(), occurrence_type: occurrenceType, time })
-        .then(() => dispatch({
-            type: Types.ADD_OCCURRENCE_SUCCESS,
-        }))
+        .then(() => dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS }))
         .then(() => {
             firebaseApp.database().ref('/occurrence_types/')
             .orderByChild('type')
@@ -88,6 +85,10 @@ export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => 
             type: Types.ADD_OCCURRENCE_ERROR,
             payload: error
         }));
+    
+    firebaseApp.database().ref(`/users/${userID}/`)
+        .child('occurrencesCount')
+        .transaction(occurrencesCount => occurrencesCount + 1);
 };
 
 export const changeOccurrenceType = (occurrenceType) => ({
@@ -104,11 +105,18 @@ export const fetchOccurrencesOfTheDay = () => dispatch => {
     dispatch({ type: Types.FETCH_OCCURRENCES_IS_LOADING });
 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
+        .orderByChild('time')
         .limitToLast(10)
         .on('value', snapshot => {
+            const occurrences = [];
+
+            snapshot.forEach(item => {
+                occurrences.push({ key: item.key, occurrence: item.val() });
+            });
+
             dispatch({
                 type: Types.FETCH_OCCURRENCES_OF_THE_DAY,
-                payload: snapshot.val()
+                payload: occurrences.reverse()
             });
         });
 };

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, ListView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
-import _ from 'lodash';
 
 import styles from './styles';
 import { Images, Texts, Values, Colors } from '../../commom';
@@ -32,17 +31,17 @@ class Feed extends Component {
     _renderRow(occurrenceData) {
         let icon;
 
-        if (occurrenceData.occurrence_type === Texts.Occurrence_Type.HEADLIGHTS_ON) {
+        if (occurrenceData.occurrence.occurrence_type === Texts.Occurrence_Type.HEADLIGHTS_ON) {
             icon = Images.ICON_LIGHTS;
-        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.OPEN_GLASS) {
+        } else if (occurrenceData.occurrence.occurrence_type === Texts.Occurrence_Type.OPEN_GLASS) {
             icon = Images.ICON_WINDOW;
-        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.ALARM) {
+        } else if (occurrenceData.occurrence.occurrence_type === Texts.Occurrence_Type.ALARM) {
             icon = Images.ICON_ALARM;
-        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.CAR_BLOCKING) {
+        } else if (occurrenceData.occurrence.occurrence_type === Texts.Occurrence_Type.CAR_BLOCKING) {
             icon = Images.ICON_CAR_BLOCKING;
-        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.DOOR_OPEN) {
+        } else if (occurrenceData.occurrence.occurrence_type === Texts.Occurrence_Type.DOOR_OPEN) {
             icon = Images.ICON_DOOR_OPEN;
-        } else if (occurrenceData.occurrence_type === Texts.Occurrence_Type.FLAT_TIRE) {
+        } else if (occurrenceData.occurrence.occurrence_type === Texts.Occurrence_Type.FLAT_TIRE) {
             icon = Images.ICON_FLAT_TIRE;
         } else {
             icon = Images.ICON_WARNING;
@@ -103,21 +102,10 @@ class Feed extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    let occurrencesOfTheDay;
-
-    if (state.FeedReducer.occurrencesOfTheDay === null) {
-        occurrencesOfTheDay = [];
-    } else {
-        occurrencesOfTheDay = _.map(state.FeedReducer.occurrencesOfTheDay, 
-            (val, uid) => ({ ...val, uid }));
-    }
-
-    return {
-        occurrencesOfTheDay,
-        isLoadingListOfOccurrences: state.FeedReducer.isLoadingListOfOccurrences
-    };
-};
+const mapStateToProps = state => ({
+    occurrencesOfTheDay: state.FeedReducer.occurrencesOfTheDay,
+    isLoadingListOfOccurrences: state.FeedReducer.isLoadingListOfOccurrences
+});
 
 export default connect(mapStateToProps, {
     showDialog, fetchOccurrencesOfTheDay

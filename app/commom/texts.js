@@ -8,12 +8,17 @@ const Texts = {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
         REGISTER_OCCURRENCE: 'Cadastrar Ocorrência',
     },
+    Labels: {
+        REPUTATION_COUNT: 'Reputação',
+        OCCURRENCES_COUNT: 'Ocorrências\nRegistradas',
+    },
     Errors: {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',
         INVALID_LICENSE_PLATE: 'Informe uma placa válida',
         LOGIN_CANCELLED: 'Login cancelado',
-        OOPS: 'Opa',
-        GENERIC_ERROR: 'Ocorreu um erro, tente novamente'
+        OOPS: 'Oops!',
+        GENERIC_ERROR: 'Ocorreu um erro, tente novamente',
+        CANT_GET_USER_DATA: 'Não foi possível obter as informações deste usuário',
     },
     Placeholders: {
         LICENSE_PLATE: 'AAA-0000',
@@ -25,6 +30,8 @@ const Texts = {
         CANCEL: 'Cancelar',
         EXIT: 'Sair',
         LOGIN_WITH_FACEBOOK: 'Continuar com facebook',
+        LIKE: 'Útil',
+        DISLIKE: 'Falsa',
     },
     Informative: {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
@@ -33,6 +40,8 @@ const Texts = {
         NO_OCCURRENCES: 'Nenhuma Ocorrência Registrada',
         ADD_OCCURRENCE_INSTRUCTIONS: 'Cadastre uma ocorrência tocando no botão +',
         TOTAL_OCCURRENCES: 'Total de ocorrências: ',
+        HOW_DO_YOU_RATE_THIS_OCCURRENCE: 'Como você avalia essa ocorrência?',
+        REPUTATION: 'Reputação:',
     },
     Occurrence_Type: {
         HEADLIGHTS_ON: 'Farol Aceso',
