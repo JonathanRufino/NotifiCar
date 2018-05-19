@@ -9,7 +9,7 @@ import { GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 import { connect } from 'react-redux';
 
 import styles from './styles';
-import { Texts } from '../../commom';
+import { Texts, Colors } from '../../commom';
 import firebaseApp from '../../services/firebase';
 
 class UserProfile extends Component {
@@ -141,7 +141,13 @@ class UserProfile extends Component {
 
                     <View style={styles.detailsContainer}>
                         <View style={styles.infoContainer}>
-                            <Text style={styles.counter}>
+                            <Text
+                                style={[
+                                    styles.counter,
+                                    this.state.reputation >= 0 ?
+                                        { color: Colors.GREEN_MEDIUM } : { color: Colors.RED_DARK }
+                                ]}
+                            >
                                 { this.state.reputation }
                             </Text>
                             <Text style={styles.label}>
@@ -149,7 +155,7 @@ class UserProfile extends Component {
                             </Text>
                         </View>
                         <View style={styles.infoContainer}>
-                            <Text style={styles.counter}>
+                            <Text style={[styles.counter, { color: Colors.BLUE_MEDIUM }]}>
                                 { this.state.occurrencesCount }
                             </Text>
                             <Text style={styles.label}>
