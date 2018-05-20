@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, ListView, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
+import {
+    View, ListView, ActivityIndicator, TouchableOpacity, Image, Text
+} from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import Swipeable from 'react-native-swipeable';
@@ -16,12 +18,10 @@ import LicensePlate from '../LicensePlate';
 import EmptyState from '../../components/EmptyState';
 
 class Account extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentlyOpenSwipeable: null
-        };
-    }
+    state = {
+        currentlyOpenSwipeable: null,
+        isSwiping: false,
+    };
 
     componentWillMount() {
         this.props.fetchUserVehicles(this.props.userID);
@@ -29,7 +29,13 @@ class Account extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this._createVehiclesList(nextProps.vehicles);
+        if (nextProps.vehicles !== this.props.vehicles) {
+            this._createVehiclesList(nextProps.vehicles);
+
+            if (this.state.currentlyOpenSwipeable !== null) {
+                this.state.currentlyOpenSwipeable.recenter();
+            }
+        }
     }
 
     _createVehiclesList(vehicles) {
@@ -40,10 +46,13 @@ class Account extends Component {
     _getRightButtons(vehicle) {
         const swiperButtons = [
             <TouchableOpacity
-                onPress={() => this.props.removeVehicle(this.props.userID, vehicle)} 
+                onPress={() => {
+                    this.props.removeVehicle(this.props.userID, vehicle);
+                }} 
                 style={styles.button}
             >
                 <Image style={styles.image} source={Images.ICON_TRASH} />
+                <Text style={styles.buttonText}>{ Texts.Buttons.DELETE }</Text>
             </TouchableOpacity>
         ];
 
@@ -68,6 +77,9 @@ class Account extends Component {
                 rightButtons={this._getRightButtons(data)}
                 onRightButtonsOpenRelease={itemProps.onOpen}
                 onRightButtonsCloseRelease={itemProps.onClose}
+                rightActionActivationDistance={20}
+                onSwipeStart={() => this.setState({ isSwiping: true })}
+                onSwipeRelease={() => this.setState({ isSwiping: false })}
             >
                 <View style={styles.listItem}>
                     <LicensePlate licensePlate={data} />
@@ -97,6 +109,7 @@ class Account extends Component {
             <ListView
                 style={styles.vehiclesList}
                 enableEmptySections
+                scrollEnabled={!this.state.isSwiping}
                 dataSource={this.vehiclesData}
                 renderRow={data => this._renderRow(data)}
             />
@@ -108,7 +121,7 @@ class Account extends Component {
             <View style={styles.screen}>
                 <VehicleModal />
 
-                {this._renderListOfVehicles()}
+                { this._renderListOfVehicles() }
 
                 <ActionButton
                     buttonColor={Colors.RED_LIGHT}

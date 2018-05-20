@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: 10
     },
+    buttonText: {
+        color: Colors.WHITE,
+    },
 });
 
 export default styles;
