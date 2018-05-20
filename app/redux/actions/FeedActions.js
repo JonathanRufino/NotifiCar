@@ -96,13 +96,20 @@ export const changeOccurrenceType = (occurrenceType) => ({
     payload: occurrenceType
 });
 
-export const fetchOccurrencesOfTheDay = () => dispatch => {
+export const fetchOccurrencesOfTheDay = userID => dispatch => {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
     
     dispatch({ type: Types.FETCH_OCCURRENCES_IS_LOADING });
+
+    const vehicles = [];
+
+    firebaseApp.database().ref(`users/${userID}/vehicles`)
+        .on('value', snapshot => {
+            snapshot.forEach(item => { vehicles.push(item.key); });
+        });
 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .orderByChild('time')
@@ -111,7 +118,11 @@ export const fetchOccurrencesOfTheDay = () => dispatch => {
             const occurrences = [];
 
             snapshot.forEach(item => {
-                occurrences.push({ key: item.key, occurrence: item.val() });
+                for (let i = 0; i < vehicles.length; i++) {
+                    if (item.val().vehicle === vehicles[i]) {
+                        occurrences.push({ key: item.key, occurrence: item.val() });
+                    }
+                }
             });
 
             dispatch({

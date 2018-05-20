@@ -1,6 +1,7 @@
 import firebaseApp from '../../services/firebase';
 
 import * as Types from './types';
+import { fetchOccurrencesOfTheDay } from './FeedActions';
 
 export const writeVehicle = (vehicle) => ({
     type: Types.WRITE_VEHICLE,
@@ -27,6 +28,8 @@ export const addVehicle = (userID, vehicle) => (dispatch) => {
             type: Types.ADD_VEHICLE_ERROR,
             payload: error
         }));
+    
+    dispatch(fetchOccurrencesOfTheDay(userID));
 };
 
 export const removeVehicle = (userID, vehicle) => dispatch => {
@@ -38,13 +41,13 @@ export const removeVehicle = (userID, vehicle) => dispatch => {
             .child(userID)
             .remove();
         })
-        .then(() => dispatch({
-            type: Types.REMOVE_VEHICLE
-        }))
+        .then(() => dispatch({ type: Types.REMOVE_VEHICLE }))
         .catch(error => dispatch({
             type: Types.ADD_VEHICLE_ERROR,
             payload: error
         }));
+
+    dispatch(fetchOccurrencesOfTheDay(userID));
 };
 
 export const showDialog = (dialogIsVisible) => ({

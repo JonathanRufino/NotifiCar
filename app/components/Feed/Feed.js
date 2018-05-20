@@ -15,7 +15,7 @@ import EmptyState from '../EmptyState';
 
 class Feed extends Component {
     componentWillMount() {
-        this.props.fetchOccurrencesOfTheDay();
+        this.props.fetchOccurrencesOfTheDay(this.props.userID);
         this._createOccurrenceList(this.props.occurrencesOfTheDay);
     }
 
@@ -103,6 +103,7 @@ class Feed extends Component {
 }
 
 const mapStateToProps = state => ({
+    userID: state.AuthenticationReducer.userID,
     occurrencesOfTheDay: state.FeedReducer.occurrencesOfTheDay,
     isLoadingListOfOccurrences: state.FeedReducer.isLoadingListOfOccurrences
 });
