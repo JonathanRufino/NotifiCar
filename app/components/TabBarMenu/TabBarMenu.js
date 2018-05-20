@@ -64,6 +64,9 @@ class TabBarMenu extends Component {
                     <ModalDropDown
                         options={[MenuOptions.PRIVACY_POLICY, MenuOptions.LOGOUT]}
                         onSelect={(index, value) => this._onOptionSelected(value)}
+                        dropdownStyle={styles.dropdownContainer}
+                        dropdownTextStyle={styles.dropdownText}
+                        showsVerticalScrollIndicator={false}
                     >
                         <Image source={Images.DOT_MENU} />
                     </ModalDropDown>
