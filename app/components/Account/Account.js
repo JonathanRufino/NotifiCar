@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
-    View, ListView, ActivityIndicator, TouchableOpacity, Image, Text
+    View, ListView, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
-import Swipeable from 'react-native-swipeable';
+import Swipeout from 'react-native-swipeout';
 
 import styles from './styles';
 import { Colors, Values, Images, Texts } from '../../commom';
@@ -18,11 +18,6 @@ import LicensePlate from '../LicensePlate';
 import EmptyState from '../../components/EmptyState';
 
 class Account extends Component {
-    state = {
-        currentlyOpenSwipeable: null,
-        isSwiping: false,
-    };
-
     componentWillMount() {
         this.props.fetchUserVehicles(this.props.userID);
         this._createVehiclesList(this.props.vehicles);
@@ -31,10 +26,6 @@ class Account extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.vehicles !== this.props.vehicles) {
             this._createVehiclesList(nextProps.vehicles);
-
-            if (this.state.currentlyOpenSwipeable !== null) {
-                this.state.currentlyOpenSwipeable.recenter();
-            }
         }
     }
 
@@ -45,46 +36,27 @@ class Account extends Component {
 
     _getRightButtons(vehicle) {
         const swiperButtons = [
-            <TouchableOpacity
-                onPress={() => {
-                    this.props.removeVehicle(this.props.userID, vehicle);
-                }} 
-                style={styles.button}
-            >
-                <Image style={styles.image} source={Images.ICON_TRASH} />
-                <Text style={styles.buttonText}>{ Texts.Buttons.DELETE }</Text>
-            </TouchableOpacity>
+            {
+                onPress: () => this.props.removeVehicle(this.props.userID, vehicle),
+                text: 'Deletar',
+                backgroundColor: Colors.RED_LIGHT, 
+            }
         ];
 
         return swiperButtons;
     }
 
     _renderRow(data) {
-        const { currentlyOpenSwipeable } = this.state;
-        const itemProps = {
-          onOpen: (event, gestureState, swipeable) => {
-            if (currentlyOpenSwipeable && currentlyOpenSwipeable !== swipeable) {
-              currentlyOpenSwipeable.recenter();
-            }
-    
-            this.setState({ currentlyOpenSwipeable: swipeable });
-          },
-          onClose: () => this.setState({ currentlyOpenSwipeable: null })
-        };
-
         return (
-            <Swipeable
-                rightButtons={this._getRightButtons(data)}
-                onRightButtonsOpenRelease={itemProps.onOpen}
-                onRightButtonsCloseRelease={itemProps.onClose}
-                rightActionActivationDistance={20}
-                onSwipeStart={() => this.setState({ isSwiping: true })}
-                onSwipeRelease={() => this.setState({ isSwiping: false })}
+            <Swipeout
+                autoClose
+                style={styles.swipe}
+                right={this._getRightButtons(data)}
             >
                 <View style={styles.listItem}>
                     <LicensePlate licensePlate={data} />
                 </View>
-            </Swipeable>
+            </Swipeout>
         );
     }
 
@@ -109,7 +81,6 @@ class Account extends Component {
             <ListView
                 style={styles.vehiclesList}
                 enableEmptySections
-                scrollEnabled={!this.state.isSwiping}
                 dataSource={this.vehiclesData}
                 renderRow={data => this._renderRow(data)}
             />

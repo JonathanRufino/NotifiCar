@@ -43,7 +43,10 @@ const styles = StyleSheet.create({
         height: 75,
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 10
+        marginVertical: 5,
+    },
+    swipe: {
+        backgroundColor: Colors.TRANSPARENT
     },
     buttonText: {
         color: Colors.WHITE,
