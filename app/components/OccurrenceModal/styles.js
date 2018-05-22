@@ -1,4 +1,8 @@
-import { StyleSheet, Platform } from 'react-native';
+import { 
+    StyleSheet, 
+    Platform,
+    PixelRatio 
+} from 'react-native';
 
 import { Colors, Values } from '../../commom';
 
@@ -33,6 +37,27 @@ const styles = StyleSheet.create({
     error: {
         color: Colors.RED,
         alignSelf: 'flex-start',
+    },
+    photoContainer: {
+        borderColor: Colors.GRAY,
+        borderWidth: 1 / PixelRatio.get(),
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    photo: {
+        borderRadius: 75,
+        width: 150,
+        height: 150,
+        alignSelf: 'center',
+    },
+    photoText: {
+        color: Colors.BLACK,
+        alignSelf: 'center',
+    },
+    optional: {
+        color: Colors.RED,
+        alignSelf: 'center',
     },
 });
 

@@ -3,11 +3,14 @@ import {
     View,
     Text,
     Picker,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity,
+    Image,
 } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Modal from 'react-native-modal';
+import ImagePicker from 'react-native-image-picker';
 
 import styles from './styles';
 import { Texts, Regexes } from '../../commom';
@@ -22,6 +25,58 @@ import Button from '../Button';
 import LicensePlateInput from '../../components/license-plate-input';
 
 class OccurrenceModal extends Component {
+    state = {
+        photoSource: null,
+        options: {
+            quality: 1,
+            maxWidth: 500,
+            maxHeight: 500,
+            mediaType: 'photo',
+            title: 'Foto da Placa',
+            takePhotoButtonTitle: 'Tirar Foto',
+            chooseFromLibraryButtonTitle: 'Escolher da Biblioteca',
+            cancelButtonTitle: 'Cancelar',
+            storageOptions: {
+              skipBackup: true,
+            }
+        },
+    };
+
+    _showImagePicker() {
+        ImagePicker.showImagePicker(this.state.options, (response) => {
+            console.log('Response = ', response);
+          
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            } else if (response.error) {
+              console.log('ImagePicker Error: ', response.error);
+            } else {
+              const source = { uri: response.uri };
+          
+              this.setState({
+                photoSource: source
+              });
+            }
+          });
+    }
+
+    _renderImagePickerButton() {
+        return (
+            <TouchableOpacity onPress={this._showImagePicker.bind(this)}>
+                <View style={[styles.photo, styles.photoContainer]}>
+                    { this.state.photoSource === null ? 
+                        <View>
+                            <Text style={styles.photoText}>Foto</Text>
+                            <Text style={styles.optional}>*Opcional*</Text>
+                        </View>
+                        :
+                        <Image style={styles.photo} source={this.state.photoSource} />
+                    }
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
     _showPickerWhenDataFetch() {
         if (this.props.isLoadingPicker) {
             return (
@@ -93,6 +148,8 @@ class OccurrenceModal extends Component {
                         <Text style={styles.error}>
                             { this.props.vehicleError }
                         </Text>
+
+                        {this._renderImagePickerButton()}
 
                         { this._renderRegisterOccurrenceButton() }
                     </View>
