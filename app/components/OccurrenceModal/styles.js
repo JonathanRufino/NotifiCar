@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     type_occurrence: {
         fontSize: 0.04 * Values.SCREEN_WIDTH,
         alignSelf: 'center',
+        color: Colors.BLACK,
     },
     picker: {
         marginVertical: 10,
@@ -43,7 +44,8 @@ const styles = StyleSheet.create({
         borderWidth: 1 / PixelRatio.get(),
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+        marginTop: 5,
+        marginBottom: 10,
     },
     photo: {
         borderRadius: 75,

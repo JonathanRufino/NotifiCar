@@ -24,32 +24,43 @@ export const updateVehicleError = (error) => ({
     payload: error
 });
 
-export const addOccurrence = (userID, occurrenceType, vehicle) => (dispatch) => {
+const formatNumberLessTen = (number) => {
+    if (number < 10) {
+        number = `0${number}`;
+    }
+
+    return number;
+};
+
+export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispatch) => {
     dispatch({
         type: Types.SAVING_OCCURRENCE,
     });
 
     const date = new Date();
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = formatNumberLessTen(date.getMonth() + 1);
+    const day = formatNumberLessTen(date.getDate());
+    const dateOccurrence = `${day}/${month}/${year}`;
 
     let occurrenceTypeKey;
     const occurrencesOfTime = [];
     let lastOccurrenceKey;
-    let hour = date.getHours();
-    if (hour < 10) {
-        hour = `0${hour}`;
-    }
-    let minute = date.getMinutes();
-    if (minute < 10) {
-        minute = `0${minute}`;
-    }
+
+    const hour = formatNumberLessTen(date.getHours());
+    const minute = formatNumberLessTen(date.getMinutes());
     const time = `${hour}:${minute}`;
 
     firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .push()
-        .set({ userID, vehicle: vehicle.toUpperCase(), occurrence_type: occurrenceType, time })
+        .set({ 
+            userID, 
+            vehicle: vehicle.toUpperCase(), 
+            occurrence_type: occurrenceType, 
+            time, 
+            date: dateOccurrence, 
+            photo 
+        })
         .then(() => dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS }))
         .then(() => {
             firebaseApp.database().ref('/occurrence_types/')
@@ -99,8 +110,8 @@ export const changeOccurrenceType = (occurrenceType) => ({
 export const fetchOccurrencesOfTheDay = userID => dispatch => {
     const date = new Date();
     const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
+    const month = formatNumberLessTen(date.getMonth() + 1);
+    const day = formatNumberLessTen(date.getDate());
     
     dispatch({ type: Types.FETCH_OCCURRENCES_IS_LOADING });
 

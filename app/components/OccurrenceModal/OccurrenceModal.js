@@ -112,7 +112,7 @@ class OccurrenceModal extends Component {
             this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
         } else {
             this.props.addOccurrence(this.props.userID, 
-                this.props.pickerValueHolder, this.props.vehicle);
+                this.props.pickerValueHolder, this.props.vehicle, this.state.photoSource.uri);
         }
     }
     
@@ -145,11 +145,12 @@ class OccurrenceModal extends Component {
                         <LicensePlateInput
                             onWrite={text => this.props.writeVehicle(text)}
                         />
+
+                        {this._renderImagePickerButton()}
+                        
                         <Text style={styles.error}>
                             { this.props.vehicleError }
                         </Text>
-
-                        {this._renderImagePickerButton()}
 
                         { this._renderRegisterOccurrenceButton() }
                     </View>
