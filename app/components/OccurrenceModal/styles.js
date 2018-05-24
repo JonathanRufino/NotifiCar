@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     photo: {
-        borderRadius: 75,
+        borderRadius: 20,
         width: 150,
         height: 150,
         alignSelf: 'center',

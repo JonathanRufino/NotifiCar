@@ -70,14 +70,22 @@ class UserProfile extends Component {
         }
     }
 
+    formatNumberLessTen = (number) => {
+        if (number < 10) {
+            number = `0${number}`;
+        }
+    
+        return number;
+    };
+
     _checkCanVote = () => {
         if (this.props.occurrence.occurrence.userID === this.props.userID) {
             this.setState({ canVote: false });
         } else {
             const date = new Date();
             const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
+            const month = formatNumberLessTen(date.getMonth() + 1);
+            const day = formatNumberLessTen(date.getDate());
     
             firebaseApp.database()
                 .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback`)
@@ -104,8 +112,8 @@ class UserProfile extends Component {
     _giveFeedback = feedback => {
         const date = new Date();
         const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
+        const month = formatNumberLessTen(date.getMonth() + 1);
+        const day = formatNumberLessTen(date.getDate());
 
         firebaseApp.database()
             .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback/`)
