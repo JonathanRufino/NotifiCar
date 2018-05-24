@@ -27,18 +27,6 @@ const styles = StyleSheet.create({
     message: {
         fontSize: 25,
     },
-    button: {
-        width: 75,
-        height: 75,
-        backgroundColor: Colors.RED_LIGHT,
-        borderRadius: 10,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    image: {
-        width: 40,
-        height: 40
-    },
     listItem: {
         height: 75,
         alignItems: 'center',
@@ -47,9 +35,6 @@ const styles = StyleSheet.create({
     },
     swipe: {
         backgroundColor: Colors.TRANSPARENT
-    },
-    buttonText: {
-        color: Colors.WHITE,
     },
 });
 

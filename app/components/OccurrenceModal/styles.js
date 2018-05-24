@@ -57,9 +57,32 @@ const styles = StyleSheet.create({
         color: Colors.BLACK,
         alignSelf: 'center',
     },
+    photoCaseContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        width: 37,
+        height: 37,
+        marginLeft: 10,
+        backgroundColor: Colors.RED_LIGHT,
+        borderRadius: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    image: {
+        width: 20,
+        height: 20
+    },
     optional: {
         color: Colors.RED,
         alignSelf: 'center',
+    },
+    photoUploadContainer: {
+        marginLeft: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

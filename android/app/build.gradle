@@ -156,6 +156,7 @@ android {
 dependencies {
     compile project(':react-native-linear-gradient')
     compile project(':react-native-image-picker')
+    compile project(':react-native-fetch-blob')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-fcm')

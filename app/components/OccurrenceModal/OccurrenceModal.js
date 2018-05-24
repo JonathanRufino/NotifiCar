@@ -13,7 +13,7 @@ import Modal from 'react-native-modal';
 import ImagePicker from 'react-native-image-picker';
 
 import styles from './styles';
-import { Texts, Regexes } from '../../commom';
+import { Texts, Regexes, Images } from '../../commom';
 import {
     showDialog,
     writeVehicle,
@@ -32,10 +32,10 @@ class OccurrenceModal extends Component {
             maxWidth: 500,
             maxHeight: 500,
             mediaType: 'photo',
-            title: 'Foto da Placa',
-            takePhotoButtonTitle: 'Tirar Foto',
-            chooseFromLibraryButtonTitle: 'Escolher da Biblioteca',
-            cancelButtonTitle: 'Cancelar',
+            title: Texts.Titles.REGISTER_IMAGE,
+            takePhotoButtonTitle: Texts.Buttons.TAKE_PICTURE,
+            chooseFromLibraryButtonTitle: Texts.Buttons.CHOOSE_FROM_LIBRARY,
+            cancelButtonTitle: Texts.Buttons.CANCEL,
             storageOptions: {
               skipBackup: true,
             }
@@ -44,36 +44,67 @@ class OccurrenceModal extends Component {
 
     _showImagePicker() {
         ImagePicker.showImagePicker(this.state.options, (response) => {
-            console.log('Response = ', response);
-          
             if (response.didCancel) {
-              console.log('User cancelled image picker');
+                console.log('User cancelled image picker');
             } else if (response.error) {
-              console.log('ImagePicker Error: ', response.error);
+                console.log('ImagePicker Error: ', response.error);
             } else {
-              const source = { uri: response.uri };
+                const source = { uri: response.uri };
           
-              this.setState({
-                photoSource: source
-              });
+                this.setState({
+                    photoSource: source
+                });
             }
           });
     }
 
+    _renderDeleteImageButton() {
+        if (this.state.photoSource === null) {
+            return (
+                <View />
+            );
+        }
+        if (this.props.isLoadingPicker) {
+            return (
+                <View style={styles.photoUploadContainer}>
+                    <ActivityIndicator size='small' />
+                    <Text style={styles.photoText}>{Texts.Labels.UPLOADING}</Text>
+                </View>
+            );
+        }
+
+        return (
+            <TouchableOpacity
+                onPress={() => {
+                    this.setState({
+                        photoSource: null
+                    });
+                }} 
+                style={styles.button}
+            >
+                <Image style={styles.image} source={Images.ICON_TRASH} />
+            </TouchableOpacity>
+        );
+    }
+
     _renderImagePickerButton() {
         return (
-            <TouchableOpacity onPress={this._showImagePicker.bind(this)}>
-                <View style={[styles.photo, styles.photoContainer]}>
-                    { this.state.photoSource === null ? 
-                        <View>
-                            <Text style={styles.photoText}>Foto</Text>
-                            <Text style={styles.optional}>*Opcional*</Text>
+            <View style={styles.photoCaseContainer}>
+                <TouchableOpacity onPress={this._showImagePicker.bind(this)}>
+                        <View style={[styles.photo, styles.photoContainer]}>
+                            { this.state.photoSource === null ? 
+                                <View>
+                                    <Text style={styles.photoText}>{Texts.Labels.PHOTO}</Text>
+                                    <Text style={styles.optional}>{Texts.Labels.OPTIONAL}</Text>
+                                </View>
+                                : 
+                                <Image style={styles.photo} source={this.state.photoSource} />
+                            }
                         </View>
-                        :
-                        <Image style={styles.photo} source={this.state.photoSource} />
-                    }
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
+
+                { this._renderDeleteImageButton() }
+            </View>
         );
     }
 
@@ -112,7 +143,7 @@ class OccurrenceModal extends Component {
             this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
         } else {
             this.props.addOccurrence(this.props.userID, 
-                this.props.pickerValueHolder, this.props.vehicle, this.state.photoSource.uri);
+                this.props.pickerValueHolder, this.props.vehicle, this.state.photoSource);
         }
     }
     

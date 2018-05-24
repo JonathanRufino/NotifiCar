@@ -2,15 +2,19 @@ const Texts = {
     APP_NAME: 'NotifiCar',
     Messages: {
         EXITING: 'Saindo',
-        WANT_TO_EXIT: 'Deseja sair do aplicativo?'
+        WANT_TO_EXIT: 'Deseja sair do aplicativo?',
     },
     Titles: {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
         REGISTER_OCCURRENCE: 'Cadastrar Ocorrência',
+        REGISTER_IMAGE: 'Foto da Placa',
     },
     Labels: {
         REPUTATION_COUNT: 'Reputação',
         OCCURRENCES_COUNT: 'Ocorrências\nRegistradas',
+        PHOTO: 'Foto',
+        OPTIONAL: '*Opcional*',
+        UPLOADING: 'Enviando...',
     },
     Errors: {
         EMPTY_LICENSE_PLATE: 'Informe a placa do veículo',
@@ -32,6 +36,8 @@ const Texts = {
         LOGIN_WITH_FACEBOOK: 'Continuar com facebook',
         LIKE: 'Útil',
         DISLIKE: 'Falsa',
+        TAKE_PICTURE: 'Tirar Foto',
+        CHOOSE_FROM_LIBRARY: 'Escolher da Biblioteca',
     },
     Informative: {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
