@@ -83,6 +83,23 @@ const styles = EStyleSheet.create({
         fontSize: '14rem',
         marginBottom: '8rem',
     },
+    noImage: {
+        color: Colors.RED,
+        alignSelf: 'center',
+        fontSize: 11,
+        marginTop: 10,
+    },
+    occurrencePhoto: {
+        borderRadius: 20,
+        width: 150,
+        height: 150,
+        alignSelf: 'center',
+    },
+    photoOccurrenceContainer: {
+        marginTop: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 export default styles;
