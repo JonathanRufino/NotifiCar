@@ -44,7 +44,7 @@ const Texts = {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',
         NO_VEHICLES: 'Você não possui veículos sendo monitorados',
         ADD_VEHICLE_INSTRUCTIONS: 'Para cadastrar um veículo toque no botão +',
-        NO_OCCURRENCES: 'Nenhuma ocorrência registrada para os seus veículos',
+        NO_OCCURRENCES: 'Hoje não houve ocorrência registrada para os seus veículos',
         ADD_OCCURRENCE_INSTRUCTIONS: 'Para registrar uma ocorrência toque no botão +',
         HOW_DO_YOU_RATE_THIS_OCCURRENCE: 'Como você avalia essa ocorrência?',
         REPUTATION: 'Reputação:',
