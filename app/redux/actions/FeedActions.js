@@ -3,6 +3,10 @@ import { Platform } from 'react-native';
 
 import * as Types from './types';
 import firebaseApp from '../../services/firebase';
+import { 
+    guid, 
+    parseNumberToTwoDigits
+} from '../../utils';
 
 export const showDialog = (dialogIsVisible) => dispatch => {
     dispatch({ type: Types.SHOW_DIALOG_FEED, payload: dialogIsVisible });
@@ -27,24 +31,6 @@ export const updateVehicleError = (error) => ({
     payload: error
 });
 
-const formatNumberLessTen = (number) => {
-    if (number < 10) {
-        number = `0${number}`;
-    }
-
-    return number;
-};
-
-const guid = () => {
-    function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000)
-        .toString(16)
-        .substring(1);
-    }
-
-    return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
-};
-
 export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispatch) => {
     dispatch({
         type: Types.SAVING_OCCURRENCE,
@@ -57,16 +43,16 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
 
     const date = new Date();
     const year = date.getFullYear();
-    const month = formatNumberLessTen(date.getMonth() + 1);
-    const day = formatNumberLessTen(date.getDate());
+    const month = parseNumberToTwoDigits(date.getMonth() + 1);
+    const day = parseNumberToTwoDigits(date.getDate());
     const dateOccurrence = `${day}/${month}/${year}`;
     
     let occurrenceTypeKey;
     const occurrencesOfTime = [];
     let lastOccurrenceKey;
 
-    const hour = formatNumberLessTen(date.getHours());
-    const minute = formatNumberLessTen(date.getMinutes());
+    const hour = parseNumberToTwoDigits(date.getHours());
+    const minute = parseNumberToTwoDigits(date.getMinutes());
     const time = `${hour}:${minute}`;
     
 
@@ -192,8 +178,8 @@ export const changeOccurrenceType = (occurrenceType) => ({
 export const fetchOccurrencesOfTheDay = userID => dispatch => {
     const date = new Date();
     const year = date.getFullYear();
-    const month = formatNumberLessTen(date.getMonth() + 1);
-    const day = formatNumberLessTen(date.getDate());
+    const month = parseNumberToTwoDigits(date.getMonth() + 1);
+    const day = parseNumberToTwoDigits(date.getDate());
     
     dispatch({ type: Types.FETCH_OCCURRENCES_IS_LOADING });
 

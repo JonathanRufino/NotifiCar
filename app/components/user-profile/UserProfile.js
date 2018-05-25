@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import styles from './styles';
 import { Texts, Colors } from '../../commom';
 import firebaseApp from '../../services/firebase';
+import { 
+    parseNumberToTwoDigits
+} from '../../utils';
 
 class UserProfile extends Component {
     constructor(props) {
@@ -37,8 +40,8 @@ class UserProfile extends Component {
         
         const date = new Date();
         const year = date.getFullYear();
-        const month = this.formatNumberLessTen(date.getMonth() + 1);
-        const day = this.formatNumberLessTen(date.getDate());
+        const month = parseNumberToTwoDigits(date.getMonth() + 1);
+        const day = parseNumberToTwoDigits(date.getDate());
 
         firebaseApp.database()
             .ref(`/users/${this.props.occurrence.occurrence.userID}`)
@@ -87,22 +90,14 @@ class UserProfile extends Component {
         }
     }
 
-    formatNumberLessTen = (number) => {
-        if (number < 10) {
-            number = `0${number}`;
-        }
-    
-        return number;
-    };
-
     _checkCanVote = () => {
         if (this.props.occurrence.occurrence.userID === this.props.userID) {
             this.setState({ canVote: false });
         } else {
             const date = new Date();
             const year = date.getFullYear();
-            const month = this.formatNumberLessTen(date.getMonth() + 1);
-            const day = this.formatNumberLessTen(date.getDate());
+            const month = parseNumberToTwoDigits(date.getMonth() + 1);
+            const day = parseNumberToTwoDigits(date.getDate());
     
             firebaseApp.database()
                 .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback`)
@@ -129,8 +124,8 @@ class UserProfile extends Component {
     _giveFeedback = feedback => {
         const date = new Date();
         const year = date.getFullYear();
-        const month = this.formatNumberLessTen(date.getMonth() + 1);
-        const day = this.formatNumberLessTen(date.getDate());
+        const month = parseNumberToTwoDigits(date.getMonth() + 1);
+        const day = parseNumberToTwoDigits(date.getDate());
 
         firebaseApp.database()
             .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback/`)

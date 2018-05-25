@@ -40,10 +40,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.asList(
         new MainReactPackage(),
-            new RNFetchBlobPackage(),
-            new SplashScreenReactPackage(),
-            new LinearGradientPackage(),
-            new ImagePickerPackage(),
+        new RNFetchBlobPackage(),
+        new SplashScreenReactPackage(),
+        new LinearGradientPackage(),
+        new ImagePickerPackage(),
         new FIRMessagingPackage(),
         new FBSDKPackage(mCallbackManager)
       );
