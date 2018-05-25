@@ -82,7 +82,7 @@ describe('Feed Reducer', () => {
                     occurrences_count: 4
                 },
                 occurrence_type2: {
-                    type: 'Alarme disparado',
+                    type: 'Alarme Disparado',
                     occurrences_count: 6
                 }
             },
@@ -93,7 +93,7 @@ describe('Feed Reducer', () => {
             dialogIsVisible: false,
             vehicleError: '',
             occurrenceTypes: [
-                { occurrences_count: 6, type: 'Alarme disparado' }, 
+                { occurrences_count: 6, type: 'Alarme Disparado' }, 
                 { occurrences_count: 4, type: 'Farol Aceso' }
             ],
             occurrencesOfTheDay: {},
