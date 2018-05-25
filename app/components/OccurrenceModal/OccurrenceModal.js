@@ -3,14 +3,17 @@ import {
     View,
     Text,
     Picker,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableOpacity,
+    Image,
 } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import Modal from 'react-native-modal';
+import ImagePicker from 'react-native-image-picker';
 
 import styles from './styles';
-import { Texts, Regexes } from '../../commom';
+import { Texts, Regexes, Images } from '../../commom';
 import {
     showDialog,
     writeVehicle,
@@ -22,6 +25,89 @@ import Button from '../Button';
 import LicensePlateInput from '../../components/license-plate-input';
 
 class OccurrenceModal extends Component {
+    state = {
+        photoSource: null,
+        options: {
+            quality: 1,
+            maxWidth: 500,
+            maxHeight: 500,
+            mediaType: 'photo',
+            title: Texts.Titles.REGISTER_IMAGE,
+            takePhotoButtonTitle: Texts.Buttons.TAKE_PICTURE,
+            chooseFromLibraryButtonTitle: Texts.Buttons.CHOOSE_FROM_LIBRARY,
+            cancelButtonTitle: Texts.Buttons.CANCEL,
+            storageOptions: {
+              skipBackup: true,
+            }
+        },
+    };
+
+    _showImagePicker() {
+        ImagePicker.showImagePicker(this.state.options, (response) => {
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else {
+                const source = { uri: response.uri };
+          
+                this.setState({
+                    photoSource: source
+                });
+            }
+          });
+    }
+
+    _renderDeleteImageButton() {
+        if (this.state.photoSource === null) {
+            return (
+                <View />
+            );
+        }
+        if (this.props.isLoadingPicker) {
+            return (
+                <View style={styles.photoUploadContainer}>
+                    <ActivityIndicator size='small' />
+                    <Text style={styles.photoText}>{Texts.Labels.UPLOADING}</Text>
+                </View>
+            );
+        }
+
+        return (
+            <TouchableOpacity
+                onPress={() => {
+                    this.setState({
+                        photoSource: null
+                    });
+                }} 
+                style={styles.button}
+            >
+                <Image style={styles.image} source={Images.ICON_TRASH} />
+            </TouchableOpacity>
+        );
+    }
+
+    _renderImagePickerButton() {
+        return (
+            <View style={styles.photoCaseContainer}>
+                <TouchableOpacity onPress={this._showImagePicker.bind(this)}>
+                        <View style={[styles.photo, styles.photoContainer]}>
+                            { this.state.photoSource === null ? 
+                                <View>
+                                    <Text style={styles.photoText}>{Texts.Labels.PHOTO}</Text>
+                                    <Text style={styles.optional}>{Texts.Labels.OPTIONAL}</Text>
+                                </View>
+                                : 
+                                <Image style={styles.photo} source={this.state.photoSource} />
+                            }
+                        </View>
+                </TouchableOpacity>
+
+                { this._renderDeleteImageButton() }
+            </View>
+        );
+    }
+
     _showPickerWhenDataFetch() {
         if (this.props.isLoadingPicker) {
             return (
@@ -57,7 +143,7 @@ class OccurrenceModal extends Component {
             this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
         } else {
             this.props.addOccurrence(this.props.userID, 
-                this.props.pickerValueHolder, this.props.vehicle);
+                this.props.pickerValueHolder, this.props.vehicle, this.state.photoSource);
         }
     }
     
@@ -90,6 +176,9 @@ class OccurrenceModal extends Component {
                         <LicensePlateInput
                             onWrite={text => this.props.writeVehicle(text)}
                         />
+
+                        {this._renderImagePickerButton()}
+                        
                         <Text style={styles.error}>
                             { this.props.vehicleError }
                         </Text>

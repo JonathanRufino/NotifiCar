@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import styles from './styles';
 import { Texts, Colors } from '../../commom';
 import firebaseApp from '../../services/firebase';
+import { 
+    parseNumberToTwoDigits
+} from '../../utils';
 
 class UserProfile extends Component {
     constructor(props) {
@@ -19,6 +22,7 @@ class UserProfile extends Component {
         this._responseProfile = this._responseProfile.bind(this);
 
         this.state = {
+            occurrencePhoto: null,
             user: {
                 name: '',
                 photo: '',
@@ -33,6 +37,11 @@ class UserProfile extends Component {
 
     async componentDidMount() {
         this.setState({ gettingUser: true });
+        
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = parseNumberToTwoDigits(date.getMonth() + 1);
+        const day = parseNumberToTwoDigits(date.getDate());
 
         firebaseApp.database()
             .ref(`/users/${this.props.occurrence.occurrence.userID}`)
@@ -43,6 +52,17 @@ class UserProfile extends Component {
                     reputation: user.reputation || 0,
                     occurrencesCount: user.occurrencesCount || 0,
                 });
+            })
+            .then(() => {
+                firebaseApp.database()
+                .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}`)
+                .once('value')
+                .then(snapshot => {
+                    const occurrencePhotoSnap = snapshot.val();
+                    this.setState({
+                        occurrencePhoto: occurrencePhotoSnap.photo || null,
+                    });
+                });   
             });
 
         const profileRequest = await new GraphRequest(
@@ -76,8 +96,8 @@ class UserProfile extends Component {
         } else {
             const date = new Date();
             const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-            const day = date.getDate();
+            const month = parseNumberToTwoDigits(date.getMonth() + 1);
+            const day = parseNumberToTwoDigits(date.getDate());
     
             firebaseApp.database()
                 .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback`)
@@ -104,8 +124,8 @@ class UserProfile extends Component {
     _giveFeedback = feedback => {
         const date = new Date();
         const year = date.getFullYear();
-        const month = date.getMonth() + 1;
-        const day = date.getDate();
+        const month = parseNumberToTwoDigits(date.getMonth() + 1);
+        const day = parseNumberToTwoDigits(date.getDate());
 
         firebaseApp.database()
             .ref(`/occurrences/${year}/${month}/${day}/${this.props.occurrence.key}/feedback/`)
@@ -120,7 +140,27 @@ class UserProfile extends Component {
             .then(() => this.setState({ canVote: false }));
     }
 
-    _renderUserdata = () => {
+    _renderImageOccurrence = () => {
+            if (this.state.occurrencePhoto === null 
+                || this.state.occurrencePhoto === Texts.Messages.NO_IMAGE) {
+                return (
+                    <Text style={styles.noImage}>
+                        { Texts.Informative.NO_IMAGE }
+                    </Text>
+                );
+            }
+
+            return (
+                <View style={styles.photoOccurrenceContainer}>
+                    <Image
+                        style={styles.occurrencePhoto}
+                        source={{ uri: this.state.occurrencePhoto }}
+                    />
+                </View>
+            );
+    }
+
+    _renderUserData = () => {
         if (this.state.gettingUser) {
             return (
                 <ActivityIndicator size='large' alignSelf='center' style={styles.loading} />
@@ -163,6 +203,7 @@ class UserProfile extends Component {
                             </Text>
                         </View>
                     </View>
+                    { this._renderImageOccurrence() }
                 </View>
             );
         }
@@ -210,7 +251,7 @@ class UserProfile extends Component {
                 >
                     <View style={styles.modal}>
                         <View style={styles.container}>
-                            { this._renderUserdata() }
+                            { this._renderUserData() }
                             { this._renderButtons() }
                         </View>
                     </View>

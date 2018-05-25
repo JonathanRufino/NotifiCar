@@ -17,3 +17,31 @@ export const showDialog = ({ image, title, message, onPress }) => {
         onPress: () => { onPress ? onPress() : Actions.pop() }
     });
 };
+
+/**
+ * Parse a int number to String with two digits
+ * @param {int} number 
+ */
+export const parseNumberToTwoDigits = (number) => {
+    if (number < 10) {
+        number = `0${number}`;
+    }
+
+    return number;
+};
+
+/**
+ * GUID is an acronym for 'Globally Unique Identifier'. 
+ * It is a 128-bit integer number used to identify resources.
+ * This method generate GUID.
+ */
+
+export const guid = () => {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+
+    return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+};
