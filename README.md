@@ -22,6 +22,14 @@
 
 **NotifiCar** é um aplicativo que tem o objetivo de comunicar de forma fácil qualquer eventualidade(ocorrência) identificada pelas pessoas em relação a um veículo. Para realizar o registro dessas ocorrências é utilizada a placa do veículo do usuário e, desta forma, é enviada uma push notification para o dispositivo do usuário.
 
+### Tests
+
+Run tests:
+
+```
+$ npm test
+```
+
 ### Icons
 
 Icons Provided by:
