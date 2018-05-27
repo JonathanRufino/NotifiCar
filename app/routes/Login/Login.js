@@ -54,6 +54,7 @@ class Login extends Component {
                     resizeMode='contain'
                 />
                 <TouchableOpacity
+                    testID='facebookButton'
                     style={styles.facebookButtonContainer}
                     onPress={() => this._loginWithFacebook()}
                 >
