@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -23,6 +24,8 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		14A4A01D495F48C79B1AE452 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D53D126B9C146C3BBFF59A6 /* libRCTFBSDK.a */; };
 		2608F461206EBAB9008F0F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2608F439206EBAB9008F0F69 /* GoogleService-Info.plist */; };
+		26A6761F20BC8C0D00BAA32A /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26A6761D20BC8BDC00BAA32A /* libRNImagePicker.a */; };
+		26A6762620BC906F00BAA32A /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26A6762520BC904D00BAA32A /* libRNFetchBlob.a */; };
 		26EC14A82077F95B00AD1C35 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EC14A72077F90C00AD1C35 /* libSplashScreen.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -123,6 +126,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFIRMessaging;
+		};
+		26A6761C20BC8BDC00BAA32A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26A675F120BC8BDC00BAA32A /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
+		26A6762420BC904D00BAA32A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26A6762020BC904C00BAA32A /* RNFetchBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A15C300E1CD25C330074CB35;
+			remoteInfo = RNFetchBlob;
 		};
 		26EC14A62077F90C00AD1C35 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -373,6 +390,8 @@
 		1D83D8196F3F430C9874E4D4 /* libRNFIRMessaging.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRMessaging.a; sourceTree = "<group>"; };
 		2608F41C206EAEC0008F0F69 /* NotifiCar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NotifiCar.entitlements; path = NotifiCar/NotifiCar.entitlements; sourceTree = "<group>"; };
 		2608F439206EBAB9008F0F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		26A675F120BC8BDC00BAA32A /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		26A6762020BC904C00BAA32A /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		26EC14A22077F90C00AD1C35 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* NotifiCar-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NotifiCar-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* NotifiCar-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NotifiCar-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -419,6 +438,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26A6762620BC906F00BAA32A /* libRNFetchBlob.a in Frameworks */,
+				26A6761F20BC8C0D00BAA32A /* libRNImagePicker.a in Frameworks */,
 				26EC14A82077F95B00AD1C35 /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
@@ -596,6 +617,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		26A675F220BC8BDC00BAA32A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26A6761D20BC8BDC00BAA32A /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26A6762120BC904C00BAA32A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26A6762520BC904D00BAA32A /* libRNFetchBlob.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		26EC14A32077F90C00AD1C35 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +688,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				26A6762020BC904C00BAA32A /* RNFetchBlob.xcodeproj */,
+				26A675F120BC8BDC00BAA32A /* RNImagePicker.xcodeproj */,
 				26EC14A22077F90C00AD1C35 /* SplashScreen.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -935,8 +974,16 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 26A6762120BC904C00BAA32A /* Products */;
+					ProjectRef = 26A6762020BC904C00BAA32A /* RNFetchBlob.xcodeproj */;
+				},
+				{
 					ProductGroup = 2608F3E2206EAC9B008F0F69 /* Products */;
 					ProjectRef = 7B02F135C67F40DE9407D7BB /* RNFIRMessaging.xcodeproj */;
+				},
+				{
+					ProductGroup = 26A675F220BC8BDC00BAA32A /* Products */;
+					ProjectRef = 26A675F120BC8BDC00BAA32A /* RNImagePicker.xcodeproj */;
 				},
 				{
 					ProductGroup = 26EC14A32077F90C00AD1C35 /* Products */;
@@ -1015,6 +1062,20 @@
 			fileType = archive.ar;
 			path = libRNFIRMessaging.a;
 			remoteRef = 2608F3E5206EAC9B008F0F69 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		26A6761D20BC8BDC00BAA32A /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = 26A6761C20BC8BDC00BAA32A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		26A6762520BC904D00BAA32A /* libRNFetchBlob.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFetchBlob.a;
+			remoteRef = 26A6762420BC904D00BAA32A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		26EC14A72077F90C00AD1C35 /* libSplashScreen.a */ = {

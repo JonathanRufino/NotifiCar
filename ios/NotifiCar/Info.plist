@@ -60,7 +60,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Mandatory.ttf</string>
@@ -84,5 +84,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+  <key>NSPhotoLibraryUsageDescription</key>
+  <string>$(PRODUCT_NAME) gostaria de acessar a galeria de fotos</string>
+  <key>NSCameraUsageDescription</key>
+  <string>$(PRODUCT_NAME) gostaria de utilizar a câmera</string>
+  <key>NSPhotoLibraryAddUsageDescription</key>
+  <string>$(PRODUCT_NAME) gostaria de salvar fotos na sua galeria</string>
 </dict>
 </plist>
