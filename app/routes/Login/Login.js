@@ -55,6 +55,7 @@ class Login extends Component {
                 />
                 <TouchableOpacity
                     testID='facebookButton'
+                    accessibilityLabel='facebookButton'
                     style={styles.facebookButtonContainer}
                     onPress={() => this._loginWithFacebook()}
                 >
