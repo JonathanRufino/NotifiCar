@@ -68,3 +68,13 @@ export const userLoginSuccess = (accessToken, userID) => ({
         userID,
     }
 });
+
+export const removeUserTokenFromDatabase = (userID) => dispatch => {
+    firebaseApp.database().ref(`/users/${userID}/`)
+    .child('token')
+    .remove()
+    .then(() => {
+        Actions.login();
+    });
+};
+
