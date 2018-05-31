@@ -10,6 +10,7 @@ import Account from '../../components/Account';
 import Ranking from '../../components/Ranking';
 import Feed from '../../components/Feed';
 import firebaseApp from '../../services/firebase';
+import { fetchOccurrencesTypes } from '../../redux/actions/MainActions';
 
 const initialLayout = {
     height: 0,
@@ -25,6 +26,17 @@ class Main extends Component {
             { key: '3', title: 'Conta' },
         ],
     };
+    
+    async componentDidMount() {
+        this.props.fetchOccurrencesTypes();
+
+        FCM.getFCMToken()
+            .then(token => {
+                firebaseApp.database().ref(`/users/${this.props.userID}`)
+                    .child('token')
+                    .set(token);
+            });
+    }
 
     _handleIndexChange = index => this.setState({ index });
 
@@ -35,15 +47,6 @@ class Main extends Component {
         '2': Ranking,
         '3': Account,
     });
-
-    async componentDidMount() {
-        FCM.getFCMToken()
-            .then(token => {
-                firebaseApp.database().ref(`/users/${this.props.userID}`)
-                    .child('token')
-                    .set(token);
-            });
-    }
 
     render() {
         return (
@@ -63,4 +66,4 @@ const mapStateToProps = (state) => ({
     userID: state.AuthenticationReducer.userID,
 });
 
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, { fetchOccurrencesTypes })(Main);
