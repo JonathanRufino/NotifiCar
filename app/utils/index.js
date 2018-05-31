@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import { Images, Texts } from '../commom';
@@ -44,4 +45,19 @@ export const guid = () => {
     }
 
     return `${s4() + s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+};
+
+/**
+ * @description Function to display generic alerts without actions
+ * @param {string} title 
+ * @param {string} message 
+ */
+export const showSuccessMessage = (title, message) => {
+    Alert.alert(
+        title,
+        message,
+        [
+            { text: Texts.Buttons.OK }
+        ]
+    );
 };
