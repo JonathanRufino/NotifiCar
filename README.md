@@ -10,7 +10,7 @@
     </a>
 </p>
 
-[![CircleCI](https://circleci.com/gh/NotifiCar/NotifiCar.svg?style=shield)](https://circleci.com/gh/NotifiCar/NotifiCar) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CircleCI](https://circleci.com/gh/NotifiCar/NotifiCar.svg?style=shield)](https://circleci.com/gh/NotifiCar/NotifiCar) [![Coverage Status](https://coveralls.io/repos/github/NotifiCar/NotifiCar/badge.svg?branch=master)](https://coveralls.io/github/NotifiCar/NotifiCar?branch=master) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 
 ### Description
 

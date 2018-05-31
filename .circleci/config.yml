@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm run test
+      - run: npm run test:coverage
       - persist_to_workspace:
           root: ~/project
           paths:
@@ -66,9 +66,18 @@ workflows:
             branches:
               only:
                 - master
+                - staging
       - android:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
       - ios:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
