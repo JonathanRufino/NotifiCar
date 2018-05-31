@@ -1,5 +1,4 @@
 const Images = {
-    LOGIN_BACKGROUND: require('../assets/images/login_background.png'),
     LOGO_WHITE: require('../assets/images/logo-white.png'),
     LOGO_SPLASHSCREEN: require('../assets/images/logo-splashscreen.png'),
     ICON_ALARM: require('../assets/images/alarm.png'),
