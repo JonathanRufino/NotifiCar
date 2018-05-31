@@ -10,8 +10,8 @@ export const fetchOccurrencesTypes = () => dispatch => {
         .orderByChild('type')
         .once('value')
         .then(snapshot => {
-            const occurrencesTypes = [];
-            let i = 0;
+            const occurrencesTypes = [{ value: 0, label: 'Selecione um Problema...' }];
+            let i = 1;
 
             snapshot.forEach(item => {
                 occurrencesTypes.push({ value: i, label: item.val().type });

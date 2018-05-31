@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import { View, ListView, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './styles';
 import { Images, Texts, Values, Colors } from '../../commom';
-import {
-    showDialog,
-    fetchOccurrencesOfTheDay,
-} from '../../redux/actions/FeedActions';
-import OccurrenceModal from '../OccurrenceModal';
+import { fetchOccurrencesOfTheDay } from '../../redux/actions/FeedActions';
 import OccurrenceItem from '../OccurrenceItem';
 import EmptyState from '../EmptyState';
 
@@ -89,13 +86,11 @@ class Feed extends Component {
     render() {
         return (
             <View style={styles.screen}>
-                <OccurrenceModal />
-
                 { this._renderListOfOccurrences() }
 
                 <ActionButton
                     buttonColor={Colors.RED_LIGHT}
-                    onPress={() => this.props.showDialog(true)}
+                    onPress={() => Actions.push('addOccurrence')}
                 />
             </View>
         );
@@ -109,5 +104,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {
-    showDialog, fetchOccurrencesOfTheDay
+    fetchOccurrencesOfTheDay
 })(Feed);

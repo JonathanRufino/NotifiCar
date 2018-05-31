@@ -9,7 +9,7 @@ const INITIAL_STATE = {
     occurrenceTypes: {},
     occurrencesOfTheDay: {},
     pickerValueHolder: 'Farol Aceso',
-    isLoadingPicker: true,
+    isLoadingPicker: false,
     error: '',
     isLoadingListOfOccurrences: false,
 };

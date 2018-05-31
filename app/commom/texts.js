@@ -4,6 +4,8 @@ const Texts = {
         EXITING: 'Saindo',
         WANT_TO_EXIT: 'Deseja sair do aplicativo?',
         NO_IMAGE: 'NO IMAGE',
+        OCCURRENCE_REGISTERED: 'Ocorrência registrada',
+        THANKS_FOR_YOUR_HELP: 'Agradecemos a sua colaboração'
     },
     Titles: {
         REGISTER_VEHICLE: 'Cadastrar Veículo',
@@ -24,6 +26,7 @@ const Texts = {
         OOPS: 'Oops!',
         GENERIC_ERROR: 'Ocorreu um erro, tente novamente',
         CANT_GET_USER_DATA: 'Não foi possível obter as informações deste usuário',
+        SELECT_OCCURRENCE_TYPE: 'Informe o problema',
     },
     Placeholders: {
         LICENSE_PLATE: 'AAA-0000',
@@ -39,6 +42,7 @@ const Texts = {
         DISLIKE: 'Falsa',
         TAKE_PICTURE: 'Tirar Foto',
         CHOOSE_FROM_LIBRARY: 'Escolher da Biblioteca',
+        OK: 'OK',
     },
     Informative: {
         OCCURRENCE_TYPE: 'Selecione o tipo de ocorrência',

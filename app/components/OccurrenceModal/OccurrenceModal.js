@@ -2,30 +2,28 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    Picker,
     ActivityIndicator,
     TouchableOpacity,
     Image,
 } from 'react-native';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import Modal from 'react-native-modal';
 import ImagePicker from 'react-native-image-picker';
+import SelectInput from 'react-native-select-input-ios';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './styles';
 import { Texts, Regexes, Images } from '../../commom';
-import {
-    showDialog,
-    writeVehicle,
-    changeOccurrenceType,
-    updateVehicleError,
-    addOccurrence,
-} from '../../redux/actions/FeedActions';
+import { addOccurrence } from '../../redux/actions/FeedActions';
 import Button from '../Button';
 import LicensePlateInput from '../../components/license-plate-input';
 
 class OccurrenceModal extends Component {
     state = {
+        occurrenceType: 0,
+        occurrenceTypeError: ' ',
+        vehicle: '',
+        vehicleError: ' ',
         photoSource: null,
         options: {
             quality: 1,
@@ -37,7 +35,7 @@ class OccurrenceModal extends Component {
             chooseFromLibraryButtonTitle: Texts.Buttons.CHOOSE_FROM_LIBRARY,
             cancelButtonTitle: Texts.Buttons.CANCEL,
             storageOptions: {
-              skipBackup: true,
+                skipBackup: true,
             }
         },
     };
@@ -51,34 +49,20 @@ class OccurrenceModal extends Component {
             } else {
                 const source = { uri: response.uri };
           
-                this.setState({
-                    photoSource: source
-                });
+                this.setState({ photoSource: source });
             }
-          });
+        });
     }
 
     _renderDeleteImageButton() {
-        if (this.state.photoSource === null) {
-            return (
-                <View />
-            );
-        }
-        if (this.props.isLoadingPicker) {
-            return (
-                <View style={styles.photoUploadContainer}>
-                    <ActivityIndicator size='small' />
-                    <Text style={styles.photoText}>{Texts.Labels.UPLOADING}</Text>
-                </View>
-            );
+        if (this.state.photoSource === null || this.props.isLoadingPicker) {
+            return;
         }
 
         return (
             <TouchableOpacity
                 onPress={() => {
-                    this.setState({
-                        photoSource: null
-                    });
+                    this.setState({ photoSource: null });
                 }} 
                 style={styles.button}
             >
@@ -91,97 +75,89 @@ class OccurrenceModal extends Component {
         return (
             <View style={styles.photoCaseContainer}>
                 <TouchableOpacity onPress={this._showImagePicker.bind(this)}>
-                        <View style={[styles.photo, styles.photoContainer]}>
-                            { this.state.photoSource === null ? 
-                                <View>
-                                    <Text style={styles.photoText}>{Texts.Labels.PHOTO}</Text>
-                                    <Text style={styles.optional}>{Texts.Labels.OPTIONAL}</Text>
-                                </View>
-                                : 
-                                <Image style={styles.photo} source={this.state.photoSource} />
-                            }
-                        </View>
+                    <View style={[styles.photo, styles.photoContainer]}>
+                        { this.state.photoSource === null ? 
+                            <View>
+                                <Text style={styles.photoText}>{Texts.Labels.PHOTO}</Text>
+                                <Text style={styles.optional}>{Texts.Labels.OPTIONAL}</Text>
+                            </View>
+                            : 
+                            <Image style={styles.photo} source={this.state.photoSource} />
+                        }
+                    </View>
                 </TouchableOpacity>
 
                 { this._renderDeleteImageButton() }
             </View>
         );
     }
-
-    _showPickerWhenDataFetch() {
-        if (this.props.isLoadingPicker) {
-            return (
-                <ActivityIndicator size='small' />
-            );
-        }
-
-        return (
-            <View>
-                <Text style={styles.type_occurrence}>
-                    { Texts.Informative.OCCURRENCE_TYPE }
-                </Text>
-                <Picker
-                    style={styles.picker}
-                    selectedValue={this.props.pickerValueHolder}
-                    onValueChange={(itemValue, itemIndex) => 
-                        this.props.changeOccurrenceType(itemValue)} 
-                >
-                    {
-                        _.map(this.props.occurrenceTypes, (item, key) => 
-                            <Picker.Item label={item.type} value={item.type} key={key} />
-                        )
-                    }
-                </Picker>
-            </View>
-        );
-    }
     
     _validateOccurrence() {
-        if (this.props.vehicle === '') {
-            this.props.updateVehicleError(Texts.Errors.EMPTY_LICENSE_PLATE);
-        } else if (!Regexes.LICENSE_PLATE.test(this.props.vehicle)) {
-            this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
+        if (this.state.occurrenceType === 0) {
+            this.setState({ occurrenceTypeError: Texts.Errors.SELECT_OCCURRENCE_TYPE });
+        } else if (this.state.vehicle === '') {
+            this.setState({ vehicleError: Texts.Errors.EMPTY_LICENSE_PLATE });
+        } else if (!Regexes.LICENSE_PLATE.test(this.state.vehicle)) {
+            this.setState({ vehicleError: Texts.Errors.INVALID_LICENSE_PLATE });
         } else {
-            this.props.addOccurrence(this.props.userID, 
-                this.props.pickerValueHolder, this.props.vehicle, this.state.photoSource);
+            this.props.addOccurrence(
+                this.props.userID, 
+                this.props.occurrencesTypes[this.state.occurrenceType].label,
+                this.state.vehicle,
+                this.state.photoSource
+            );
         }
     }
     
     _renderRegisterOccurrenceButton() {
-        if (!this.props.isLoadingPicker) {
-            return (
-                <Button
-                    title={Texts.Buttons.REGISTER_OCCURRENCE}
-                    onPress={() => this._validateOccurrence()}
-                />
-            );
+        if (this.props.isLoadingPicker) {
+            return <ActivityIndicator size='large' style={styles.loading} />;
         }
+
+        return (
+            <Button
+                title={Texts.Buttons.REGISTER_OCCURRENCE}
+                onPress={() => this._validateOccurrence()}
+            />
+        );
     }
 
     render() {
         return (
             <View>
                 <Modal
-                    isVisible={this.props.dialogIsVisible}
-                    onBackdropPress={() => this.props.showDialog(false)}
-                    onBackButtonPress={() => this.props.showDialog(false)}
+                    isVisible
+                    onBackdropPress={() => Actions.pop()}
+                    onBackButtonPress={() => Actions.pop()}
                 >
                     <View style={styles.container}>
                         <Text style={styles.title}>
                             { Texts.Titles.REGISTER_OCCURRENCE }
                         </Text>
 
-                        {this._showPickerWhenDataFetch()}
+                        <SelectInput
+                            value={this.state.occurrenceType}
+                            options={this.props.occurrencesTypes}
+                            style={styles.selectInput}
+                            onSubmitEditing={item => this.setState({
+                                occurrenceType: item, occurrenceTypeError: ' '
+                            })}
+                        />
+                        <Text style={styles.error}>
+                            { this.state.occurrenceTypeError }
+                        </Text>
 
                         <LicensePlateInput
-                            onWrite={text => this.props.writeVehicle(text)}
+                            onWrite={text => this.setState({
+                                vehicle: text, vehicleError: ' '
+                            })}
                         />
-
-                        {this._renderImagePickerButton()}
                         
                         <Text style={styles.error}>
-                            { this.props.vehicleError }
+                            { this.state.vehicleError }
                         </Text>
+
+                        { this._renderImagePickerButton() }
 
                         { this._renderRegisterOccurrenceButton() }
                     </View>
@@ -191,16 +167,14 @@ class OccurrenceModal extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-        occurrenceTypes: state.FeedReducer.occurrenceTypes,
-        dialogIsVisible: state.FeedReducer.dialogIsVisible,
-        vehicle: state.FeedReducer.vehicle,
-        pickerValueHolder: state.FeedReducer.pickerValueHolder,
-        isLoadingPicker: state.FeedReducer.isLoadingPicker,
-        vehicleError: state.FeedReducer.vehicleError,
-        userID: state.AuthenticationReducer.userID,
+const mapStateToProps = state => ({
+    occurrencesTypes: state.MainReducer.occurrencesTypes,
+    pickerValueHolder: state.FeedReducer.pickerValueHolder,
+    isLoadingPicker: state.FeedReducer.isLoadingPicker,
+    vehicleError: state.FeedReducer.vehicleError,
+    userID: state.AuthenticationReducer.userID,
 });
 
 export default connect(mapStateToProps, {
-    showDialog, writeVehicle, changeOccurrenceType, updateVehicleError, addOccurrence
+    addOccurrence
 })(OccurrenceModal);

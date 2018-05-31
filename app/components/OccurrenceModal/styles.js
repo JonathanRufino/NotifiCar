@@ -1,15 +1,16 @@
 import { 
-    StyleSheet, 
     Platform,
-    PixelRatio 
+    PixelRatio,
 } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet'
 
 import { Colors, Values } from '../../commom';
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
     container: {
         backgroundColor: Colors.WHITE,
-        padding: 15,
+        padding: '16rem',
+        borderRadius: '4rem',
     },
     inputField: {
         width: '80%',
@@ -24,16 +25,15 @@ const styles = StyleSheet.create({
         })
     },
     title: {
-        fontSize: 0.07 * Values.SCREEN_WIDTH,
+        fontSize: '24rem',
         alignSelf: 'center',
+        marginBottom: '16rem',
+        fontWeight: 'bold',
     },
     type_occurrence: {
         fontSize: 0.04 * Values.SCREEN_WIDTH,
         alignSelf: 'center',
         color: Colors.BLACK,
-    },
-    picker: {
-        marginVertical: 10,
     },
     error: {
         color: Colors.RED,
@@ -84,6 +84,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    selectInput: {
+        borderWidth: '1rem',
+        borderColor: Colors.BLACK,
+        overflow: 'hidden',
+        marginVertical: '8rem',
+        borderRadius: '4rem',
+        ...Platform.select({
+            ios: {
+                height: '40rem',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+            },
+        })
+    },
+    loading: {
+        height: 50,
+    }
 });
 
 export default styles;

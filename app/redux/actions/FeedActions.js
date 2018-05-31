@@ -1,25 +1,15 @@
 import RNFetchBlob from 'react-native-fetch-blob';
 import { Platform } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import * as Types from './types';
+import { Texts } from '../../commom'
 import firebaseApp from '../../services/firebase';
 import { 
     guid, 
-    parseNumberToTwoDigits
+    parseNumberToTwoDigits,
+    showSuccessMessage,
 } from '../../utils';
-
-export const showDialog = (dialogIsVisible) => dispatch => {
-    dispatch({ type: Types.SHOW_DIALOG_FEED, payload: dialogIsVisible });
-    dispatch({ type: Types.OCCURRENCE_TYPE_IS_LOADING });
-        
-    if (dialogIsVisible) {
-        firebaseApp.database().ref('/occurrence_types/')
-        .on('value', snapshot => {
-            dispatch({ type: Types.OCCURRENCE_TYPE_LOAD, payload: snapshot.val() });
-            dispatch({ type: Types.OCCURRENCE_TYPE_LOADING_FINISHED });
-        });
-    }   
-};
 
 export const writeVehicle = (vehicle) => ({
     type: Types.WRITE_VEHICLE_FEED,
@@ -85,7 +75,16 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
                 date: dateOccurrence, 
                 photo: downloadURL, 
             })
-            .then(() => dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS }))
+            .then(() => {
+                dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS });
+
+                Actions.pop();
+                setTimeout(() => {
+                    showSuccessMessage(
+                        Texts.Messages.OCCURRENCE_REGISTERED, Texts.Messages.THANKS_FOR_YOUR_HELP
+                    );
+                }, 100);
+            })
             .then(() => {
                 firebaseApp.database().ref('/occurrence_types/')
                 .orderByChild('type')
@@ -128,7 +127,16 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
             date: dateOccurrence, 
             photo: 'NO IMAGE', 
         })
-        .then(() => dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS }))
+        .then(() => {
+            dispatch({ type: Types.ADD_OCCURRENCE_SUCCESS });
+
+            Actions.pop();
+            setTimeout(() => {
+                showSuccessMessage(
+                    Texts.Messages.OCCURRENCE_REGISTERED, Texts.Messages.THANKS_FOR_YOUR_HELP
+                );
+            }, 100);
+        })
         .then(() => {
             firebaseApp.database().ref('/occurrence_types/')
             .orderByChild('type')

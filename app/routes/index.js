@@ -9,6 +9,7 @@ import Main from './Main';
 import Login from './Login';
 import PrivacyPolicy from './privacy-policy';
 import UserProfile from '../components/user-profile';
+import OccurrenceModal from '../components/OccurrenceModal';
 
 const Routes = () => (
     <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle}>
@@ -48,6 +49,11 @@ const Routes = () => (
                 modal
                 key='userProfile'
                 component={UserProfile}
+            />
+            <Scene
+                modal
+                key='addOccurrence'
+                component={OccurrenceModal}
             />
         </Lightbox>
     </Router>
