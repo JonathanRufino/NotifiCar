@@ -1691,7 +1691,7 @@
 				DEVELOPMENT_TEAM = T6HVFYG7Q8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/user134699/Documents/FacebookSDK,
+					/Users/rufinopaiva/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
