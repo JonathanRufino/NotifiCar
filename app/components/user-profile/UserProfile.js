@@ -141,23 +141,19 @@ class UserProfile extends Component {
     }
 
     _renderImageOccurrence = () => {
-            if (this.state.occurrencePhoto === null 
-                || this.state.occurrencePhoto === Texts.Messages.NO_IMAGE) {
-                return (
-                    <Text style={styles.noImage}>
-                        { Texts.Informative.NO_IMAGE }
-                    </Text>
-                );
-            }
+        if (this.state.occurrencePhoto === null 
+            || this.state.occurrencePhoto === Texts.Messages.NO_IMAGE) {
+            return;
+        }
 
-            return (
-                <View style={styles.photoOccurrenceContainer}>
-                    <Image
-                        style={styles.occurrencePhoto}
-                        source={{ uri: this.state.occurrencePhoto }}
-                    />
-                </View>
-            );
+        return (
+            <View style={styles.photoOccurrenceContainer}>
+                <Image
+                    style={styles.occurrencePhoto}
+                    source={{ uri: this.state.occurrencePhoto }}
+                />
+            </View>
+        );
     }
 
     _renderUserData = () => {
@@ -173,6 +169,7 @@ class UserProfile extends Component {
                     <Image
                         style={styles.photo}
                         source={{ uri: this.state.user.photo }}
+                        resizeMode='contain'
                     />
     
                     <Text style={styles.name}>

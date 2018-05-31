@@ -13,7 +13,7 @@ const styles = EStyleSheet.create({
         backgroundColor: Colors.WHITE,
         justifyContent: 'space-between',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: '4rem',
         width: '80%',
     },
     userContainer: {
@@ -23,7 +23,7 @@ const styles = EStyleSheet.create({
     photo: {
         height: '80rem',
         width: '80rem',
-        borderRadius: 100,
+        borderRadius: '40rem',
         marginBottom: '8rem',
     },
     name: {
@@ -39,7 +39,7 @@ const styles = EStyleSheet.create({
         justifyContent: 'center',
         alignItems:
         'center',
-        borderBottomLeftRadius: 10,
+        borderBottomLeftRadius: '4rem',
     },
     negativeButton: {
         flex: 1,
@@ -47,7 +47,7 @@ const styles = EStyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomRightRadius: 10,
+        borderBottomRightRadius: '4rem',
     },
     buttonText: {
         color: Colors.WHITE,
@@ -82,12 +82,6 @@ const styles = EStyleSheet.create({
         alignSelf: 'center',
         fontSize: '14rem',
         marginBottom: '8rem',
-    },
-    noImage: {
-        color: Colors.RED,
-        alignSelf: 'center',
-        fontSize: 11,
-        marginTop: 10,
     },
     occurrencePhoto: {
         borderRadius: 20,

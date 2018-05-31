@@ -53,7 +53,6 @@ const Texts = {
         HOW_DO_YOU_RATE_THIS_OCCURRENCE: 'Como você avalia essa ocorrência?',
         REPUTATION: 'Reputação:',
         TOTAL_OCCURRENCES: 'Total de ocorrências: ',
-        NO_IMAGE: 'Não houve registro de imagem para esta ocorrência',
     },
     Occurrence_Type: {
         HEADLIGHTS_ON: 'Farol Aceso',
