@@ -12,7 +12,7 @@ exports.sendNotification =
         const payload = {
             notification: {
                 title: `Veículo: ${vehicle}`,
-                body: `Se encontra com: ${occurrence.occurrence_type}`
+                body: `Situação: ${occurrence.occurrence_type}`
             }
         };
 
