@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 import * as Types from './types';
-import { Texts } from '../../commom'
+import { Texts } from '../../commom';
 import firebaseApp from '../../services/firebase';
 import { 
     guid, 
@@ -11,23 +11,12 @@ import {
     showSuccessMessage,
 } from '../../utils';
 
-export const writeVehicle = (vehicle) => ({
-    type: Types.WRITE_VEHICLE_FEED,
-    payload: vehicle
-});
-
-export const updateVehicleError = (error) => ({
-    type: Types.UPDATE_VEHICLE_ERROR_FEED,
-    payload: error
-});
-
-export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispatch) => {
+export const addOccurrence = (userID, occurrenceType, vehicle, photo) => async dispatch => {
     dispatch({
         type: Types.SAVING_OCCURRENCE,
     });
 
     const Blob = RNFetchBlob.polyfill.Blob;
-    const fs = RNFetchBlob.fs;
     window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest;
     window.Blob = Blob;
 
@@ -45,21 +34,18 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
     const minute = parseNumberToTwoDigits(date.getMinutes());
     const time = `${hour}:${minute}`;
     
-
     if (photo !== null) {
         const uri = photo.uri;
         const fileName = guid();
         const image = Platform.OS === 'ios' ? uri.replace('file://', '') : uri;
         const imageFile = RNFetchBlob.wrap(image);
         const ref = firebaseApp.storage().ref(`occurrences/${fileName}`);
-        let uploadBlob = null;
         let downloadURL;
 
-        Blob.build(imageFile, { type: 'image/jpg;' })
-            .then((imageBlob) => {
-                uploadBlob = imageBlob;
-                return ref.put(imageBlob, { contentType: 'image/jpg' });
-            })
+        await Blob.build(imageFile, { type: 'image/jpg;' })
+            .then((imageBlob) => (
+                ref.put(imageBlob, { contentType: 'image/jpg' })
+            ))
             .then(() => ref.getDownloadURL()
                 .then((url) => {
                     downloadURL = url;
@@ -118,7 +104,7 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
             });
         });
     } else {
-        firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
+        await firebaseApp.database().ref(`/occurrences/${year}/${month}/${day}/`)
         .push()
         .set({ 
             userID, 
@@ -179,11 +165,6 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
         .child('occurrencesCount')
         .transaction(occurrencesCount => occurrencesCount + 1);
 };
-
-export const changeOccurrenceType = (occurrenceType) => ({
-    type: Types.CHANGE_OCCURRENCE_TYPE,
-    payload: occurrenceType
-});
 
 export const fetchOccurrencesOfTheDay = userID => dispatch => {
     const date = new Date();

@@ -24,6 +24,7 @@ class OccurrenceModal extends Component {
         occurrenceTypeError: ' ',
         vehicle: '',
         vehicleError: ' ',
+        isVisible: true,
         photoSource: null,
         options: {
             quality: 1,
@@ -92,7 +93,7 @@ class OccurrenceModal extends Component {
         );
     }
     
-    _validateOccurrence() {
+    async _validateOccurrence() {
         if (this.state.occurrenceType === 0) {
             this.setState({ occurrenceTypeError: Texts.Errors.SELECT_OCCURRENCE_TYPE });
         } else if (this.state.vehicle === '') {
@@ -100,12 +101,13 @@ class OccurrenceModal extends Component {
         } else if (!Regexes.LICENSE_PLATE.test(this.state.vehicle)) {
             this.setState({ vehicleError: Texts.Errors.INVALID_LICENSE_PLATE });
         } else {
-            this.props.addOccurrence(
+            await this.props.addOccurrence(
                 this.props.userID, 
                 this.props.occurrencesTypes[this.state.occurrenceType].label,
                 this.state.vehicle,
                 this.state.photoSource
             );
+            this._closeModal();
         }
     }
     
@@ -122,13 +124,20 @@ class OccurrenceModal extends Component {
         );
     }
 
+    _closeModal = () => {
+        this.setState({ isVisible: false });
+    }
+
     render() {
         return (
             <View>
                 <Modal
-                    isVisible
-                    onBackdropPress={() => Actions.pop()}
-                    onBackButtonPress={() => Actions.pop()}
+                    ref={ref => { this.MODAL_REF = ref; }}
+                    isVisible={this.state.isVisible}
+                    onBackdropPress={this._closeModal}
+                    onBackButtonPress={this._closeModal}
+                    onModalHide={() => Actions.pop()}
+                    hideModalContentWhileAnimating
                 >
                     <View style={styles.container}>
                         <Text style={styles.title}>
@@ -169,9 +178,7 @@ class OccurrenceModal extends Component {
 
 const mapStateToProps = state => ({
     occurrencesTypes: state.MainReducer.occurrencesTypes,
-    pickerValueHolder: state.FeedReducer.pickerValueHolder,
     isLoadingPicker: state.FeedReducer.isLoadingPicker,
-    vehicleError: state.FeedReducer.vehicleError,
     userID: state.AuthenticationReducer.userID,
 });
 
