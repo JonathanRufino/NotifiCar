@@ -5,15 +5,14 @@ import {
 import { connect } from 'react-redux';
 import ActionButton from 'react-native-action-button';
 import Swipeout from 'react-native-swipeout';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './styles';
 import { Colors, Values, Images, Texts } from '../../commom';
 import {
-    showDialog,
     fetchUserVehicles,
     removeVehicle,
 } from '../../redux/actions/AccountActions';
-import VehicleModal from '../VehicleModal';
 import LicensePlate from '../LicensePlate';
 import EmptyState from '../../components/EmptyState';
 
@@ -90,13 +89,11 @@ class Account extends Component {
     render() {
         return (
             <View style={styles.screen}>
-                <VehicleModal />
-
                 { this._renderListOfVehicles() }
 
                 <ActionButton
                     buttonColor={Colors.RED_LIGHT}
-                    onPress={() => this.props.showDialog(true)}
+                    onPress={() => Actions.push('addVehicle')}
                 />
             </View>
         );
@@ -121,5 +118,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-    showDialog, fetchUserVehicles, removeVehicle
+    fetchUserVehicles, removeVehicle
 })(Account);
