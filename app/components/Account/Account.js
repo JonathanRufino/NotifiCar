@@ -100,22 +100,12 @@ class Account extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    let vehicles;
-
-    if (state.AccountReducer.vehicles === null) {
-        vehicles = [];
-    } else {
-        vehicles = Object.keys(state.AccountReducer.vehicles);
-    }
-
-    return {
-        vehicles,
-        error: state.AccountReducer.error,
-        isLoadingListOfVehicles: state.AccountReducer.isLoadingListOfVehicles,
-        userID: state.AuthenticationReducer.userID,
-    };
-};
+const mapStateToProps = state => ({
+    vehicles: state.AccountReducer.vehicles,
+    error: state.AccountReducer.error,
+    isLoadingListOfVehicles: state.AccountReducer.isLoadingListOfVehicles,
+    userID: state.AuthenticationReducer.userID,
+});
 
 export default connect(mapStateToProps, {
     fetchUserVehicles, removeVehicle

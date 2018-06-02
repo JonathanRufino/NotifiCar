@@ -5,13 +5,15 @@ import { fetchOccurrencesOfTheDay } from './FeedActions';
 export const addVehicle = (userID, vehicle) => async dispatch => {
     dispatch({ type: Types.SAVING_VEHICLE });
 
-    await firebaseApp.database().ref(`/users/${userID}/vehicles`)
+    await firebaseApp.database()
+        .ref(`/users/${userID}/vehicles`)
         .child(vehicle.toUpperCase())
         .set(true)
         .then(() => {
-            firebaseApp.database().ref(`/vehicles/${vehicle.toUpperCase()}/`)
-            .child(userID)
-            .set(true);
+            firebaseApp.database()
+                .ref(`/vehicles/${vehicle.toUpperCase()}/`)
+                .child(userID)
+                .set(true);
         })
         .then(() => {
             dispatch({ type: Types.ADD_VEHICLE_SUCCESS });
@@ -25,13 +27,15 @@ export const addVehicle = (userID, vehicle) => async dispatch => {
 };
 
 export const removeVehicle = (userID, vehicle) => dispatch => {
-    firebaseApp.database().ref(`/users/${userID}/vehicles`)
+    firebaseApp.database()
+        .ref(`/users/${userID}/vehicles`)
         .child(vehicle)
         .remove()
         .then(() => {
-            firebaseApp.database().ref(`/vehicles/${vehicle.toUpperCase()}/`)
-            .child(userID)
-            .remove();
+            firebaseApp.database()
+                .ref(`/vehicles/${vehicle.toUpperCase()}/`)
+                .child(userID)
+                .remove();
         })
         .then(() => dispatch({ type: Types.REMOVE_VEHICLE }))
         .catch(error => dispatch({
@@ -45,12 +49,15 @@ export const removeVehicle = (userID, vehicle) => dispatch => {
 export const fetchUserVehicles = userID => dispatch => {
     dispatch({ type: Types.FETCH_VEHICLES_IS_LOADING });
 
-    firebaseApp.database().ref(`/users/${userID}/vehicles/`)
+    firebaseApp.database()
+        .ref(`/users/${userID}/vehicles/`)
         .orderByKey()
         .on('value', snapshot => {
+            const vehicles = snapshot.val() ? Object.keys(snapshot.val()) : [];
+
             dispatch({
                 type: Types.FETCH_USER_VEHICLES,
-                payload: snapshot.val()
+                payload: vehicles
             });
         });
 };
