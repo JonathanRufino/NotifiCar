@@ -30,6 +30,10 @@ Run tests:
 $ npm test
 ```
 
+### Some gotchas
+
+If you are getting the error **ReadableMap.getString(java.lang.String)' on a null object reference** add ````console.disableYellowBox = true```` to your ```App.js``` or to the component that throws the error.
+
 ### Icons
 
 Icons Provided by:

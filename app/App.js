@@ -18,6 +18,12 @@ import reduxStore from './redux/store';
 
 registerKilledListener();
 
+/* 
+ * Uncomment the line bellow if you are getting the error:
+ * ReadableMap.getString(java.lang.String)' on a null object reference
+ */
+// console.disableYellowBox = true;
+
 class App extends Component {
     componentWillMount() {
         EStyleSheet.build({ $rem: Dimensions.get('window').width / 380 });
