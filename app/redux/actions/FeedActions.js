@@ -81,9 +81,10 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
                 Actions.pop();
                 setTimeout(() => {
                     showSuccessMessage(
-                        Texts.Messages.OCCURRENCE_REGISTERED, Texts.Messages.THANKS_FOR_YOUR_HELP
+                        Texts.Messages.OCCURRENCE_REGISTERED,
+                        Texts.Messages.THANKS_FOR_YOUR_HELP
                     );
-                }, 100);
+                }, 250);
             })
             .then(() => {
                 firebaseApp.database().ref('/occurrence_types/')
@@ -133,9 +134,10 @@ export const addOccurrence = (userID, occurrenceType, vehicle, photo) => (dispat
             Actions.pop();
             setTimeout(() => {
                 showSuccessMessage(
-                    Texts.Messages.OCCURRENCE_REGISTERED, Texts.Messages.THANKS_FOR_YOUR_HELP
+                    Texts.Messages.OCCURRENCE_REGISTERED,
+                    Texts.Messages.THANKS_FOR_YOUR_HELP
                 );
-            }, 100);
+            }, 250);
         })
         .then(() => {
             firebaseApp.database().ref('/occurrence_types/')
