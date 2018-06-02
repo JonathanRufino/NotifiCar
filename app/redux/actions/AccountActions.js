@@ -1,19 +1,11 @@
-import firebaseApp from '../../services/firebase';
-
 import * as Types from './types';
+import firebaseApp from '../../services/firebase';
 import { fetchOccurrencesOfTheDay } from './FeedActions';
 
-export const writeVehicle = (vehicle) => ({
-    type: Types.WRITE_VEHICLE,
-    payload: vehicle
-});
+export const addVehicle = (userID, vehicle) => async dispatch => {
+    dispatch({ type: Types.SAVING_VEHICLE });
 
-export const addVehicle = (userID, vehicle) => (dispatch) => {
-    dispatch({
-        type: Types.SAVING_VEHICLE,
-    });
-
-    firebaseApp.database().ref(`/users/${userID}/vehicles`)
+    await firebaseApp.database().ref(`/users/${userID}/vehicles`)
         .child(vehicle.toUpperCase())
         .set(true)
         .then(() => {
@@ -21,14 +13,14 @@ export const addVehicle = (userID, vehicle) => (dispatch) => {
             .child(userID)
             .set(true);
         })
-        .then(() => dispatch({
-            type: Types.ADD_VEHICLE_SUCCESS,
-        }))
+        .then(() => {
+            dispatch({ type: Types.ADD_VEHICLE_SUCCESS });
+        })
         .catch(error => dispatch({
             type: Types.ADD_VEHICLE_ERROR,
             payload: error
         }));
-    
+
     dispatch(fetchOccurrencesOfTheDay(userID));
 };
 
@@ -49,16 +41,6 @@ export const removeVehicle = (userID, vehicle) => dispatch => {
 
     dispatch(fetchOccurrencesOfTheDay(userID));
 };
-
-export const showDialog = (dialogIsVisible) => ({
-    type: Types.SHOW_DIALOG,
-    payload: dialogIsVisible
-});
-
-export const updateVehicleError = (error) => ({
-    type: Types.UPDATE_VEHICLE_ERROR,
-    payload: error
-});
 
 export const fetchUserVehicles = userID => dispatch => {
     dispatch({ type: Types.FETCH_VEHICLES_IS_LOADING });

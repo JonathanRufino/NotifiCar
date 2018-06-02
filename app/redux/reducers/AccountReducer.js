@@ -1,23 +1,14 @@
 import * as Types from '../actions/types';
 
 const INITIAL_STATE = {
-    vehicle: '',
     vehicles: {},
     error: '',
-    dialogIsVisible: false,
-    vehicleError: '',
     isSavingVehicle: false,
     isLoadingListOfVehicles: false,
 };
 
 const AccountReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case Types.WRITE_VEHICLE:
-            return {
-                ...state,
-                vehicle: action.payload,
-                vehicleError: '',
-            };
         case Types.ADD_VEHICLE_SUCCESS:
             return {
                 ...state,
@@ -29,21 +20,6 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 error: action.payload
-            };
-        case Types.HANDLE_MODAL:
-            return {
-                ...state,
-                dialogIsVisible: action.payload
-            };
-        case Types.UPDATE_VEHICLE_ERROR:
-            return {
-                ...state,
-                vehicleError: action.payload
-            };
-        case Types.SHOW_DIALOG:
-            return {
-                ...state,
-                dialogIsVisible: action.payload
             };
         case Types.FETCH_USER_VEHICLES:
             return {

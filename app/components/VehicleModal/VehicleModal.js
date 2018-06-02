@@ -6,35 +6,40 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Modal from 'react-native-modal';
+import { Actions } from 'react-native-router-flux';
 
 import styles from './styles';
 import { Texts, Regexes } from '../../commom';
 import {
-    writeVehicle,
     addVehicle,
-    updateVehicleError,
-    showDialog,
 } from '../../redux/actions/AccountActions';
 import Button from '../Button';
 import LicensePlateInput from '../../components/license-plate-input';
 
 class VehicleModal extends Component {
-    _validateVehicle() {
-        const { vehicle, userID } = this.props;
+    state = {
+        vehicle: '',
+        vehicleError: ' ',
+        isVisible: true,
+    }
+
+    async _validateVehicle() {
+        const { vehicle } = this.state;
 
         if (!vehicle) {
-            this.props.updateVehicleError(Texts.Errors.EMPTY_LICENSE_PLATE);
+            this.setState({ vehicleError: Texts.Errors.EMPTY_LICENSE_PLATE });
         } else if (!Regexes.LICENSE_PLATE.test(vehicle)) {
-            this.props.updateVehicleError(Texts.Errors.INVALID_LICENSE_PLATE);
+            this.setState({ vehicleError: Texts.Errors.INVALID_LICENSE_PLATE });
         } else {
-            this.props.addVehicle(userID, vehicle);
+            await this.props.addVehicle(this.props.userID, vehicle);
+            this._closeModal();
         }
     }
 
     _renderRegisterButton() {
         if (this.props.isSavingVehicle) {
             return (
-                <ActivityIndicator size='large' />
+                <ActivityIndicator size='large' style={styles.loading} />
             );
         }
 
@@ -46,12 +51,19 @@ class VehicleModal extends Component {
         );
     }
 
+    _closeModal = () => {
+        this.setState({ isVisible: false });
+    }
+
     render() {
         return (
             <Modal
-                isVisible={this.props.dialogIsVisible}
-                onBackdropPress={() => this.props.showDialog(false)}
-                onBackButtonPress={() => this.props.showDialog(false)}
+                ref={ref => { this.MODAL_REF = ref; }}
+                isVisible={this.state.isVisible}
+                onBackdropPress={this._closeModal}
+                onBackButtonPress={this._closeModal}
+                onModalHide={() => Actions.pop()}
+                hideModalContentWhileAnimating
             >
                 <View style={styles.container}>
                     <Text style={styles.title}>
@@ -59,10 +71,12 @@ class VehicleModal extends Component {
                     </Text>
                     <View style={styles.inputContainer}>
                         <LicensePlateInput
-                            onWrite={text => this.props.writeVehicle(text)}
+                            onWrite={text => this.setState({
+                                vehicle: text, vehicleError: ' '
+                            })}
                         />
                         <Text style={styles.error}>
-                            { this.props.vehicleError }
+                            { this.state.vehicleError }
                         </Text>
                     </View>
 
@@ -74,13 +88,10 @@ class VehicleModal extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    vehicle: state.AccountReducer.vehicle,
-    vehicleError: state.AccountReducer.vehicleError,
-    dialogIsVisible: state.AccountReducer.dialogIsVisible,
     isSavingVehicle: state.AccountReducer.isSavingVehicle,
     userID: state.AuthenticationReducer.userID,
 });
 
 export default connect(mapStateToProps, {
-    writeVehicle, addVehicle, updateVehicleError, showDialog
+    addVehicle,
 })(VehicleModal);
