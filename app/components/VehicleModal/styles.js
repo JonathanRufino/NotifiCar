@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
     inputContainer: {
         marginVertical: 50,
     },
+    loading: {
+        height: 50,
+    },
 });
 
 export default styles;
