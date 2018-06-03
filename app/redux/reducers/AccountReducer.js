@@ -12,8 +12,6 @@ const AccountReducer = (state = INITIAL_STATE, action) => {
         case Types.ADD_VEHICLE_SUCCESS:
             return {
                 ...state,
-                dialogIsVisible: false,
-                vehicle: '',
                 isSavingVehicle: false,
             };
         case Types.ADD_VEHICLE_ERROR:
