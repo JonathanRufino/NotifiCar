@@ -54,6 +54,13 @@
     },
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react-navigation)/"
+    ],
+    "collectCoverageFrom": [
+      "app/**/*.{js,jsx}",
+      "!app/**/styles.{js,jsx}",
+      "!app/{components,routes}/**/index.{js,jsx}",
+      "!app/commom/*",
+      "!node_modules/"
     ]
   },
   "detox": {
