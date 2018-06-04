@@ -61,3 +61,21 @@ export const showSuccessMessage = (title, message) => {
         ]
     );
 };
+
+/**
+ * @description Returns an array containing the current date splited by each element
+ */
+export const getDateAsArray = () => {
+    const currentDate = new Date();
+    const date = [];
+
+    date.push(parseNumberToTwoDigits(currentDate.getFullYear()));
+    date.push(parseNumberToTwoDigits(currentDate.getMonth() + 1));
+    date.push(parseNumberToTwoDigits(currentDate.getDay()));
+    date.push(`
+        ${parseNumberToTwoDigits(currentDate.getHours())}:
+        ${parseNumberToTwoDigits(currentDate.getMinutes())}
+    `);
+
+    return date;
+};
