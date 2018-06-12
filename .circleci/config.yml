@@ -25,10 +25,10 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run:
-          name: Configure Android Secret Files
+          name: Generate Android Secret Files
           command: bash ../.circleci/android.sh
       - run: bundle install
-      - run: bundle exec fastlane test
+      # - run: bundle exec fastlane test
       - run: bundle exec fastlane playstore
       # - store_test_results:
       #     path: ~/project/android/reports
@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Set Ruby Version
           command: echo "ruby-2.4" > ~/.ruby-version
-      - run: npm install
+      # - run: npm install
       - run: bundle install
       - run: bundle exec fastlane appstore
       # - run:
