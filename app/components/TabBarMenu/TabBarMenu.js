@@ -8,7 +8,7 @@ import ModalDropDown from 'react-native-modal-dropdown';
 
 import styles from './styles';
 import { Colors, Texts, Images } from '../../commom';
-import { userLoginSuccess } from '../../redux/actions/AuthenticationActions';
+import { removeUserTokenFromDatabase } from '../../redux/actions/AuthenticationActions';
 
 const MenuOptions = {
     PRIVACY_POLICY: 'Políticas de Privacidade',
@@ -35,8 +35,7 @@ class TabBarMenu extends Component {
                                 text: Texts.Buttons.EXIT,
                                 onPress: () => {
                                     LoginManager.logOut();
-                                    this.props.userLoginSuccess('');
-                                    Actions.login();
+                                    this.props.removeUserTokenFromDatabase(this.props.userID);
                                 }
                             },
                         ],
@@ -50,34 +49,41 @@ class TabBarMenu extends Component {
     }
     render() {
         return (
-        <View style={styles.container}>
-            <StatusBar backgroundColor={Colors.RED_DARK} barStyle="light-content" />
+            <View style={styles.container}>
+                <StatusBar backgroundColor={Colors.RED_DARK} barStyle="light-content" />
 
-            <View style={styles.viewPrincipal}>
-                <View style={styles.viewTitle}>
-                    <Text style={styles.title}>
-                        { Texts.APP_NAME }
-                    </Text>
+                <View style={styles.viewPrincipal}>
+                    <View style={styles.viewTitle}>
+                        <Text style={styles.title}>
+                            { Texts.APP_NAME }
+                        </Text>
+                    </View>
+
+                    <View style={styles.viewElements}>
+                        <ModalDropDown
+                            options={[MenuOptions.PRIVACY_POLICY, MenuOptions.LOGOUT]}
+                            onSelect={(index, value) => this._onOptionSelected(value)}
+                            dropdownStyle={styles.dropdownContainer}
+                            dropdownTextStyle={styles.dropdownText}
+                            showsVerticalScrollIndicator={false}
+                        >
+                            <Image source={Images.DOT_MENU} />
+                        </ModalDropDown>
+                    </View>
                 </View>
 
-                <View style={styles.viewElements}>
-                    <ModalDropDown
-                        options={[MenuOptions.PRIVACY_POLICY, MenuOptions.LOGOUT]}
-                        onSelect={(index, value) => this._onOptionSelected(value)}
-                    >
-                        <Image source={Images.DOT_MENU} />
-                    </ModalDropDown>
-                </View>
+                <TabBar
+                    {...this.props}
+                    indicatorStyle={styles.indicatorStyle}
+                    style={styles.tabBarStyle}
+                />
             </View>
-
-            <TabBar
-                {...this.props}
-                indicatorStyle={styles.indicatorStyle}
-                style={styles.tabBarStyle}
-            />
-        </View>
         );
     }
 }
 
-export default connect(null, { userLoginSuccess })(TabBarMenu);
+const mapStateToProps = state => ({
+    userID: state.AuthenticationReducer.userID,
+});
+
+export default connect(mapStateToProps, { removeUserTokenFromDatabase })(TabBarMenu);

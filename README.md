@@ -10,7 +10,7 @@
     </a>
 </p>
 
-[![CircleCI](https://circleci.com/gh/NotifiCar/NotifiCar.svg?style=shield)](https://circleci.com/gh/NotifiCar/NotifiCar) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CircleCI](https://circleci.com/gh/NotifiCar/NotifiCar.svg?style=shield)](https://circleci.com/gh/NotifiCar/NotifiCar) [![Coverage Status](https://coveralls.io/repos/github/NotifiCar/NotifiCar/badge.svg?branch=master)](https://coveralls.io/github/NotifiCar/NotifiCar?branch=master) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 
 ### Description
 
@@ -21,6 +21,18 @@
 **[PT-BR]**
 
 **NotifiCar** é um aplicativo que tem o objetivo de comunicar de forma fácil qualquer eventualidade(ocorrência) identificada pelas pessoas em relação a um veículo. Para realizar o registro dessas ocorrências é utilizada a placa do veículo do usuário e, desta forma, é enviada uma push notification para o dispositivo do usuário.
+
+### Tests
+
+Run tests:
+
+```
+$ npm test
+```
+
+### Some gotchas
+
+If you are getting the error **ReadableMap.getString(java.lang.String)' on a null object reference** add ````console.disableYellowBox = true```` to your ```App.js``` or to the component that throws the error.
 
 ### Icons
 

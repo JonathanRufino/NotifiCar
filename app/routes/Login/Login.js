@@ -20,7 +20,7 @@ class Login extends Component {
 
     async _loginWithFacebook() {
         try {
-            const result = await LoginManager.logInWithPublishPermissions(['publish_actions']);
+            const result = await LoginManager.logInWithPublishPermissions([]);
 
             if (result.isCancelled) {
                 Alert.alert(Texts.Errors.LOGIN_CANCELLED);

@@ -1,5 +1,4 @@
 const Images = {
-    LOGIN_BACKGROUND: require('../assets/images/login_background.png'),
     LOGO_WHITE: require('../assets/images/logo-white.png'),
     LOGO_SPLASHSCREEN: require('../assets/images/logo-splashscreen.png'),
     ICON_ALARM: require('../assets/images/alarm.png'),
@@ -12,6 +11,7 @@ const Images = {
     ICON_CAR_BLOCKING: require('../assets/images/car_blocking.png'),
     ICON_FLAT_TIRE: require('../assets/images/flat_tire.png'),
     ICON_TRASH: require('../assets/images/icon-trash.png'),
+    ICON_CROWN: require('../assets/images/crown.png'),
     DOT_MENU: require('../assets/images/dot-menu.png'),
     LOGOUT: require('../assets/images/logout.png'),
     ARROW_BACK_ANDROID: require('../assets/images/arrow-back.android.png'),

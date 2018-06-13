@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     icon: {
-        height: 50, 
-        width: 50,
+        height: 32, 
+        width: 32,
     },
     infoContainer: {
         justifyContent: 'space-around',

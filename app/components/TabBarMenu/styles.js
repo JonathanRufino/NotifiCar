@@ -39,6 +39,12 @@ const styles = StyleSheet.create({
     },
     toolbarIcons: {
         marginRight: 15,
+    },
+    dropdownContainer: {
+        height: 70 // Should add 35 for each menu option
+    },
+    dropdownText: {
+        color: Colors.BLACK
     }
 });
 
