@@ -12,6 +12,10 @@
 default_platform(:ios)
 
 platform :ios do
+  before_all do
+    setup_circle_ci
+  end
+
   desc "Generate new localized screenshots"
   lane :screenshots do
     capture_screenshots(workspace: "NotifiCar.xcworkspace", scheme: "NotifiCar")
@@ -19,7 +23,7 @@ platform :ios do
 
   desc "Deploy a new version to the App Store"
   lane :appstore do
-    sync_code_signing(type: "appstore")# FIXME:
+    sync_code_signing(type: "appstore", app_identifier: "com.jldevs.notificar")
     build_app(
       scheme: "NotifiCar",
       workspace: "NotifiCar.xcworkspace",

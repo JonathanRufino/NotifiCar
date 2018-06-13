@@ -1,4 +1,4 @@
-git_url("git@gitlab.com:Rufino/notificar-secrets.git")
+git_url("https://gitlab.com/Rufino/notificar-secrets.git")
 
 type("appstore") # The default type, can be: appstore, adhoc, enterprise or development
 
