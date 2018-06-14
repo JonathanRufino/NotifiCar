@@ -22,8 +22,9 @@ platform :ios do
   end
 
   desc "Deploy a new version to the App Store"
-  lane :appstore do
+  lane :deploy do
     sync_code_signing(type: "appstore", app_identifier: "com.jldevs.notificar")
+    increment_build_number
     build_app(
       scheme: "NotifiCar",
       workspace: "NotifiCar.xcworkspace",

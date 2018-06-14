@@ -18,7 +18,7 @@ platform :android do
   end
 
   desc "Deploy a new version to the Google Play"
-  lane :playstore do
+  lane :deploy do
     gradle(
       task: 'assemble',
       build_type: 'Release'

@@ -28,7 +28,7 @@ jobs:
           name: Generate Android Secret Files
           command: bash ../.circleci/android.sh
       - run: bundle install
-      - run: bundle exec fastlane playstore
+      - run: bundle exec fastlane deploy
 
   ios:
     macos:
@@ -44,7 +44,7 @@ jobs:
           name: Set Ruby Version
           command: echo "ruby-2.4" > ~/.ruby-version
       - run: bundle install
-      - run: bundle exec fastlane appstore
+      - run: bundle exec fastlane deploy
 
 workflows:
   version: 2
