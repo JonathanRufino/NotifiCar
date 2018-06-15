@@ -8,19 +8,14 @@ target 'NotifiCar' do
   # Pods for NotifiCar
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'Bolts'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
 
   target 'NotifiCar-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
-
-    pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
-
-    pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
-
-    pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
-
-    pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
-
   end
 
   target 'NotifiCarTests' do

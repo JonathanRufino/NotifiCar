@@ -6,7 +6,19 @@ jobs:
       - image: circleci/node:8
     steps:
       - checkout
+      - restore_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
       - run: npm install
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
       - run: npm run test:coverage
       - persist_to_workspace:
           root: ~/project
@@ -27,6 +39,12 @@ jobs:
       - run:
           name: Generate Android Secret Files
           command: bash ../.circleci/android.sh
+      - restore_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+      - save_cache:
+          key: bundle-v1-{{ checksum "Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
       - run: bundle install
       - run: bundle exec fastlane deploy
 
@@ -41,9 +59,31 @@ jobs:
       - checkout:
           path: /Users/distiller/project
       - run:
+          name: Generate iOS Secret Files
+          command: bash ../.circleci/ios.sh
+      - run:
           name: Set Ruby Version
           command: echo "ruby-2.4" > ~/.ruby-version
+      - restore_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+      - restore_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+      - run: npm install
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}-{{ arch }}
+          paths:
+            - ~/.cache/yarn
+      - save_cache:
+          key: node-v1-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+      - restore_cache:
+          key: bundle-v1-{{ checksum "ios/Gemfile.lock" }}-{{ arch }}
       - run: bundle install
+      - save_cache:
+          key: bundle-v1-{{ checksum "ios/Gemfile.lock" }}-{{ arch }}
+          paths:
+            - vendor/bundle
       - run:
           name: Fetch CocoaPods Specs
           command: |

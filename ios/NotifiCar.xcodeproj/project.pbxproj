@@ -48,10 +48,6 @@
 		AC8F744D049C4151B594677C /* libRNFIRMessaging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D83D8196F3F430C9874E4D4 /* libRNFIRMessaging.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C2F1FBD558F34DD0B8A49D92 /* Mandatory.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3545160C2A6A4EA4B4DF512C /* Mandatory.ttf */; };
-		C75AD7A1203A678300FFDD5F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75AD79D203A678200FFDD5F /* FBSDKCoreKit.framework */; };
-		C75AD7A2203A678300FFDD5F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75AD79E203A678200FFDD5F /* FBSDKShareKit.framework */; };
-		C75AD7A3203A678300FFDD5F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75AD79F203A678200FFDD5F /* Bolts.framework */; };
-		C75AD7A4203A678300FFDD5F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C75AD7A0203A678200FFDD5F /* FBSDKLoginKit.framework */; };
 		DDB27212251E743EBFD59F6A /* libPods-NotifiCar-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D112C947E5D4F2484CE647A /* libPods-NotifiCar-tvOS.a */; };
 		E7BD3150F3684ACD8C367969 /* KolnMesseDeutz.otf in Resources */ = {isa = PBXBuildFile; fileRef = C0990DDC306444649CF65DF2 /* KolnMesseDeutz.otf */; };
 /* End PBXBuildFile section */
@@ -413,10 +409,6 @@
 		BE1A6990D9F2A1A7BF21DE31 /* libPods-NotifiCar-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NotifiCar-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0990DDC306444649CF65DF2 /* KolnMesseDeutz.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = KolnMesseDeutz.otf; path = ../app/assets/fonts/KolnMesseDeutz.otf; sourceTree = "<group>"; };
 		C1A7310BA813C82C5C10ECE6 /* Pods-NotifiCarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotifiCarTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotifiCarTests/Pods-NotifiCarTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C75AD79D203A678200FFDD5F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		C75AD79E203A678200FFDD5F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../Documents/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
-		C75AD79F203A678200FFDD5F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../Documents/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
-		C75AD7A0203A678200FFDD5F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		C767B257E7EEAE1686074951 /* Pods-NotifiCar-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotifiCar-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotifiCar-tvOS/Pods-NotifiCar-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D17896CA7989CEBF63D6D2EF /* Pods-NotifiCar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotifiCar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NotifiCar/Pods-NotifiCar.debug.xcconfig"; sourceTree = "<group>"; };
 		E1EFC4EFC904E4419D02F381 /* Pods-NotifiCarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotifiCarTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NotifiCarTests/Pods-NotifiCarTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -443,18 +435,14 @@
 				26EC14A82077F95B00AD1C35 /* libSplashScreen.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
-				C75AD7A4203A678300FFDD5F /* FBSDKLoginKit.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
-				C75AD7A2203A678300FFDD5F /* FBSDKShareKit.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
-				C75AD7A1203A678300FFDD5F /* FBSDKCoreKit.framework in Frameworks */,
-				C75AD7A3203A678300FFDD5F /* Bolts.framework in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
@@ -644,10 +632,6 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C75AD79F203A678200FFDD5F /* Bolts.framework */,
-				C75AD79D203A678200FFDD5F /* FBSDKCoreKit.framework */,
-				C75AD7A0203A678200FFDD5F /* FBSDKLoginKit.framework */,
-				C75AD79E203A678200FFDD5F /* FBSDKShareKit.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				ED2DE8B3825BAB0746953C18 /* libPods-NotifiCar.a */,
 				2D112C947E5D4F2484CE647A /* libPods-NotifiCar-tvOS.a */,
@@ -1485,9 +1469,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NotifiCar/Pods-NotifiCar-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1634,7 +1621,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)..\node_modules\neact-native-fcmios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include",
 				);
 				INFOPLIST_FILE = NotifiCarTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1643,6 +1631,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1662,7 +1651,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)..\node_modules\neact-native-fcmios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include",
 				);
 				INFOPLIST_FILE = NotifiCarTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1671,6 +1661,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1693,8 +1684,8 @@
 				DEVELOPMENT_TEAM = T6HVFYG7Q8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/rufinopaiva/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1704,9 +1695,17 @@
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios/**",
 					"react-native-fcm/ios",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios/**",
+					"$(BUILD_DIR)/Release-$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				INFOPLIST_FILE = NotifiCar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Protobuf\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1732,8 +1731,8 @@
 				DEVELOPMENT_TEAM = T6HVFYG7Q8;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/user134699/Documents/FacebookSDK,
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1743,9 +1742,17 @@
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios/**",
 					"react-native-fcm/ios",
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios/**",
+					"$(BUILD_DIR)/Release-$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				INFOPLIST_FILE = NotifiCar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Protobuf\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1775,7 +1782,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)..\node_modules\neact-native-fcmios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include",
 				);
 				INFOPLIST_FILE = "NotifiCar-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1783,6 +1791,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1812,7 +1821,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
-					"$(SRCROOT)..\node_modules\neact-native-fcmios",
+					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
+					"$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include",
 				);
 				INFOPLIST_FILE = "NotifiCar-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1820,6 +1830,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1844,13 +1855,36 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
+					"\"$(PROJECT_DIR)/Frameworks\"",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleToolboxForMac\"",
+					"\"${PODS_ROOT}/Headers/Public/Protobuf\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Firebase/Core/Sources\"",
+					"\"$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include\"",
+				);
 				INFOPLIST_FILE = "NotifiCar-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.NotifiCar-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1871,13 +1905,36 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
+					"\"$(PROJECT_DIR)/Frameworks\"",
+				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleToolboxForMac\"",
+					"\"${PODS_ROOT}/Headers/Public/Protobuf\"",
+					"\"${PODS_ROOT}/Headers/Public/nanopb\"",
+					"\"${PODS_ROOT}/Firebase/Core/Sources\"",
+					"\"$(BUILD_DIR)/Release-$(PLATFORM_NAME)/include\"",
+				);
 				INFOPLIST_FILE = "NotifiCar-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.NotifiCar-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
