@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OccurrenceItem /> renders correctly 1`] = `
+<View
+  accessibilityComponentType={undefined}
+  accessibilityLabel={undefined}
+  accessibilityTraits={undefined}
+  accessible={true}
+  hitSlop={undefined}
+  nativeID={undefined}
+  onLayout={undefined}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "marginVertical": 20,
+      "paddingHorizontal": 20,
+      "width": 750,
+    }
+  }
+  testID={undefined}
+>
+  <Image
+    source={Object {}}
+    style={
+      Object {
+        "height": 32,
+        "width": 32,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flex": 7,
+        "justifyContent": "space-around",
+        "marginLeft": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#000",
+          "fontFamily": "Mandatory",
+          "fontSize": 25,
+          "marginBottom": 10,
+        }
+      }
+    >
+      ABC-1234
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#686868",
+          "fontSize": 18,
+        }
+      }
+    >
+      Farol Aceso
+    </Text>
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#686868",
+        "fontSize": 20,
+        "marginRight": 10,
+      }
+    }
+  >
+    12:00
+  </Text>
+</View>
+`;

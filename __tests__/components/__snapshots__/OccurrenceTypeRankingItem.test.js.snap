@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OccurrenceTypeRankingItem /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "marginLeft": 20,
+      "marginVertical": 10,
+      "width": 750,
+    }
+  }
+>
+  <Image
+    source={Object {}}
+    style={
+      Object {
+        "height": 32,
+        "width": 32,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flex": 7,
+        "justifyContent": "center",
+        "marginLeft": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#000",
+          "fontSize": 22,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flex": 2,
+        "justifyContent": "space-around",
+        "marginLeft": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "color": "#63C851",
+          "fontSize": 18,
+        }
+      }
+    />
+  </View>
+</View>
+`;

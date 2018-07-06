@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LicensePlateInput /> renders correctly 1`] = `
+<TextInput
+  allowFontScaling={true}
+  autoCapitalize="characters"
+  keyboardType="default"
+  maxLength={8}
+  onChangeText={[Function]}
+  options={
+    Object {
+      "mask": "AAA-9999",
+    }
+  }
+  placeholder="AAA-0000"
+  returnKeyType="done"
+  style={
+    Object {
+      "alignSelf": "center",
+      "backgroundColor": "#d6d8db",
+      "borderBottomColor": "#000",
+      "borderBottomWidth": 1,
+      "borderColor": "#aeb2b7",
+      "borderRadius": 10,
+      "borderWidth": 5,
+      "fontFamily": "Mandatory",
+      "fontSize": 90,
+      "marginVertical": 10,
+      "textAlign": "center",
+      "width": "80%",
+    }
+  }
+  type="custom"
+  underlineColorAndroid="transparent"
+  value=""
+/>
+`;

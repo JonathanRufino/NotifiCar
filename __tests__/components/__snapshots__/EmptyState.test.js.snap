@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EmptyState /> renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+      "opacity": 0.7,
+    }
+  }
+>
+  <Image
+    resizeMode="contain"
+    source={Object {}}
+    style={
+      Object {
+        "height": 262.5,
+        "width": 262.5,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 41.25,
+        "fontWeight": "bold",
+        "marginVertical": 15,
+        "textAlign": "center",
+        "width": 675,
+      }
+    }
+  >
+    No vehicles registered
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 33.75,
+        "textAlign": "center",
+        "width": 450,
+      }
+    }
+  >
+    To add a new vehicle tap the + button
+  </Text>
+</View>
+`;
