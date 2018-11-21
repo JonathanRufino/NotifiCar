@@ -18,13 +18,13 @@
 
 **NotifiCar** is an application that aims to easily communicate any eventuality (occurrence) identified by the people in relation to a vehicle. To record these occurrences, the user's license plate is used and a push notification is sent to the user's device.
 
-[Final Paper (PT-BR)](https://pt.overleaf.com/project/5bb402872f41841ebbaa0330/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-t0j3&popupDownload=true)
+[Final Paper (PT-BR)](https://pt.overleaf.com/project/5bb402872f41841ebbaa0330/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-0zs0&popupDownload=true)
 
 **[PT-BR]**
 
 **NotifiCar** é um aplicativo que tem o objetivo de comunicar de forma fácil qualquer eventualidade(ocorrência) identificada pelas pessoas em relação a um veículo. Para realizar o registro dessas ocorrências é utilizada a placa do veículo do usuário e, desta forma, é enviada uma push notification para o dispositivo do usuário.
 
-[Trabalho de Conclusão de Curso](https://pt.overleaf.com/project/5bb402872f41841ebbaa0330/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-t0j3&popupDownload=true)
+[Trabalho de Conclusão de Curso](https://pt.overleaf.com/project/5bb402872f41841ebbaa0330/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-0zs0&popupDownload=true)
 
 ### Tests
 
